@@ -5,12 +5,12 @@
 .category
   %h1 Now Playing
   - @now_playing.each do |movie|
-    = image_tag "http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster"
+    = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
 
 .category
   %h1 Upcoming
   - @upcoming.each do |movie|
-    = image_tag "http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster"
+    = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
 / %ul
 /   %li Object Oriented
 /   %li Ruby on Rails
