@@ -48,13 +48,14 @@ p "Done"
 agent = Mechanize.new
 page  = agent.get 'http://www.peru.com/entretenimiento/cine'
 
-# movies = [movies.first]
+movies   = [movies.first]
+theaters = [theaters.first]
 
 p "loading Schedules for movies"
-File.open("schedules.txt", "a+") do |file|
+# File.open("schedules.txt", "a+") do |file|
   movies.each do |movie|
-    file.puts "========="
-    file.puts movie.name
+    # file.puts "========="
+    # file.puts movie.name
     theaters.each do |theater|
       form             = page.forms[1]
       form["pelicula"] = movie.value
@@ -64,10 +65,14 @@ File.open("schedules.txt", "a+") do |file|
       address          = noko.css('td.direccion').children.text
       price            = noko.css('td.precio').children.text
       schedules        = noko.css('td.horario').children.text
+      overview         = noko.css('p')[2].children.text
+      p overview
       movie.theaters.push Theater.new name: theater.name, value: theater.value, 
                                    horario: schedules, price: price, address: address
-      file.puts "- #{theater.name} - #{price} - #{schedules}"
+      # file.puts "- #{theater.name} - #{price} - #{schedules}"
       p "#{movie.name} - #{theater.name}"
     end
   end
-end
+# end
+
+
