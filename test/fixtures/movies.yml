@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  value: 1
+  overview: MyString
+  poster_path: MyString
+  release_date: 2014-07-23
+  tmdb_id: 1
+
+two:
+  name: MyString
+  value: 1
+  overview: MyString
+  poster_path: MyString
+  release_date: 2014-07-23
+  tmdb_id: 1

@@ -9,6 +9,8 @@ gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'haml'
 gem 'themoviedb'
+gem 'nokogiri'
+gem 'mechanize'
 
 group :development do
   gem 'spring'

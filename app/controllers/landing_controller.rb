@@ -6,5 +6,6 @@ class LandingController < ApplicationController
 
     @now_playing = Tmdb::Movie.now_playing
     @upcoming    = Tmdb::Movie.upcoming 
+    @movies      = Movie.all
   end
 end
