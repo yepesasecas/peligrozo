@@ -9,7 +9,7 @@ doc.css('li.list-item').each do |li|
   name  = li.children.text
   value = li.attributes["data"].value.to_i
 
-  if value > 500
+  if 500 < value
     movie = Movie.create name: name, value: value
     movies.push movie
   else
@@ -18,6 +18,16 @@ doc.css('li.list-item').each do |li|
   end
 end
 p "Done"
+# --------------------- Get Horarios from peru.com form --------------------------
+
+# listado      = doc.css('div.destaques.listado_peliculas').children.children
+# poster       = listado[1].children[1].children[1].children[1]
+# poster_movie = poster.attributes["alt"].value
+# poster_path  = poster.attributes["src"].value
+# p poster_movie
+# p poster_path
+
+
 
 # --------------------- Get Horarios from peru.com form --------------------------
 agent = Mechanize.new
