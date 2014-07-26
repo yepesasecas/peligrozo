@@ -39,7 +39,6 @@ div_listados.each do |div_listado|
       if(movie)
         movie.update_attributes poster_path: poster_path
       end
-      p poster_path
     end
   end
 end
