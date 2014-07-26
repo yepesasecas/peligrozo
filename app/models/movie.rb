@@ -8,11 +8,9 @@ def get_movie_details
   movie = Tmdb::Movie.search name
   if not movie.empty?
     details = Tmdb::Movie.detail movie.first.id 
-    # self.overview     = details.overview
-    self.poster_path  = details.poster_path
     self.release_date = details.release_date
     self.tmdb_id      = details.id
   end
-  puts self.inspect
+  puts "movie.rb file: #{self.name}"
 end
 end

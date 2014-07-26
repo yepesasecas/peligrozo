@@ -6,7 +6,7 @@
   %h1 Peru com
   - @movies.each do |movie|
     - if not movie.poster_path.nil?
-      = image_tag("http://image.tmdb.org/t/p/w154#{movie.poster_path}", class:"poster")
+      = image_tag(movie.poster_path, class:"poster")
 
 .category
   %h1 Now Playing

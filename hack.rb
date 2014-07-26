@@ -47,13 +47,28 @@ p "Done"
 
 
 # --------------------- Get Poster_PAth --------------------------
-listado      = doc.css('div.destaques.listado_peliculas').children.children
-poster       = listado[1].children[1].children[1].children[1]
-poster_movie = poster.attributes["alt"].value
-poster_path  = poster.attributes["src"].value
-p poster_movie
-p poster_path
+# listado      = doc.css('div.listado_peliculas').children.children
+# poster       = listado[1].children[1].children[1].children[1]
+# poster_movie = poster.attributes["alt"].value
+# poster_path  = poster.attributes["src"].value
+# p poster_movie
+# p poster_path
 
+div_listados = doc.css("div.listado_peliculas")
+div_listados.each do |div_listado|
+  ul_div = div_listado.children[1]
+  ul_div.children.each do |li|
+    if li.class == Nokogiri::XML::Element
+      figure_div     = li.children[1]
+      a_div          = figure_div.children[1]
+      img_div        = a_div.children[1]
+      img_attributes = img_div.attributes
+      poster_movie   = img_attributes["alt"].value
+      poster_path    = img_attributes["data-original"].value
+      p poster_path
+    end
+  end
+end
 
 # --------------------- Get Horarios from peru.com form --------------------------
 # agent = Mechanize.new
