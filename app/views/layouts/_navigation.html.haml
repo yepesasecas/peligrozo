@@ -1,0 +1,14 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .logo
+        = link_to "#" do
+          = image_tag "brand_peligroso.png", id:"logo"
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        = render 'layouts/navigation_links'

@@ -1,19 +1,20 @@
+.container-fluid
+  .row
+    .category
+      %h1 Peru com
+      - @movies.each do |movie|
+        - if not movie.poster_path.nil?
+          %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
+            = image_tag(movie.poster_path, class:"poster")
 
-.logo
-  = image_tag "brand_peligroso.png", id:"logo"
+    / .category
+    /   %h1 Now Playing
+    /   - @now_playing.each do |movie|
+    /     = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
 
-.category
-  %h1 Peru com
-  - @movies.each do |movie|
-    - if not movie.poster_path.nil?
-      = image_tag(movie.poster_path, class:"poster")
+    / .category
+    /   %h1 Upcoming
+    /   - @upcoming.each do |movie|
+    /     = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
 
-.category
-  %h1 Now Playing
-  - @now_playing.each do |movie|
-    = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
-
-.category
-  %h1 Upcoming
-  - @upcoming.each do |movie|
-    = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
+= render "modal"

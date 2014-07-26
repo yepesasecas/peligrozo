@@ -1,0 +1,20 @@
+.modal.fade.movie-details
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", type: "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4.modal-title Modal title
+      .modal-body
+        .modal-overview
+        %h5 Teatros
+        .modal-theaters
+          %select{:name => "movie-theaters", class: "form-control select-movie-theater"}
+        %h5 Horario
+        .modal-schedules
+        
+          
+      / .modal-footer
+      /   %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+      /   %button.btn.btn-primary{type: "button"} Save changes
