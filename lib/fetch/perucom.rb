@@ -59,46 +59,47 @@ module Fetch
       end
     end
 
-    def self.get_posters
-      doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
-      posters = {}
-      div_listados = doc.css("div.listado_peliculas")
+    private
 
-      div_listados.each do |div_listado|
-        ul_div = div_listado.children[1]
+      def self.get_posters
+        doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
+        posters = {}
+        div_listados = doc.css("div.listado_peliculas")
 
-        ul_div.children.each do |li|
-          if li.class == Nokogiri::XML::Element
-            figure_div     = li.children[1]
-            a_div          = figure_div.children[1]
-            img_div        = a_div.children[1]
-            img_attributes = img_div.attributes
-            poster_movie   = img_attributes["alt"].value
-            poster_path    = img_attributes["data-original"].value
-            posters[poster_movie] = poster_path
+        div_listados.each do |div_listado|
+          ul_div = div_listado.children[1]
+
+          ul_div.children.each do |li|
+            if li.class == Nokogiri::XML::Element
+              figure_div     = li.children[1]
+              a_div          = figure_div.children[1]
+              img_div        = a_div.children[1]
+              img_attributes = img_div.attributes
+              poster_movie   = img_attributes["alt"].value
+              poster_path    = img_attributes["data-original"].value
+              posters[poster_movie] = poster_path
+            end
           end
         end
+        posters
       end
-      posters
-    end
 
-    def self.get_movies_overview(movies, theaters)
-      agent = Mechanize.new
-      page  = agent.get 'http://www.peru.com/entretenimiento/cine'
-      movies.each do |movie|
-        theaters.each do |theater|
-          form             = page.forms[1]
-          form["pelicula"] = movie.value
-          form["cine"]     = theater.value
-          response         = agent.submit(form)
-          noko             = Nokogiri::HTML(response.body)
-          overview         = noko.css('p')[2].children.text
-          movie.overview   = overview
-          p "#{movie.name} - #{theater.name}"
+      def self.get_movies_overview(movies, theaters)
+        agent = Mechanize.new
+        page  = agent.get 'http://www.peru.com/entretenimiento/cine'
+        movies.each do |movie|
+          theaters.each do |theater|
+            form             = page.forms[1]
+            form["pelicula"] = movie.value
+            form["cine"]     = theater.value
+            response         = agent.submit(form)
+            noko             = Nokogiri::HTML(response.body)
+            overview         = noko.css('p')[2].children.text
+            movie.overview   = overview
+            p "#{movie.name} - #{theater.name}"
+          end
         end
+        movies
       end
-      movies
-    end
-
   end
 end
