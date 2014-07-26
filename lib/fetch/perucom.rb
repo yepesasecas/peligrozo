@@ -39,8 +39,8 @@ module Fetch
       agent = Mechanize.new
       page  = agent.get 'http://www.peru.com/entretenimiento/cine'
 
-      movies   = [movies.first]
-      theaters = [theaters.first]
+      # movies   = [movies.first]
+      # theaters = [theaters.first]
 
       movies.each do |movie|
         theaters.each do |theater|
@@ -51,10 +51,16 @@ module Fetch
           noko             = Nokogiri::HTML(response.body)
           address          = noko.css('td.direccion').children.text
           price            = noko.css('td.precio').children.text
-          schedules        = noko.css('td.horario').children.text
+          description      = noko.css('td.horario').children.text
           overview         = noko.css('p')[2].children.text
           movie.update_attributes overview: overview
-          p "#{movie.name} - #{theater.name}"
+
+          if not description.empty?
+            Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
+            p "schedule!"
+          else
+            p "empty"
+          end
         end
       end
     end
