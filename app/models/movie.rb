@@ -1,6 +1,9 @@
 class Movie < ActiveRecord::Base
 before_create :get_movie_details
 
+has_many :schedules
+has_many :theaters, through: :schedules
+
 private
 def get_movie_details
   Tmdb::Api.key("999e1362be6ce13ac10a05a8122ca9ae")
