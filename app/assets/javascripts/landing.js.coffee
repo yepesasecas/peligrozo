@@ -27,6 +27,7 @@ Movies =
       Modal.title(movie.name)
       Modal.overview(movie.overview)
       Modal.theaters(theaters, movie.id)
+      $('.movie-details').modal('show')
       @getSchedule(theaters[0].id, movie.id)
 
 
@@ -35,7 +36,6 @@ $(document).ready ->
     e.preventDefault()
     movie_id = $(this).data("movie")
     movie = Movies.get movie_id
-    $('.movie-details').modal('show')
 
   $('select.select-movie-theater').on 'change', -> 
     theater = $(this)
