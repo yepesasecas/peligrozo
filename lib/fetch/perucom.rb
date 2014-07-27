@@ -85,7 +85,7 @@ module Fetch
               figure_div = li.children[1]
               p "figure_div- #{figure_div.class}"
               p figure_div
-              a_div      = figure_div.children[1]
+              a_div      = figure_div.children[0]
               p "a_div- #{a_div.class}"
               p a_div
               img_div    = a_div.children[1]
