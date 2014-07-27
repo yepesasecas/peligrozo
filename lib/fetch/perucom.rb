@@ -85,6 +85,7 @@ module Fetch
               p "figure_div- #{figure_div.class}"
               a_div      = figure_div.children[1]
               p "a_div- #{a_div.class}"
+              p "a_div- #{a_div}"
               img_div    = a_div.children[1]
               p "img_div- #{img_div.class}"
               if img_div
