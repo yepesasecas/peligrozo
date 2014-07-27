@@ -71,13 +71,15 @@ module Fetch
       def self.get_posters
         p "Getting posters.."
         doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
+        p "doc- #{doc.class}"
         posters = {}
         div_listados = doc.css("div.listado_peliculas")
-
+        p "div_listados- #{div_listados.class}"
         div_listados.each do |div_listado|
           ul_div = div_listado.children[1]
 
           ul_div.children.each do |li|
+            p "li - #{li.class}"
             if li.class == Nokogiri::XML::Element
               figure_div = li.children[1]
               a_div      = figure_div.children[1]
