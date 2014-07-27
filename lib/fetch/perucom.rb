@@ -82,10 +82,15 @@ module Fetch
               figure_div     = li.children[1]
               a_div          = figure_div.children[1]
               img_div        = a_div.children[1]
-              img_attributes = img_div.attributes
-              poster_movie   = img_attributes["alt"].value
-              poster_path    = img_attributes["data-original"].value
-              posters[poster_movie] = poster_path
+              if not img_div.attributes.empty?
+                img_attributes = img_div.attributes 
+                poster_movie   = img_attributes["alt"].value
+                poster_path    = img_attributes["data-original"].value
+                posters[poster_movie] = poster_path
+                p "poster.. #{poster_movie}:#{poster_path}"
+              else
+                p "poster.. empty"
+              end
             end
           end
         end
