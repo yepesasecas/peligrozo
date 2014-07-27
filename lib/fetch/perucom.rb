@@ -79,9 +79,9 @@ module Fetch
 
           ul_div.children.each do |li|
             if li.class == Nokogiri::XML::Element
-              figure_div     = li.children[1]
-              a_div          = figure_div.children[1]
-              img_div        = a_div.children[1]
+              figure_div = li.children[1]
+              a_div      = figure_div.children[1]
+              img_div    = a_div.children[1]
               if not img_div.attributes.empty?
                 img_attributes = img_div.attributes 
                 poster_movie   = img_attributes["alt"].value

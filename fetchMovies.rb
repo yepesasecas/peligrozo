@@ -1,3 +1,8 @@
+require 'open-uri'
+require 'nokogiri'
+require 'mechanize'
+
+
 p "fetchMovies.."
 
 movies = Fetch::Perucom.get_movies
