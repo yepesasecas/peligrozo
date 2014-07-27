@@ -11,6 +11,6 @@ movies.each {|movie| movie.save}
 theaters = Fetch::Perucom.get_theaters
 theaters.each {|theater| theater.save}
 
-# Fetch::Perucom.create_schedules(movies, theaters)
+Fetch::Perucom.create_schedules(movies, theaters)
 
 p "FetchMovies.. DONE"
