@@ -110,7 +110,7 @@ module Fetch
             noko             = Nokogiri::HTML(response.body)
             overview         = noko.css('p')[2].children.text
             movie.overview   = overview
-            p "#{movie.name} - #{theater.name}"
+            p "#{movie.name} - #{theater.name} - #{movie.overview}"
           end
         end
         movies
