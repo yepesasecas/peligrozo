@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140726042720) do
   create_table "movies", force: true do |t|
     t.string   "name"
     t.integer  "value"
-    t.string   "overview"
+    t.text     "overview"
     t.string   "poster_path"
     t.date     "release_date"
     t.integer  "tmdb_id"
