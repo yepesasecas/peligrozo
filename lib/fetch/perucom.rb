@@ -81,8 +81,10 @@ module Fetch
           ul_div.children.each do |li|
             if li.class == Nokogiri::XML::Element
               p "li - #{li.class}"
+              p "li - #{li}"
               figure_div = li.children[1]
               p "figure_div- #{figure_div.class}"
+              p "figure_div- #{figure_div}"
               a_div      = figure_div.children[1]
               p "a_div- #{a_div.class}"
               p "a_div- #{a_div}"
