@@ -79,11 +79,14 @@ module Fetch
           ul_div = div_listado.children[1]
 
           ul_div.children.each do |li|
-            p "li - #{li.class}"
             if li.class == Nokogiri::XML::Element
+              p "li - #{li.class}"
               figure_div = li.children[1]
+              p "figure_div- #{figure_div.class}"
               a_div      = figure_div.children[1]
+              p "a_div- #{a_div.class}"
               img_div    = a_div.children[1]
+              p "img_div- #{img_div.class}"
               if img_div
                 img_attributes = img_div.attributes 
                 poster_movie   = img_attributes["alt"].value
