@@ -16,6 +16,6 @@ def get_movie_details
     self.release_date = details.release_date 
     self.tmdb_id      = details.id
   end
-  puts "movie.rb file: #{self.name}"
+  puts "Creating... #{self.name}"
 end
 end

@@ -2,6 +2,7 @@ module Fetch
   module Perucom
     require 'open-uri'
     def self.get_movies
+      p "Getting movies.."
       movies  = []
       posters = self.get_posters
       doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
@@ -21,6 +22,7 @@ module Fetch
     end
 
     def self.get_theaters
+      p "Getting Theaters.."
       theaters = []
       doc      = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
       doc.css('li.list-item').each do |li|
@@ -36,6 +38,7 @@ module Fetch
     end
 
     def self.create_schedules(movies, theaters)
+      p "Getting Schedules.."
       agent = Mechanize.new
       page  = agent.get 'http://www.peru.com/entretenimiento/cine'
 
@@ -56,10 +59,8 @@ module Fetch
           movie.update_attributes overview: overview
 
           if not description.empty?
-            Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
-            p "schedule!"
-          else
-            p "empty"
+            schedule = Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
+            p "adding schedule.. #{schedule.id}"
           end
         end
       end
@@ -68,6 +69,7 @@ module Fetch
     private
 
       def self.get_posters
+        p "Getting posters.."
         doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
         posters = {}
         div_listados = doc.css("div.listado_peliculas")
@@ -91,6 +93,7 @@ module Fetch
       end
 
       def self.get_movies_overview(movies, theaters)
+        p "Getting Movies Overview.."
         agent = Mechanize.new
         page  = agent.get 'http://www.peru.com/entretenimiento/cine'
         movies.each do |movie|
