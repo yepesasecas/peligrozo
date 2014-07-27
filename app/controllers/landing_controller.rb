@@ -5,6 +5,7 @@ class LandingController < ApplicationController
     # Tmdb::Api.language("es")
     # @now_playing = Tmdb::Movie.now_playing
     # @upcoming    = Tmdb::Movie.upcoming 
-    @movies      = Movie.all
+    @movies  = Movie.all
+    @posters = Fetch::Perucom.get_posters
   end
 end
