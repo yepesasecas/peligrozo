@@ -1,4 +1,4 @@
-peligrozo
+Peligrozo
 =========
 Peliculas peligrozas!
 
