@@ -6,6 +6,5 @@ class LandingController < ApplicationController
     # @now_playing = Tmdb::Movie.now_playing
     @upcoming = Tmdb::Movie.upcoming 
     @movies   = Movie.all
-    @posters  = Fetch::Perucom.get_posters
   end
 end
