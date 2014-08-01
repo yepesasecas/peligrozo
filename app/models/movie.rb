@@ -6,9 +6,7 @@ has_many :theaters, through: :schedules
 
 private
 def get_movie_details
-  Tmdb::Api.key("999e1362be6ce13ac10a05a8122ca9ae")
-  Tmdb::Api.language("es")
-  movie = Tmdb::Movie.search name
+  movie = Fetch::Moviesdb.search self.name
   if not movie.empty?
     details = Tmdb::Movie.detail movie.first.id
     self.overview     = details.overview if overview.nil?

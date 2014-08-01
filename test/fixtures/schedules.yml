@@ -2,12 +2,7 @@
 
 one:
   movie_id: 1
-  theaters_id: 1
-  description: MyString
-  price: MyString
+  theater_id: 1
+  description: "Schedule de prueba"
+  price: "12 Soles de prueba"
 
-two:
-  movie_id: 1
-  theaters_id: 1
-  description: MyString
-  price: MyString
