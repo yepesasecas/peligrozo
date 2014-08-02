@@ -6,6 +6,7 @@ Rails.application.routes.draw do
    root 'movies#index'
    resources :movies do
     resources :theaters
+    get :get, on: :collection
    end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
