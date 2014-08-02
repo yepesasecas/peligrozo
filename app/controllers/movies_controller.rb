@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.includes(:theaters).find params[:id]
+    @movie    = Movie.includes(:theaters).find params[:id]
     @response = {movie: @movie, theaters: @movie.theaters}
     respond_to do |format|
       format.json  { render :json => @response }
