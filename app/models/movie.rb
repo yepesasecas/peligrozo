@@ -4,6 +4,18 @@ class Movie < ActiveRecord::Base
   has_many :schedules
   has_many :theaters, through: :schedules
 
+  scope :playing_now, ->{ where "state = 'playing_now'" }
+
+  state_machine :state, initial: :coming_soon do
+    event :playing do
+      transition from: :coming_soon, to: :playing_now
+    end
+    
+    event :take_out do
+      transition from: :coming_soon, to: :not_show
+    end
+  end
+
   private
     def get_details
       movie = Fetch::Moviesdb.search self.name

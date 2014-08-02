@@ -12,6 +12,7 @@ gem 'haml'
 gem 'themoviedb'
 gem 'nokogiri'
 gem 'mechanize'
+gem 'state_machine'
 
 group :development do
   gem 'spring'
