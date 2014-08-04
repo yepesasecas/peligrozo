@@ -44,16 +44,19 @@ class MoviesFactory
 
   def self.fetch_theaters
     theaters = Fetch::Perucom.get_theaters
+    theaters_saved = []
     theaters.each do |nTheater|
       theater = Theater.find_by_name nTheater.name
       if theater.nil?
         nTheater.save
+        theaters_saved.push nTheater
         p "new Theater added"
       else
+        theaters_saved.push theater
         p "theater exist #{theater.name}"
       end
     end
-    theaters
+    theaters_saved
   end
 
   def self.take_out_movies(movies)
