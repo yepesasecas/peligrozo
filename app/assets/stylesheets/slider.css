@@ -1,0 +1,48 @@
+.slider {
+    position: relative;
+    height: 270px;
+    
+    overflow: hidden;
+}
+.track {
+    position: absolute;
+    /*background-color: #ccc;*/
+    top: 10px;
+    left: 10px;
+    
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    width: 20000px;
+}
+.movie {
+    float: left;
+    
+    margin: 0;
+    margin-right: 10px;
+    padding: 0;
+    border: 0;
+    
+    width: 150px;
+    height: 150px;
+    
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+}
+
+.left, .right {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+}
+.left {
+    left: 0;
+}
+.right {
+    right: 0;
+}

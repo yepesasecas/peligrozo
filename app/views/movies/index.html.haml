@@ -2,19 +2,18 @@
   .row
     .category
       %h2 EN CARTELERA
-      - @movies.each do |movie|
-        - if not movie.poster_path.nil?
-          %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
-            = image_tag(movie.poster_path, class:"poster")
-
-    / .category
-    /   %h1 Now Playing
-    /   - @now_playing.each do |movie|
-    /     = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
-
-    / .category
-    /   %h1 Próximamente
-    /   - @upcoming.each do |movie|
-    /     = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
+      = render "slider", movies: @movies
+    .category
+      %h2 PROXIMAMENTE
+      .slider
+        .left
+          %a#slide-left2{href: "#"}
+            =image_tag 'slide_arrow_left.png'
+        .right
+          %a#slide-right2{href: "#"}
+            =image_tag 'slide_arrow_right.png'
+        #track2.track{"data-width" => @upcoming.count}
+          - @upcoming.each do |movie|
+            = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
 
 = render "modal"
