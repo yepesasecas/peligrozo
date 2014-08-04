@@ -5,6 +5,11 @@ module Fetch
       Tmdb::Movie.search(name)
     end
 
+    def self.detail(id)
+      ini
+      Tmdb::Movie.detail id
+    end
+
     def self.upcoming
       ini
       Tmdb::Movie.upcoming

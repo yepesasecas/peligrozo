@@ -5,6 +5,7 @@ class Movie < ActiveRecord::Base
   has_many :theaters, through: :schedules
 
   scope :playing_now, ->{ where "state = 'playing_now'" }
+  scope :upcoming, ->{ Fetch::Moviesdb.upcoming }
 
   state_machine :state, initial: :coming_soon do
     event :playing do
@@ -20,7 +21,7 @@ class Movie < ActiveRecord::Base
     def get_details
       movie = Fetch::Moviesdb.search self.name
       if not movie.empty?
-        details = Tmdb::Movie.detail movie.first.id
+        details = Fetch::Moviesdb.detail movie.first.id
         self.overview     = details.overview if overview.nil?
         self.poster_path  = details.poster_path if poster_path.nil?
         self.release_date = details.release_date 

@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     # @now_playing = Tmdb::Movie.now_playing
-    @upcoming = Fetch::Moviesdb.upcoming 
+    @upcoming = Movie.upcoming 
     @movies = Movie.playing_now
   end
 
