@@ -79,8 +79,10 @@ module Fetch
           ul_div.children.each do |li|
             if li.class == Nokogiri::XML::Element
               figure_div = li.children[1]
-              # a_div      = figure_div.children[0] # PRODUCTION
-              a_div      = figure_div.children[1] # DEVELOPMENT
+
+              # a_div = figure_div.children[1] # DEVELOPMENT
+              # a_div = figure_div.children[0] # PRODUCTION
+              a_div   = figure_div.children[0]
               img_div    = a_div.children[1]
               if img_div
                 img_attributes = img_div.attributes 
