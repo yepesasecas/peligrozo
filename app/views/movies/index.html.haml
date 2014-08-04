@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .category
-      %h1 En Cartelera
+      %h1 EN CARTELERA
       - @movies.each do |movie|
         - if not movie.poster_path.nil?
           %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  

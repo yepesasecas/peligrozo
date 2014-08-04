@@ -1,7 +1,13 @@
+@font-face {
+    font-family: 'ebrima';
+    src: font_url('ebrima.ttf');
+}
+
 body{
   background-color: #000;
   color:            #fff;
-  margin-top:       60px;
+  font-family:      'ebrima' !important;
+  margin-top:       80px;
 }
 
 .navbar{
