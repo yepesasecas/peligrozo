@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def index
     # @now_playing = Tmdb::Movie.now_playing
     @upcoming = Movie.upcoming 
-    @movies = Movie.playing_now
+    @movies   = Movie.playing_now
   end
 
   def show
