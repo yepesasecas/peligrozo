@@ -1,6 +1,5 @@
 last_in_view_port = (track)->
   last1    = track.find(".movie-poster:last")[0]
-  console.log last1
   viewport = $(":in-viewport")
   $.inArray(last1, viewport)
 
@@ -18,6 +17,5 @@ $(document).ready ->
     e.preventDefault()
     track = $(this).parents(".slider").find(".track")
     left  = parseInt track.css("left")
-    console.log last_in_view_port(track)
     if last_in_view_port(track) == -1
       track.css("left", left - SLIDE_WIDTH)
