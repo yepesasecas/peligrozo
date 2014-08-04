@@ -3,11 +3,19 @@
     src: font_url('ebrima.ttf');
 }
 
+@font-face {
+    font-family: 'ebrima-bold';
+    src: font_url('ebrimabd.ttf');
+}
+
 body{
   background-color: #000;
   color:            #fff;
   font-family:      'ebrima' !important;
   margin-top:       80px;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: 'ebrima-bold'
 }
 
 .navbar{
