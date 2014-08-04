@@ -82,7 +82,7 @@ module Fetch
 
               # a_div = figure_div.children[1] # DEVELOPMENT
               # a_div = figure_div.children[0] # PRODUCTION
-              a_div   = figure_div.children[0]
+              a_div   = figure_div.children[1]
               img_div    = a_div.children[1]
               if img_div
                 img_attributes = img_div.attributes 

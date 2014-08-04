@@ -7,13 +7,13 @@
       %h2 PROXIMAMENTE
       .slider
         .left
-          %a#slide-left2{href: "#"}
+          %a.slide-left{href: "#"}
             =image_tag 'slide_arrow_left.png'
         .right
-          %a#slide-right2{href: "#"}
+          %a.slide-right{href: "#"}
             =image_tag 'slide_arrow_right.png'
-        #track2.track{"data-width" => @upcoming.count}
+        #track2.track
           - @upcoming.each do |movie|
-            = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster")
-
+            = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster")
+          = image_tag("", class:"poster movie-poster")
 = render "modal"

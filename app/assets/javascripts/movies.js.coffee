@@ -47,29 +47,4 @@ $(document).ready ->
     theater = $(this)
     Movies.getSchedule(theater.data("movie"), theater.val())
 
-  $('#slide-left1').on 'click', ->
-    track = $('#track1')
-    left1 = parseInt track.css('left')
-    if left1 < 10
-      track.css('left', left1 + 155)
-
-    console.log "left" + left1
-
-  $('#slide-right2').on 'click', ->
-    track = $('#track2')
-    left1 = parseInt track.css('left')
-    track.css('left', left1 - 155)
-
-  $('#slide-left2').on 'click', ->
-    track = $('#track2')
-    left1 = parseInt track.css('left')
-    if left1 < 10
-      track.css('left', left1 + 155)
-
-    console.log "left" + left1
-
-  $('#slide-right1').on 'click', ->
-    track = $('#track1')
-    left1 = parseInt track.css('left')
-    track.css('left', left1 - 155)
-
+    

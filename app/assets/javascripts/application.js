@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require jquery.viewport.min
 //= require spin
 //= require_tree .

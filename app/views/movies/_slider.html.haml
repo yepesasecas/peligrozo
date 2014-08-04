@@ -1,12 +1,13 @@
 .slider
   .left
-    %a#slide-left1{href: "#"}
+    %a.slide-left{href: "#"}
       =image_tag 'slide_arrow_left.png'
   .right
-    %a#slide-right1{href: "#"}
+    %a.slide-right{href: "#"}
       =image_tag 'slide_arrow_right.png'
-  #track1.track{"data-width" => @movies.count}
+  #track1.track
     - movies.each do |movie|
       - if not movie.poster_path.nil?
         %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
           = image_tag(movie.poster_path, class:"poster")
+    = image_tag("", class:"poster movie-poster")
