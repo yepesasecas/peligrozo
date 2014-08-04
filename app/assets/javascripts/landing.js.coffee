@@ -3,6 +3,8 @@ Modal =
     $('.movie-details').modal('show')
   title: (title) -> 
     $(".movie-details").find(".modal-title").html(title)
+  poster: (poster_path) ->
+    $(".movie-details").find(".modal-poster").html("<img alt='Logo' id='logo' class='poster-modal hidden-xs' src=" + poster_path + ">")
   overview: (overview) -> 
     $(".movie-details").find(".modal-body").find(".modal-overview").html(overview)
   theaters: (theaters, movie_id) -> 
@@ -28,6 +30,7 @@ Movies =
       movie    = response.movie
       theaters = response.theaters
       Modal.title(movie.name)
+      Modal.poster(movie.poster_path)
       Modal.overview(movie.overview)
       Modal.theaters(theaters, movie.id)
       Modal.show()
