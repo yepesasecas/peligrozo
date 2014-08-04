@@ -11,7 +11,7 @@ class MoviesFactory
     theaters    = fetch_theaters
 
     #Agregar schedules, IF args["schedules"]
-    Fetch::Perucom.create_schedules(peru_movies, theaters) if args["schedules"]
+    Fetch::Perucom.create_schedules(peru_movies, theaters) if args[:schedules]
 
     # quitar peliculas de cartelera
     playing_now = Movie.playing_now
