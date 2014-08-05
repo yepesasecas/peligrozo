@@ -11,11 +11,11 @@ $(document).ready ->
     track = $(this).parents(".slider").find(".track")
     left  = parseInt track.css("left")
     if left < 10
-      track.animate {left: left + SLIDE_WIDTH}, 200, ->
+      track.animate {left: left + SLIDE_WIDTH}, 150, ->
   
   $(".slide-right").on 'click', (e)->
     e.preventDefault()
     track = $(this).parents(".slider").find(".track")
     left  = parseInt track.css("left")
     if last_in_view_port(track) == -1
-      track.animate {left: left - SLIDE_WIDTH}, 200, ->
+      track.animate {left: left - SLIDE_WIDTH}, 150, ->
