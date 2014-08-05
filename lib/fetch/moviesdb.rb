@@ -20,8 +20,10 @@ module Fetch
       Tmdb::Movie.now_playing
     end
 
-    def self.prueba
-      "probando TMDB Module"
+    def self.categories
+      ini
+      Tmdb::Genre.list
+      # http://api.themoviedb.org/3/genre/movie/list?api_key=999e1362be6ce13ac10a05a8122ca9ae&language=ES
     end
 
     private
