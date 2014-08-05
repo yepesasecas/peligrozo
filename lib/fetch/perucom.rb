@@ -2,7 +2,7 @@ module Fetch
   module Perucom
     require 'open-uri'
     def self.get_movies
-      p "Getting movies.."
+      p "----- Movies"
       movies  = []
       posters = self.get_posters
       doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
@@ -22,7 +22,7 @@ module Fetch
     end
 
     def self.get_theaters
-      p "Getting Theaters.."
+      p "-----Theaters"
       theaters = []
       doc      = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
       doc.css('li.list-item').each do |li|
@@ -38,7 +38,7 @@ module Fetch
     end
 
     def self.create_schedules(movies, theaters)
-      p "Getting Schedules.."
+      p "----- Schedules"
       agent = Mechanize.new
       page  = agent.get 'http://www.peru.com/entretenimiento/cine'
 
@@ -56,11 +56,20 @@ module Fetch
           price            = noko.css('td.precio').children.text
           description      = noko.css('td.horario').children.text
           overview         = noko.css('p')[2].children.text
-          movie.update_attributes overview: overview
-
+          
+          if movie.overview.nil?
+            movie.update_attributes overview: overview
+          end
+          
           if not description.empty?
-            schedule = Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
-            p "adding schedule.. #{schedule.id}"
+            schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
+            if schedule
+              schedule.update_attributes description: description
+              p "updating schedule.. #{schedule.id}"
+            else
+              schedule = Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
+              p "adding schedule.. #{schedule.id}"
+            end
           end
         end
       end
@@ -69,7 +78,7 @@ module Fetch
     private
 
       def self.get_posters
-        p "Getting posters.."
+        p "----- Posters"
         doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
         posters = {}
         div_listados = doc.css("div.listado_peliculas")
@@ -82,16 +91,21 @@ module Fetch
 
               # a_div = figure_div.children[1] # DEVELOPMENT
               # a_div = figure_div.children[0] # PRODUCTION
-              a_div   = figure_div.children[1]
-              img_div    = a_div.children[1]
+              p "@@@@@ " +ENV["RAILS_ENV"]
+              if ENV["RAILS_ENV"]=="development"
+                a_div = figure_div.children[1]
+              else
+                a_div = figure_div.children[0]
+              end
+              img_div = a_div.children[1]
               if img_div
                 img_attributes = img_div.attributes 
                 poster_movie   = img_attributes["alt"].value
                 poster_path    = img_attributes["data-original"].value
                 posters[poster_movie] = poster_path
-                p "poster.. #{poster_movie}:#{poster_path}"
+                p "adding poster #{poster_path}"
               else
-                p "poster.. empty"
+                p "WARNING - poster empty"
               end
             end
           end
@@ -112,7 +126,7 @@ module Fetch
             noko             = Nokogiri::HTML(response.body)
             overview         = noko.css('p')[2].children.text
             movie.overview   = overview
-            p "#{movie.name} - #{theater.name} - #{movie.overview}"
+            p "adding overview.. #{movie.id}"
           end
         end
         movies
