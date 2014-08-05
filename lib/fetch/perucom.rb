@@ -60,7 +60,7 @@ module Fetch
           if movie.overview.nil?
             movie.update_attributes overview: overview
           end
-          
+
           if not description.empty?
             schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
             if schedule
@@ -89,15 +89,14 @@ module Fetch
             if li.class == Nokogiri::XML::Element
               figure_div = li.children[1]
 
-              # a_div = figure_div.children[1] # DEVELOPMENT
-              # a_div = figure_div.children[0] # PRODUCTION
-              p "@@@@@ " +ENV["RAILS_ENV"]
               if ENV["RAILS_ENV"]=="development"
                 a_div = figure_div.children[1]
               else
                 a_div = figure_div.children[0]
               end
+              
               img_div = a_div.children[1]
+              
               if img_div
                 img_attributes = img_div.attributes 
                 poster_movie   = img_attributes["alt"].value
