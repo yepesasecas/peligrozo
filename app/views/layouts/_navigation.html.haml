@@ -1,16 +1,17 @@
 %nav.navbar.navbar-default.navbar-fixed-top
   .container-fluid
-    .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      .logo
-        = link_to "#" do
-          = image_tag "logo.png", id:"logo"
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
-      %ul.nav.navbar-nav.navbar-right
-        = render 'layouts/navigation_dropdown'
+    .row-fluid
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .logo
+          = link_to "#" do
+            = image_tag "logo.png", id:"logo"
+      .collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          = render 'layouts/navigation_links'
+        %ul.nav.navbar-nav.navbar-right
+          = render 'layouts/navigation_dropdown'

@@ -13,6 +13,7 @@ gem 'themoviedb'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'state_machine'
+gem 'pusher'
 
 group :development do
   gem 'spring'

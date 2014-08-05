@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+  $("#btn-fetch-movies").on 'click', (e)->
+    e.preventDefault()
+    $.ajax({
+      url:"fetch_movies" 
+      success: console.log "loading"
+      data: {schedules: $("#checkbox-schedule").is(":checked")}
+    })
