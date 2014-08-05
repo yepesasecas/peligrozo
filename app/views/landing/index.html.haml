@@ -1,10 +1,14 @@
 = content_for :header do
   .header
-.landing-back
-  .hero
-    .hero-logo
-      = image_tag "logo.png", class: "center-block"
-    .hero-buttons
-      = image_tag "boton_facebook.png", class: "center-block"
-    .hero-description
-      = image_tag "texto_peli.png", class: "center-block"
+
+.container.landing-back
+  .row
+    .hero
+      .hero-logo
+        = image_tag "logo.png", class: "center-block "
+      .hero-buttons
+        =link_to "#" do
+          = image_tag "boton_facebook.png", class:"center-block"
+      .hero-description
+        %h1 TODOS LOS CINES...BAJO TU CONTROL
+        %p PLANES DESDE US$0.00 AL MES ;)

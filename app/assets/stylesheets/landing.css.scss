@@ -8,17 +8,31 @@
 }
 .hero{
   background-color: rgba(0,0,0,0.7);
-  margin: 18% 0px;
+  margin: 13% 0px 0px 0px;
 }
 
 .hero-logo{
   padding: 1% 0;
+  img{
+    width: 25%;
+  }
 }
 
 .hero-buttons{
   padding: 2% 0;
+  text-align: center;
+  a{
+    display: inline-block;
+  }
 }
 
 .hero-description{
-  padding: 1% 0;
+  padding: 0.8% 0;
+  text-align: center;
+  h1{
+    font-size: 3.2em;
+  }
+  p{
+    font-size: 1.9em;
+  }
 }

@@ -13,17 +13,4 @@
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
       %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            JOTA
-            %span.caret
-          %ul.dropdown-menu{role: "menu"}
-            %li
-              %a{href: "#"} TUS CINES
-            %li
-              %a{href: "#"} PELI PALS
-            %li
-              %a{href: "#"} GENEROS
-            %li.divider
-            %li
-              %a{href: "#"} CERRAR SESION
+        = render 'layouts/navigation_dropdown'
