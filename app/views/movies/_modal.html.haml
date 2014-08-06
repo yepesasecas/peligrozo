@@ -6,18 +6,21 @@
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
         %h4.modal-title Modal title
-      .modal-body
-        .row
-          .col-sm-4
-            .modal-poster
-              %a{:href => ""}
-          .col-sm-8
-            .modal-overview
-            %h5 Teatros
-            .modal-theaters
-              %select{:name => "movie-theaters", class: "form-control select-movie-theater"}
-            %h5 Horario
-            .modal-schedules
+      .modal-body.row.modal-row-details
+        .col-sm-4
+          .modal-poster
+            %a{:href => "#", id:"play-trailer"}
+              =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
+            .modal-poster-img
+        .col-sm-8
+          .modal-overview
+          %h5 Teatros
+          .modal-theaters
+            %select{:name => "movie-theaters", class: "form-control select-movie-theater"}
+          %h5 Horario
+          .modal-schedules
+      .modal-body.modal-body-padding.row.modal-row-trailer
+        .modal-trailer.col-sm-12
         
           
       / .modal-footer

@@ -9,3 +9,18 @@
 .last-movie{
   width: 172px;
 }
+
+.modal-row-trailer{
+  display: none;
+}
+
+.btn-trailer-play{
+  display: none;
+  position: fixed;
+  top: 162px;
+  left: 65px;
+}
+
+.modal-body-padding{
+  padding: 0px !important;
+}
