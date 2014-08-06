@@ -3,7 +3,6 @@ module Fetch
     require 'open-uri'
     def self.get_movies
       p "----- Movies"
-      Push.message "----- Movies"
       movies  = []
       posters = self.get_posters
       doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
@@ -24,7 +23,6 @@ module Fetch
 
     def self.get_theaters
       p "----- Theaters"
-      Push.message "----- Theaters"
       theaters = []
       doc      = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
       doc.css('li.list-item').each do |li|
@@ -41,7 +39,6 @@ module Fetch
 
     def self.create_schedules(movies, theaters)
       p "----- Schedules"
-      Push.message "----- Schedules"
       agent = Mechanize.new
       page  = agent.get 'http://www.peru.com/entretenimiento/cine'
 
@@ -69,11 +66,9 @@ module Fetch
             if schedule
               schedule.update_attributes description: description
               p "updating schedule.. #{schedule.id}"
-              Push.message "updating schedule.. #{schedule.id}"
             else
               schedule = Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
               p "adding schedule.. #{schedule.id}"
-              Push.message "adding schedule.. #{schedule.id}"
             end
           end
         end
@@ -81,10 +76,8 @@ module Fetch
     end
 
     private
-
       def self.get_posters
         p "----- Posters"
-        Push.message "----- Posters"
         doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
         posters = {}
         div_listados = doc.css("div.listado_peliculas")
@@ -109,10 +102,8 @@ module Fetch
                 poster_path    = img_attributes["data-original"].value
                 posters[poster_movie] = poster_path
                 p "adding poster #{poster_path}"
-                Push.message "adding poster #{poster_path}"
               else
                 p "WARNING - poster empty"
-                Push.message "WARNING - poster empty"
               end
             end
           end
