@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'ebrima';
-    src: font_url('ebrima.ttf');
+  font-family: 'ebrima';
+  src: font_url('ebrima.ttf');
 }
 
 @font-face {
-    font-family: 'ebrima-bold';
-    src: font_url('ebrimabd.ttf');
+  font-family: 'ebrima-bold';
+  src: font_url('ebrimabd.ttf');
 }
 
 body{
@@ -20,20 +20,49 @@ h1, h2, h3, h4, h5, h6{
 
 .navbar{
   background-color:#FFF;
-  ul{
-    li{
-      border-left: 1px solid #ccc;
-    }
-    li:last-child{
-      border-right: 1px solid #ccc;
-    }
-  }
 }
 
 .logo{  
   #logo{
     display: inline-block;
-    margin-right: 50px;
-    width:   200px;
+    margin:  5px 0 0 0;
+    width:   150px;
   }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .logo{  
+    #logo{
+      display:      inline-block;
+      margin-top:   16px;
+      margin-right: 100px;
+      width:        200px;
+    }
+  }
+  .navbar{
+    ul{
+      li{
+        border-left: 1px solid #ccc;
+      }
+      li:last-child{
+        border-right: 1px solid #ccc;
+      }
+    }
+  }
+  .navbar-nav>li>a {
+    padding-top:    36px;
+    padding-bottom: 15px;
+    height:         92px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
 }
