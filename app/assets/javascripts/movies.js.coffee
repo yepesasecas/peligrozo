@@ -21,6 +21,16 @@ src=http://www.youtube.com/embed/" + id + " frameborder='0' allowfullscreen></if
   clean: ->
     $(".btn-trailer-play").hide()
     $(".movie-details").find(".modal-body").find(".modal-trailer").html("")
+  show_trailer: ->
+    $('.modal-row-trailer').show()
+    $('.modal-row-details').hide()
+    $('.boton_back_video').show()
+  show_details: ->
+    $('.modal-row-trailer').hide()
+    $('.modal-row-details').show()
+    $('.boton_back_video').hide()
+  hide_trailer: ->
+
 
 Movies =
   getSchedule: (movie_id, theater_id)->
@@ -52,14 +62,12 @@ $(document).ready ->
     theater = $(this)
     Movies.getSchedule(theater.data("movie"), theater.val())
   $('#play-trailer').on 'click', ->
-    $('.modal-row-trailer').show()
-    $('.modal-row-details').hide()
-
+    Modal.show_trailer()
   $('.movie-details').on 'hidden.bs.modal', ->
-    $('.modal-row-trailer').hide()
-    $('.modal-row-details').show()
+    Modal.show_details()
     Modal.clean()
-    console.log 'hide'
+  $('#link_boton_back_video').on 'click', ->
+    Modal.show_details()
 
 
     
