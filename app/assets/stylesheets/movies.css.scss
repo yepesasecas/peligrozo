@@ -1,5 +1,5 @@
 .poster{
-  margin: 15px 7px;
+  margin: 15px 11px;
   width: 154px;
 }
 .poster-modal{
@@ -30,4 +30,9 @@
   left: 492px;
   position: absolute;
   top: 17px;
+}
+.category{
+  h2{
+    marign-bottom: 0px !important;
+  }
 }

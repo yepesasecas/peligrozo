@@ -2,7 +2,7 @@ aniRightDiv = (track)->
   left  = parseInt track.css("left")
   if last_in_view_port(track) == -1
     track.animate
-      left: left - 172
+      left: left - 180
     , 180
   return
 
@@ -10,7 +10,7 @@ aniLeftDiv = (track)->
   left  = parseInt track.css("left")
   if left < 10
     track.animate
-      left: left + 172
+      left: left + 180
     , 180
   return
 

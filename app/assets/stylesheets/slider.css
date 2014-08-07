@@ -1,20 +1,16 @@
 .slider {
     position: relative;
-    height: 270px;
-    
+    height:   270px;
     overflow: hidden;
 }
 .track {
     position: absolute;
-    /*background-color: #ccc;*/
-    top: 10px;
-    left: 10px;
-    
-    margin: 0;
+    top:     0px;
+    left:    10px;
+    margin:  0;
     padding: 0;
-    border: 0;
-
-    width: 20000px;
+    border:  0;
+    width:   20000px;
 }
 .movie {
     float: left;
