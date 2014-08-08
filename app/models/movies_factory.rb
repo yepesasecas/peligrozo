@@ -6,7 +6,7 @@ class MoviesFactory
   def self.fetch(args={})
     p "fetchMovies.."
     #Guardar peliculas y teatros en la DB si no existen 
-    peru_movies = fetch_movies
+    peru_movies = fetch_movies(args[:perucom_div_position])
     theaters    = fetch_theaters
     #Agregar schedules, IF args["schedules"]
     Fetch::Perucom.create_schedules(peru_movies, theaters) if args[:schedules] == "true"
@@ -17,8 +17,8 @@ class MoviesFactory
     p "DONE"
   end
 
-  def self.fetch_movies
-    movies       = Fetch::Perucom.get_movies
+  def self.fetch_movies(perucom_div_position)
+    movies       = Fetch::Perucom.get_movies(perucom_div_position)
     saved_movies = []
     movies.each do |nMovie|
       movie = Movie.find_by_name nMovie.name

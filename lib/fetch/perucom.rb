@@ -1,10 +1,10 @@
 module Fetch
   module Perucom
     require 'open-uri'
-    def self.get_movies
+    def self.get_movies(perucom_div_position)
       p "----- Movies"
       movies  = []
-      posters = self.get_posters
+      posters = self.get_posters(perucom_div_position)
       doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
       
       doc.css('li.list-item').each do |li|
@@ -76,7 +76,7 @@ module Fetch
     end
 
     private
-      def self.get_posters
+      def self.get_posters(perucom_div_position = 1)
         p "----- Posters"
         doc     = Nokogiri::HTML(open('http://www.peru.com/entretenimiento/cine'))
         posters = {}
@@ -89,9 +89,9 @@ module Fetch
               figure_div = li.children[1]
 
               if ENV["RAILS_ENV"]=="development"
-                a_div = figure_div.children[1]
+                a_div = figure_div.children[perucom_div_position] #1
               else
-                a_div = figure_div.children[1]
+                a_div = figure_div.children[perucom_div_position] #0
               end
               
               img_div = a_div.children[1]
@@ -101,7 +101,7 @@ module Fetch
                 poster_movie   = img_attributes["alt"].value
                 poster_path    = img_attributes["data-original"].value
                 posters[poster_movie] = poster_path
-                p "adding poster #{poster_movie}:#{poster_path}"
+                p "adding poster  #{poster_movie}:#{poster_path}"
               else
                 p "WARNING - poster empty"
               end
