@@ -4,24 +4,17 @@ class MoviesFactory
   end
 
   def self.fetch(args={})
-    
     p "fetchMovies.."
-    push.message "fetchMovies.."
     #Guardar peliculas y teatros en la DB si no existen 
     peru_movies = fetch_movies
     theaters    = fetch_theaters
-
     #Agregar schedules, IF args["schedules"]
     Fetch::Perucom.create_schedules(peru_movies, theaters) if args[:schedules] == "true"
-
     # quitar peliculas de cartelera
     playing_now = Movie.playing_now
     not_showing = playing_now - peru_movies
     take_out_movies not_showing
-    
-
     p "DONE"
-    push.message "DONE"
   end
 
   def self.fetch_movies
@@ -34,13 +27,11 @@ class MoviesFactory
         nMovie.save
         saved_movies.push nMovie
         p "new movie added"
-        push.message "new movie added"
       else
         movie.playing
         movie.save
         saved_movies.push movie
         p "movie exist #{movie.name}"
-        push.message "movie exist #{movie.name}"
       end
     end
     saved_movies
@@ -55,11 +46,9 @@ class MoviesFactory
         nTheater.save
         theaters_saved.push nTheater
         p "new Theater added #{nTheater.id}"
-        push.message "new Theater added"
       else
         theaters_saved.push theater
         p "theater exist #{theater.id}"
-        push.message "theater exist #{theater.id}"
       end
     end
     theaters_saved
@@ -67,18 +56,10 @@ class MoviesFactory
 
   def self.take_out_movies(movies)
     p "taking out movies"
-    push.message "taking out movies"
     movies.each do |movie|
       p "take out: #{movie.name}"
-      push.message "take out: movie.name"
       movie.take_out
     end
     p "Done taking out movies"
-    push.message "Done taking out movies"
-  end
-
-  private
-  def self.push
-    @push ||= Push.new
   end
 end
