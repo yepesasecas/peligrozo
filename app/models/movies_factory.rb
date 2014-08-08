@@ -69,7 +69,7 @@ class MoviesFactory
     p "taking out movies"
     push.message "taking out movies"
     movies.each do |movie|
-      p "take out: movie.name"
+      p "take out: #{movie.name}"
       push.message "take out: movie.name"
       movie.take_out
     end

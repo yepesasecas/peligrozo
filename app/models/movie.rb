@@ -12,7 +12,7 @@ class Movie < ActiveRecord::Base
       transition from: :coming_soon, to: :playing_now
     end
     event :take_out do
-      transition from: :coming_soon, to: :not_show
+      transition from: :playing_now, to: :not_show
     end
   end
 
@@ -23,7 +23,7 @@ class Movie < ActiveRecord::Base
       if not movie.empty?
         details = Fetch::Moviesdb.detail movie.first.id
         self.overview     = details.overview if overview.nil?
-        self.poster_path  = details.poster_path if poster_path.nil?
+        #self.poster_path  = details.poster_path if poster_path.nil?
         self.release_date = details.release_date 
         self.tmdb_id      = details.id
       end
