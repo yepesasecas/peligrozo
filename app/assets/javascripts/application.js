@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-1.10.3.custom.min
 //= require bootstrap.min
 //= require jquery.viewport.min
+//= require jquery.mousewheel.min
+//= require jquery.kinetic.min.js
+//= require jquery.smoothdivscroll-1.3-min
 //= require spin
 //= require_tree .
