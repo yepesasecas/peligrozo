@@ -41,9 +41,7 @@ Movies =
     $.getJSON url, (response)->
       Modal.schedule(response[0].description)
   get: (id) =>
-    spinner  = new Spinner(SpinnerOpts).spin()
     url      = "/movies/" + id
-    $('body').append(spinner)
     $.getJSON url, (response)->
       movie    = response.movie
       theaters = response.theaters
@@ -58,6 +56,8 @@ Movies =
 $(document).ready ->
   $('.movie-poster').on 'click', (e) ->
     e.preventDefault()
+    spinner  = new Spinner(SpinnerOpts).spin()
+    $(this).append(spinner)
     movie_id = $(this).data("movie")
     movie = Movies.get movie_id
   $('select.select-movie-theater').on 'change', -> 
