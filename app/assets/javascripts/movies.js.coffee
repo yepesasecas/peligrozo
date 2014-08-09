@@ -41,7 +41,9 @@ Movies =
     $.getJSON url, (response)->
       Modal.schedule(response[0].description)
   get: (id) =>
-    url = "/movies/" + id
+    spinner  = new Spinner(SpinnerOpts).spin()
+    url      = "/movies/" + id
+    $('body').append(spinner)
     $.getJSON url, (response)->
       movie    = response.movie
       theaters = response.theaters

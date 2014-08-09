@@ -12,8 +12,9 @@ body{
   background-color: #000;
   color:            #fff;
   font-family:      'ebrima' !important;
-  margin-top:       110px;
+  margin-top:       60px;
 }
+
 h1, h2, h3, h4, h5, h6{
   font-family: 'ebrima-bold'
 }
@@ -32,6 +33,10 @@ h1, h2, h3, h4, h5, h6{
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  body{
+    margin-top: 110px;
+  }
+
   .logo{  
     #logo{
       display:      inline-block;
@@ -40,6 +45,7 @@ h1, h2, h3, h4, h5, h6{
       width:        200px;
     }
   }
+
   .navbar{
     ul{
       li{
@@ -50,6 +56,7 @@ h1, h2, h3, h4, h5, h6{
       }
     }
   }
+
   .navbar-nav>li>a {
     padding-top:    36px;
     padding-bottom: 15px;
