@@ -31,18 +31,20 @@ src=http://www.youtube.com/embed/" + id + " frameborder='0' allowfullscreen></if
     $('.boton_back_video').hide()
   hide_trailer: ->
 
-
 Movies =
   getSchedule: (movie_id, theater_id)->
     console.log(movie_id + " - " + theater_id)
     url = "/movies/" + movie_id + "/theaters/" + theater_id
-    spinner = new Spinner(SpinnerOpts).spin()
+    spinner = new Spinner(SpinnerBlack).spin()
     Modal.schedule(spinner.el)
     $.getJSON url, (response)->
       Modal.schedule(response[0].description)
-  get: (id) =>
-    url      = "/movies/" + id
+  get: (id, ele) =>
+    spinner = new Spinner(SpinnerWhite).spin()
+    ele.append(spinner.el)
+    url = "/movies/" + id
     $.getJSON url, (response)->
+      spinner.stop()
       movie    = response.movie
       theaters = response.theaters
       Modal.title(movie.name)
@@ -56,10 +58,8 @@ Movies =
 $(document).ready ->
   $('.movie-poster').on 'click', (e) ->
     e.preventDefault()
-    spinner  = new Spinner(SpinnerOpts).spin()
-    $(this).append(spinner)
     movie_id = $(this).data("movie")
-    movie = Movies.get movie_id
+    movie    = Movies.get movie_id, $(this)
   $('select.select-movie-theater').on 'change', -> 
     theater = $(this)
     Movies.getSchedule(theater.data("movie"), theater.val())
