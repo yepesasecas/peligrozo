@@ -14,6 +14,8 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'state_machine'
 gem 'pusher'
+gem 'omniauth-facebook', '1.4.0'
+gem "figaro"
 
 group :development do
   gem 'spring'
