@@ -1,0 +1,19 @@
+.container-fluid
+  .row-fluid
+    %h1 Genres
+    %ul
+      - @genres.each do|genre| 
+        %li
+          = "#{genre.name} - #{genre.id}"
+    %table
+      - @genres.each do|genre| 
+        %tr
+          %td
+            =genre.name
+          %td
+            radio1
+          %td
+            radio2
+          %td
+            radio3
+            

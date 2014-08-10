@@ -17,6 +17,14 @@ class MoviesFactory
     p "DONE"
   end
 
+  def self.update_genres
+    genres = Fetch::Moviesdb.genres
+    genres.each do |new_genre|
+      genre = Genre.find_by_tmdb_id(new_genre["id"])
+      Genre.create(name: new_genre["name"], tmdb_id: new_genre["id"]) if genre.nil?
+    end
+  end
+
   def self.fetch_movies(perucom_div_position)
     movies       = Fetch::Perucom.get_movies(perucom_div_position)
     saved_movies = []

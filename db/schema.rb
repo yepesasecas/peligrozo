@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810170307) do
+ActiveRecord::Schema.define(version: 20140810230515) do
+
+  create_table "genres", force: true do |t|
+    t.string   "name"
+    t.integer  "tmdb_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", force: true do |t|
     t.string   "name"

@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
+  root 'movies#index'
+
   get 'admins/index'
-  get 'admins/fetch_movies'
   get 'landing/index'
 
-  root 'movies#index'
   resources :movies do
     resources :theaters
     get :get, on: :collection
+  end
+
+  resources :users do
+    get :favorite_genres, on: :member
   end
 
   get 'auth/:provider/callback', to: 'sessions#create'
