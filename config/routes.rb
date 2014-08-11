@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    get :favorite_genres, on: :member
+    resources :favorite_genres
   end
 
   get 'auth/:provider/callback', to: 'sessions#create'
