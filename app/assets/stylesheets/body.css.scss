@@ -15,8 +15,17 @@ body{
   margin-top:       60px;
 }
 
+hr{
+  border-top: 1px solid #aaa !important;
+}
+
 h1, h2, h3, h4, h5, h6{
   font-family: 'ebrima-bold'
+}
+
+.center{
+  text-align: center;
+  margin: 0px auto;
 }
 
 .navbar{

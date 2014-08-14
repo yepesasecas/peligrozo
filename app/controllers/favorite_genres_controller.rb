@@ -1,14 +1,26 @@
 class FavoriteGenresController < ApplicationController
   def index
-    @genres = Genre.all.limit 9
+    @genres               = Genre.all
+    @user_favorite_genres = current_user.favorite_genres
+    @user_genres          = current_user.genres
   end
 
   def create
+    user = User.find params["user_id"]
     genres = params["genres"]
-    p genres
     genres.each_key do |id|
-      value = genres[id].to_i
-      FavoriteGenre.create(user_id: params["user_id"], genre_id: id, interest: value) if value != 1
+      value          = genres[id].to_i
+      favorite_genre = user.favorite_genres.find_by_genre_id(id)
+      if value == 1
+        favorite_genre.delete if not favorite_genre.nil?
+      elsif value != 1
+        if favorite_genre.nil?
+          user.favorite_genres.create genre_id: id, interest: value
+        else
+          favorite_genre.update_attributes interest: value
+        end
+      end
     end
+    redirect_to :back, success: "Tus generos se guardaron :)"
   end
 end
