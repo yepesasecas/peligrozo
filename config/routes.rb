@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :favorite_genres
+    resources :favorite_theaters do
+      post :delete, on: :collection
+    end
+
   end
 
   get 'auth/:provider/callback', to: 'sessions#create'

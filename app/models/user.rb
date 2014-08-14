@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :favorite_genres
-  has_many :genres, through: :favorite_genres
+  has_many :favorite_theaters
+  has_many :genres,   through: :favorite_genres
+  has_many :theaters, through: :favorite_theaters
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider         = auth.provider

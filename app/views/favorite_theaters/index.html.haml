@@ -1,0 +1,20 @@
+.container-fluid.white-background
+  .row-fluid
+    .col-sm-8.col-sm-offset-2.header-title
+      %h3 Encuentra todos los cines aquí
+      %h2
+        %small y selecciona tus más frecuentes
+      %hr/
+      .row
+        .col-sm-6
+          -@theaters.each do |theater|
+            -if @favorite_theaters.include? theater
+              .checkbox
+                %label
+                  %input{name:theater.name, type:"checkbox", value:theater.id, checked: "checked"}>/
+                  =theater.name  
+            -else 
+              .checkbox
+                %label
+                  %input{name:theater.name, type:"checkbox", value:theater.id}>/
+                  =theater.name 
