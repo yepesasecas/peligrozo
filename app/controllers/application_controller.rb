@@ -14,9 +14,6 @@ class ApplicationController < ActionController::Base
     end
   end
   def user_first_time?
-    if current_user.first_time.nil?
-      redirect_to user_favorite_genres_path current_user
-    end
   end
   helper_method :current_user, :user_logged_in?, :user_first_time?
 end
