@@ -7,9 +7,11 @@ Modal =
     $(".movie-details").find(".modal-poster-img").html("<img alt='Logo' id='logo' class='poster-modal hidden-xs' src=" + poster_path + ">")
   overview: (overview) -> 
     $(".movie-details").find(".modal-body").find(".modal-overview").html(overview)
-  theaters: (theaters, movie_id) -> 
+  theaters: (theaters, favorite_theaters, movie_id) -> 
     select = $(".movie-details").find(".modal-body").find(".select-movie-theater")
     select.html("")
+    select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in favorite_theaters
+    select.append("<option disabled>-----------</option>") if favorite_theaters.length > 0
     select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in theaters
     select.data("movie", movie_id)
   schedule: (description)-> 
@@ -45,12 +47,13 @@ Movies =
     url = "/movies/" + id
     $.getJSON url, (response)->
       spinner.stop()
-      movie    = response.movie
-      theaters = response.theaters
+      movie             = response.movie
+      theaters          = response.theaters
+      favorite_theaters = response.favorite_theaters
       Modal.title(movie.name)
       Modal.poster(movie.poster_path)
       Modal.overview(movie.overview)
-      Modal.theaters(theaters, movie.id)
+      Modal.theaters(theaters, favorite_theaters, movie.id)
       Modal.trailer(movie.trailer) if movie.trailer
       Modal.show()
       Movies.getSchedule(movie.id, theaters[0]["id"])

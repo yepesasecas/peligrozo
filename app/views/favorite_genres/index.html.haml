@@ -30,4 +30,7 @@
                   =link_to  "#", class: "center", id: "more-genres" do
                     VER MAS
                     %span.caret
-        =submit_tag "GUARDAR", class:"btn btn-primary pull-right"
+        .div-footer
+          =submit_tag "GUARDAR", class:"btn btn-primary pull-right submit-btn"
+          =link_to "CANCELAR", movies_path, class:"btn btn-default pull-right" 
+          

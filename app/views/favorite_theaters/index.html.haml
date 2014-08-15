@@ -18,3 +18,6 @@
                 %label
                   %input{name:theater.name, type:"checkbox", value:theater.id}>/
                   =theater.name 
+      .div-footer
+        =link_to "GUARDAR", movies_path, class:"btn btn-primary pull-right submit-btn"
+        =link_to "CANCELAR", movies_path, class:"btn btn-default pull-right" 

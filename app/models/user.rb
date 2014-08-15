@@ -13,4 +13,14 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def set_favorite_theaters movie
+    favorite_theaters = self.theaters
+    movie_theaters    = movie.theaters
+    theaters          = []
+    favorite_theaters.each do | favorite_theater|
+      theaters.push favorite_theater if movie_theaters.include? favorite_theater
+    end
+    theaters
+  end
 end
