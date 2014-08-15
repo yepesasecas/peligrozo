@@ -20,9 +20,9 @@ module Fetch
       Tmdb::Movie.now_playing
     end
 
-    def self.categories
+    def self.genres
       ini
-      Tmdb::Genre.list
+      Tmdb::Genre.list["genres"]
       # http://api.themoviedb.org/3/genre/movie/list?api_key=999e1362be6ce13ac10a05a8122ca9ae&language=ES
     end
 
@@ -33,7 +33,7 @@ module Fetch
 
     private
       def self.ini
-        Tmdb::Api.key("999e1362be6ce13ac10a05a8122ca9ae")
+        Tmdb::Api.key(ENV["TMDB_KEY"])
         Tmdb::Api.language("es")
       end
   end

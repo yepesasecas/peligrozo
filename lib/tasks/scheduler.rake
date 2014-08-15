@@ -11,12 +11,18 @@ task :update => :environment do
 end
 
 task :update_movies_production => :environment do
-  puts "Updating Movies..."
+  puts "Updating Movies in production..."
   MoviesFactory.fetch schedules: "true", perucom_div_position: 0
   puts "done."
 end
 task :update_production => :environment do
-  puts "Updating Movies..."
+  puts "Updating Movies in production..."
   MoviesFactory.fetch perucom_div_position: 0
+  puts "done."
+end
+
+task :update_genres => :environment do
+  puts "Updating Genres..."
+  MoviesFactory.update_genres
   puts "done."
 end

@@ -1,16 +1,26 @@
 Rails.application.routes.draw do
-  get 'admins/index'
-  get 'admins/fetch_movies'
-  get 'landing/index'
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  root 'movies#index'
 
-  # You can have the root of your site routed with "root"
-   root 'movies#index'
-   resources :movies do
+  get 'admins/index'
+  get 'landing/index'
+
+  resources :movies do
     resources :theaters
     get :get, on: :collection
-   end
+  end
+
+  resources :users do
+    resources :favorite_genres
+    resources :favorite_theaters do
+      post :delete, on: :collection
+    end
+
+  end
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
