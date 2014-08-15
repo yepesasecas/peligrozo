@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def set_favorite_theaters movie
+  def find_favorite_theaters movie
     favorite_theaters = self.theaters
     movie_theaters    = movie.theaters
     theaters          = []

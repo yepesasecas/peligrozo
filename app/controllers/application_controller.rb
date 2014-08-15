@@ -7,5 +7,16 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  helper_method :current_user
+  def user_logged_in?
+    unless current_user
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to landing_index_path
+    end
+  end
+  def user_first_time?
+    if current_user.first_time.nil?
+      redirect_to user_favorite_genres_path current_user
+    end
+  end
+  helper_method :current_user, :user_logged_in?, :user_first_time?
 end

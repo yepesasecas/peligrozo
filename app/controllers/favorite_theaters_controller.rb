@@ -1,4 +1,5 @@
 class FavoriteTheatersController < ApplicationController
+  before_action :user_logged_in?
   def index
     @theaters = Theater.all
     @favorite_theaters = current_user.theaters

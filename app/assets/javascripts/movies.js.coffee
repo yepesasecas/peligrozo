@@ -1,3 +1,4 @@
+
 Modal = 
   show: ->  
     $('.movie-details').modal('show')
@@ -10,8 +11,9 @@ Modal =
   theaters: (theaters, favorite_theaters, movie_id) -> 
     select = $(".movie-details").find(".modal-body").find(".select-movie-theater")
     select.html("")
-    select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in favorite_theaters
-    select.append("<option disabled>-----------</option>") if favorite_theaters.length > 0
+    if favorite_theaters != null
+      select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in favorite_theaters
+      select.append("<option disabled>-----------</option>") 
     select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in theaters
     select.data("movie", movie_id)
   schedule: (description)-> 

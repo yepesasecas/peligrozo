@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-
+  before_action :user_logged_in?, :user_first_time?
   def index
     @upcoming = Movie.upcoming 
     @movies   = Movie.playing_now
@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie             = Movie.includes(:theaters).find params[:id]
-    @favorite_theaters = current_user.set_favorite_theaters @movie if current_user
+    @favorite_theaters = current_user.find_favorite_theaters @movie if current_user
     @response = {movie: @movie, 
               theaters: @movie.theaters, 
      favorite_theaters: @favorite_theaters}

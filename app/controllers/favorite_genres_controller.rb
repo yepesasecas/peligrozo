@@ -1,4 +1,5 @@
 class FavoriteGenresController < ApplicationController
+  before_action :user_logged_in?
   def index
     @genres               = Genre.all
     @user_favorite_genres = current_user.favorite_genres
@@ -21,6 +22,6 @@ class FavoriteGenresController < ApplicationController
         end
       end
     end
-    redirect_to :back, success: "Tus generos se guardaron :)"
+    redirect_to movies_path, success: "Tus generos se guardaron :)"
   end
 end
