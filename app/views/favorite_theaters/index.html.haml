@@ -1,6 +1,6 @@
 .container-fluid.white-background
   .row-fluid
-    .col-sm-8.col-sm-offset-2.header-title
+    .col-sm-6.col-sm-offset-3.header-title
       %h3 Encuentra todos los cines aquí
       %h2
         %small y selecciona tus más frecuentes
@@ -9,15 +9,18 @@
         .col-sm-6
           -@theaters.each do |theater|
             -if @favorite_theaters.include? theater
-              .checkbox
+              .checkbox.checkbox-theaters
                 %label
                   %input{name:theater.name, type:"checkbox", value:theater.id, checked: "checked"}>/
                   =theater.name  
             -else 
-              .checkbox
+              .checkbox.checkbox-theaters
                 %label
                   %input{name:theater.name, type:"checkbox", value:theater.id}>/
                   =theater.name 
+          =link_to  "#", class: "center", id: "more-theaters" do
+            VER MAS
+            %span.caret
       .div-footer
         =link_to "GUARDAR", movies_path, class:"btn btn-primary pull-right submit-btn"
         =link_to "CANCELAR", movies_path, class:"btn btn-default pull-right" 

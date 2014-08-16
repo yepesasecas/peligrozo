@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814221603) do
+ActiveRecord::Schema.define(version: 20140816172150) do
 
   create_table "favorite_genres", force: true do |t|
     t.integer  "user_id"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20140814221603) do
     t.boolean  "first_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
 end

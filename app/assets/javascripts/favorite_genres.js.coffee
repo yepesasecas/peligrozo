@@ -4,6 +4,7 @@ $(document).ready ->
   trs = $("tr.genres").slice(9)
   trs.hide()
 
-  $("#more-genres").on "click",  ->
+  $("#more-genres").on "click",  (e)->
+    e.preventDefault()
     trs = $("tr.genres").slice(9)
     trs.toggle()

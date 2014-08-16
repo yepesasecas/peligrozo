@@ -1,6 +1,6 @@
 .container-fluid.white-background
   .row-fluid
-    .col-sm-8.col-sm-offset-2.header-title
+    .col-sm-6.col-sm-offset-3.header-title
       %h3 ¿Con qué frecuencia ves estos géneros ...
       %h2
         %small (Usted puede cambiar sus respuestas en cualquier momento)
@@ -9,24 +9,26 @@
         .row
           .col-sm-6
             %table.table
+              %tr.no-border
+                %th.no-border
+                %th.no-border.center nunca
+                %th.no-border.center aveces
+                %th.no-border.center amenudo
               - @genres.each do|genre| 
                 %tr.genres
-                  %td
+                  %td.no-border
                     =genre.name.upcase
-                  %td
-                    %label.radio-inline
+                  %td.no-border
+                    %label
                       =radio_button_tag("genres[#{genre.id}]", 1, genre_interest?(user_genres: @user_genres, genre: genre, value: 1))
-                      nunca
-                  %td
-                    %label.radio-inline
+                  %td.no-border
+                    %label
                       =radio_button_tag("genres[#{genre.id}]", 2, genre_interest?(user_genres: @user_genres, genre: genre, value: 2))
-                      aveces
-                  %td
-                    %label.radio-inline
+                  %td.no-border
+                    %label
                       =radio_button_tag("genres[#{genre.id}]", 3, genre_interest?(user_genres: @user_genres, genre: genre, value: 3))
-                      amenudo
               %tr
-                %td.more-genres
+                %td.no-border.more-genres
                   =link_to  "#", class: "center", id: "more-genres" do
                     VER MAS
                     %span.caret

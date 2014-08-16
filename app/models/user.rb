@@ -3,6 +3,17 @@ class User < ActiveRecord::Base
   has_many :favorite_theaters
   has_many :genres,   through: :favorite_genres
   has_many :theaters, through: :favorite_theaters
+  state_machine :state, initial: :at_genres do
+    event :genres_done do
+      transition from: :at_genres, to: :at_theaters
+    end
+    event :theaters_done do
+      transition from: :at_theaters, to: :at_friends
+    end
+    event :friends_done do
+      transition from: :at_friends, to: :config_done
+    end
+  end
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider         = auth.provider
