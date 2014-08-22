@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :user_logged_in?, :user_first_time?
+  
   def index
     @upcoming = Movie.upcoming 
     @movies   = Movie.playing_now
