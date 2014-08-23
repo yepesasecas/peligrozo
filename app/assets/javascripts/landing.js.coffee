@@ -1,5 +1,8 @@
+@WAITING_TIME       = 5000
+@NUM_OF_BACKGROUNDS = 4
+
 last_background = (index)->
-  if index is 4
+  if index is @NUM_OF_BACKGROUNDS
     index = 1
   else
     index = index + 1
@@ -20,7 +23,7 @@ $(document).ready ->
         setTimeout (->
           Background()
           return
-        ), 3000
+        ), @WAITING_TIME
         return
       background_stage = 1
       Background()
