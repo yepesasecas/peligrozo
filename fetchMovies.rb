@@ -1,1 +1,0 @@
-MoviesFactory.fetch schedules: "true"
