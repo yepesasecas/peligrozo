@@ -12,7 +12,7 @@ class Movie < ActiveRecord::Base
       transition from: :playing_now, to: :not_show
     end
   end
-
+  
   private
     def get_details
       p "get_details"

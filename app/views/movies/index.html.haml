@@ -7,5 +7,11 @@
       %h3 PROXIMAMENTE
       #makeMeScrollable2.slider
         - @upcoming.each do |movie|
-          = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster")
+          - next if movie["poster_path"].nil?
+          .upcoming-movie
+            .upcoming-poster
+              = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster")
+            .upcoming-date.center
+              in
+              = distance_of_time_in_words(movie["release_date"], Time.now)
 = render "modal"

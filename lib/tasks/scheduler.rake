@@ -1,9 +1,11 @@
 desc "This task is called by the Heroku scheduler add-on"
+
 task :update_movies => :environment do
   puts "Updating Movies, Theaters, Genres and Schedules..."
   MoviesFactory.fetch schedules: "true", perucom_div_position: 1
   puts "done."
 end
+
 task :update => :environment do
   puts "Updating Movies, Theaters and Genres..."
   MoviesFactory.fetch perucom_div_position: 1
@@ -17,6 +19,7 @@ task :update_movies_production => :environment do
   MoviesFactory.update_genres
   puts "done."
 end
+
 task :update_production => :environment do
   puts "Updating Movies, Theaters, and Genres in production..."
   MoviesFactory.fetch perucom_div_position: 0

@@ -9,9 +9,12 @@ class MoviesController < ApplicationController
   def show
     @movie             = Movie.includes(:theaters).find params[:id]
     @favorite_theaters = current_user.find_favorite_theaters @movie if current_user
-    @response = {movie: @movie, 
-              theaters: @movie.theaters, 
-     favorite_theaters: @favorite_theaters}
+    @response = {
+      movie: @movie, 
+      theaters: @movie.theaters, 
+      favorite_theaters: @favorite_theaters
+    }
+    
     respond_to do |format|
       format.json  { render :json => @response }
     end
