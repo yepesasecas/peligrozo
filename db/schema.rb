@@ -75,5 +75,4 @@ ActiveRecord::Schema.define(version: 20140816172150) do
     t.datetime "updated_at"
     t.string   "state"
   end
-
 end
