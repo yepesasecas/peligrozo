@@ -2,16 +2,28 @@
   .row-fluid
     .category
       %h3 CARTELERA
-      = render "slider", movies: @movies
+      .slider
+        #makeMeScrollable
+          - @movies.each do |movie|
+            - next if movie.poster_path.nil?
+            .upcoming-movie
+              .upcoming-poster
+                %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
+                  = image_tag movie.poster_path, class:"poster"
+              .upcoming-date.center
+                -if movie.release_date
+                  for
+                  = distance_of_time_in_words(movie.release_date, Time.now) 
     .category
       %h3 PROXIMAMENTE
-      #makeMeScrollable2.slider
-        - @upcoming.each do |movie|
-          - next if movie["poster_path"].nil?
-          .upcoming-movie
-            .upcoming-poster
-              = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster")
-            .upcoming-date.center
-              in
-              = distance_of_time_in_words(movie["release_date"], Time.now)
+      .slider
+        #makeMeScrollable2
+          - @upcoming.each do |movie|
+            - next if movie["poster_path"].nil?
+            .upcoming-movie
+              .upcoming-poster
+                = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster")
+              .upcoming-date.center
+                in
+                = distance_of_time_in_words(movie["release_date"], Time.now)
 = render "modal"
