@@ -1,0 +1,25 @@
+.container-fluid
+  .row-fluid
+    .category
+      %h3 WATCHLIST
+      .slider
+        #makeMeScrollable
+          - @watchlist.each do |movie|
+            - next if movie.poster_path.nil?
+            .upcoming-movie
+              .upcoming-poster
+                %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
+                  = image_tag movie.poster_path, class:"poster"
+    .category
+      %h3 PROXIMAMENTE
+      .slider
+        #makeMeScrollable2
+          - @upcoming.each do |movie|
+            - next if movie["poster_path"].nil?
+            .upcoming-movie
+              .upcoming-date.center
+                en
+                = distance_of_time_in_words_to_now(movie["release_date"])
+              .upcoming-poster
+                = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster")
+= render "movies/modal"
