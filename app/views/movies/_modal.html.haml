@@ -17,11 +17,14 @@
             .modal-poster-img
         .col-sm-8
           .modal-overview
-          %h5 Teatros
+          %h5 TUS CINES
           .modal-theaters
             %select{:name => "movie-theaters", class: "form-control select-movie-theater"}
-          %h5 Horario
+          %h5 HORARIOS
           .modal-schedules
+          .modal-options
+            =link_to "#", id:"button_add_watchlist", class: "pull-right" do
+              =image_tag "boton_watchlist.png"
       .modal-body.modal-body-padding.row.modal-row-trailer
         .modal-trailer.col-sm-12
         

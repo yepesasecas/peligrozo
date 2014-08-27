@@ -15,7 +15,7 @@ $(document).ready ->
       url  = path
       data =
         "theater":
-          theater_id:this.value
+          theater_id: this.value
       $.ajax
         type: "POST"
         url: url
