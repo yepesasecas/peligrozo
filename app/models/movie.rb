@@ -1,9 +1,14 @@
 class Movie < ActiveRecord::Base
   before_create :get_details, :get_trailer
+ 
   has_many :schedules
+  has_many :favorite_movies
   has_many :theaters, through: :schedules
+  has_many :users, through: :favorite_movies
+
   scope :playing_now, ->{ where("state = 'playing_now'").order("created_at DESC") }
   scope :upcoming, ->{ Fetch::Moviesdb.upcoming }
+  
   state_machine :state, initial: :coming_soon do
     event :playing do
       transition from: :coming_soon, to: :playing_now

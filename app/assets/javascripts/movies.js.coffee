@@ -20,8 +20,7 @@ Modal =
     $(".movie-details").find(".modal-body").find(".modal-schedules").html(description)
   trailer: (id)->
     $(".btn-trailer-play").show()
-    $(".movie-details").find(".modal-body").find(".modal-trailer").html("<iframe width='598' height='419'
-src=http://www.youtube.com/embed/" + id + " frameborder='0' allowfullscreen></iframe>")
+    $(".movie-details").find(".modal-body").find(".modal-trailer").html("<iframe width='598' height='419' src=http://www.youtube.com/embed/" + id + " frameborder='0' allowfullscreen></iframe>")
   clean: ->
     $(".btn-trailer-play").hide()
     $(".movie-details").find(".modal-body").find(".modal-trailer").html("")
@@ -37,7 +36,6 @@ src=http://www.youtube.com/embed/" + id + " frameborder='0' allowfullscreen></if
 
 Movies =
   getSchedule: (movie_id, theater_id)->
-    console.log(movie_id + " - " + theater_id)
     url = "/movies/" + movie_id + "/theaters/" + theater_id
     spinner = new Spinner(SpinnerBlack).spin()
     Modal.schedule(spinner.el)
@@ -60,6 +58,29 @@ Movies =
       Modal.show()
       Movies.getSchedule(movie.id, theaters[0]["id"])
 
+User =
+  add_watchlist: (movie_id)->
+    user_id = $("body").data("user")
+    url = "/users/" + user_id + "/favorite_movies"
+    data =
+      "movie":
+        movie_id: movie_id
+    $.ajax
+      type: "POST"
+      url: url
+      data: data
+      beforeSend: -> 
+        console.log "enviando"
+      success: (response)-> 
+        console.log response
+        $(".message_watchlist").show()
+        $(".modal-content").css("margin-top", "-290px")
+        setTimeout (->
+          $(".message_watchlist").hide()
+          $(".modal-content").css("margin-top", "0px")
+          return
+        ), 1000
+
 $(document).ready ->
   $('.movie-poster').on 'click', (e) ->
     e.preventDefault()
@@ -68,13 +89,19 @@ $(document).ready ->
   $('select.select-movie-theater').on 'change', -> 
     theater = $(this)
     Movies.getSchedule(theater.data("movie"), theater.val())
-  $('#play-trailer').on 'click', ->
+  $('#play-trailer').on 'click', (e)->
+    e.preventDefault()
     Modal.show_trailer()
   $('.movie-details').on 'hidden.bs.modal', ->
     Modal.show_details()
     Modal.clean()
-  $('#link_boton_back_video').on 'click', ->
+  $('#link_boton_back_video').on 'click', (e)->
+    e.preventDefault()
     Modal.show_details()
+  $("#button_add_watchlist").on "click", (e)->
+    e.preventDefault()
+    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie")
+    User.add_watchlist(movie_id)
 
 
     
