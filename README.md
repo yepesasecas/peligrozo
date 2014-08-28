@@ -1,14 +1,14 @@
-Peligrozo
+Peligroso
 =========
 Peliculas peligrozas!
 
-URL
+Url
 =========
 http://peligrozo.herokuapp.com
 
-CREDIT
+Credit
 =========
 - Jota Marquez
-- Dairo Moreno
+- Dairo Rodriguez
 - Federico Lara
 - Andrés Yepes
