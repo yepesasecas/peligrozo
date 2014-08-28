@@ -1,5 +1,7 @@
 .modal.fade.movie-details
   .modal-dialog
+    .message_watchlist
+      =image_tag "icon_menssage_watchlist.png"
     .modal-content
       .modal-header
         %button.close{"data-dismiss" => "modal", type: "button"}
@@ -25,10 +27,6 @@
           .modal-options
             =link_to "#", id:"button_add_watchlist", class: "pull-right" do
               =image_tag "boton_watchlist.png"
+      
       .modal-body.modal-body-padding.row.modal-row-trailer
         .modal-trailer.col-sm-12
-        
-          
-      / .modal-footer
-      /   %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
-      /   %button.btn.btn-primary{type: "button"} Save changes

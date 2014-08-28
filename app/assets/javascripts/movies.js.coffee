@@ -69,8 +69,17 @@ User =
       type: "POST"
       url: url
       data: data
-      beforeSend: -> console.log "enviando"
-      success: (response)-> console.log response
+      beforeSend: -> 
+        console.log "enviando"
+      success: (response)-> 
+        console.log response
+        $(".message_watchlist").show()
+        $(".modal-content").css("margin-top", "-290px")
+        setTimeout (->
+          $(".message_watchlist").hide()
+          $(".modal-content").css("margin-top", "0px")
+          return
+        ), 1000
 
 $(document).ready ->
   $('.movie-poster').on 'click', (e) ->
@@ -80,14 +89,17 @@ $(document).ready ->
   $('select.select-movie-theater').on 'change', -> 
     theater = $(this)
     Movies.getSchedule(theater.data("movie"), theater.val())
-  $('#play-trailer').on 'click', ->
+  $('#play-trailer').on 'click', (e)->
+    e.preventDefault()
     Modal.show_trailer()
   $('.movie-details').on 'hidden.bs.modal', ->
     Modal.show_details()
     Modal.clean()
-  $('#link_boton_back_video').on 'click', ->
+  $('#link_boton_back_video').on 'click', (e)->
+    e.preventDefault()
     Modal.show_details()
-  $("#button_add_watchlist").on "click", ->
+  $("#button_add_watchlist").on "click", (e)->
+    e.preventDefault()
     movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie")
     User.add_watchlist(movie_id)
 
