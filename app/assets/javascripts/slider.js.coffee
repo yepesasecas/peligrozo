@@ -1,7 +1,3 @@
-#www.smoothdivscroll.com
-#github.com/tkahn/Smooth-Div-Scroll/blob/master/index.html
-#www.smoothdivscroll.com/options.html#touchScrolling
-
 $(document).ready ->
   $("#makeMeScrollable").smoothDivScroll
     manualContinuousScrolling: true
