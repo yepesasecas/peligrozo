@@ -16,7 +16,6 @@ User =
           $(".message_watchlist").hide()
           $(".modal-content").css("margin-top", "0px")
           $('.movie-details').modal('hide')
-          location.reload true
           return
         ), 1000
   delete_watchlist: (movie_id)->
