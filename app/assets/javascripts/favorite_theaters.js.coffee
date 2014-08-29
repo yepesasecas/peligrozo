@@ -11,23 +11,16 @@ $(document).ready ->
   
   $("input[type='checkbox']").on "change", ->
     guardar = $(this).is(":checked")
-    if guardar
-      url  = path
-      data =
-        "theater":
-          theater_id: this.value
-      $.ajax
-        type: "POST"
-        url: url
-        data: data
-        success: (response)-> console.log response
-    else
-      url  = path + "/delete"
-      data =
-        "theater":
-          theater_id:this.value
-      $.ajax
-        type: "POST"
-        url: url
-        data: data
-        success: (response)-> console.log response
+    url = 
+      if guardar
+        path
+      else
+        path + "/delete"
+    data =
+      "theater":
+        theater_id:this.value
+    $.ajax
+      type: "POST"
+      url: url
+      data: data
+      success: (response)-> console.log response
