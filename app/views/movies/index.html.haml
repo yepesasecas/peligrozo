@@ -10,5 +10,7 @@
               .upcoming-poster
                 %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
                   = image_tag movie.poster_path, class:"poster"
-    = render "upcoming_movies_slider"
+    .category
+      %h3 PROXIMAMENTE
+      = render "movies/upcoming_slider"
 = render "modal"

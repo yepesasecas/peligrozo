@@ -11,9 +11,11 @@ Modal =
   theaters: (theaters, favorite_theaters, movie_id) -> 
     select = $(".movie-details").find(".modal-body").find(".select-movie-theater")
     select.html("")
-    if favorite_theaters != null
+    console.log favorite_theaters
+    if favorite_theaters.length > 0
+      select.append("<option disabled>Tus cines Favoritos</option>") 
       select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in favorite_theaters
-      select.append("<option disabled>-----------</option>") 
+      select.append("<option disabled>Todos los cines</option>") 
     select.append("<option value=" + theater.id + ">" + theater.name + "</option>") for theater in theaters
     select.data("movie", movie_id)
   schedule: (description)-> 
@@ -50,36 +52,21 @@ Movies =
       movie             = response.movie
       theaters          = response.theaters
       favorite_theaters = response.favorite_theaters
+      in_watchlist      = response.in_watchlist
       Modal.title(movie.name)
       Modal.poster(movie.poster_path)
       Modal.overview(movie.overview)
       Modal.theaters(theaters, favorite_theaters, movie.id)
-      Modal.trailer(movie.trailer) if movie.trailer
+      if movie.trailer
+        Modal.trailer(movie.trailer)
+      if in_watchlist
+        $("#button_add_watchlist").hide()
+        $("#button_delete_watchlist").show()
+      else
+        $("#button_add_watchlist").show()
+        $("#button_delete_watchlist").hide()
       Modal.show()
       Movies.getSchedule(movie.id, theaters[0]["id"])
-
-User =
-  add_watchlist: (movie_id)->
-    user_id = $("body").data("user")
-    url = "/users/" + user_id + "/favorite_movies"
-    data =
-      "movie":
-        movie_id: movie_id
-    $.ajax
-      type: "POST"
-      url: url
-      data: data
-      beforeSend: -> 
-        console.log "enviando"
-      success: (response)-> 
-        console.log response
-        $(".message_watchlist").show()
-        $(".modal-content").css("margin-top", "-290px")
-        setTimeout (->
-          $(".message_watchlist").hide()
-          $(".modal-content").css("margin-top", "0px")
-          return
-        ), 1000
 
 $(document).ready ->
   $('.movie-poster').on 'click', (e) ->
@@ -98,10 +85,3 @@ $(document).ready ->
   $('#link_boton_back_video').on 'click', (e)->
     e.preventDefault()
     Modal.show_details()
-  $("#button_add_watchlist").on "click", (e)->
-    e.preventDefault()
-    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie")
-    User.add_watchlist(movie_id)
-
-
-    

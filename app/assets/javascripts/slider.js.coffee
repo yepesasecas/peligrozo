@@ -3,10 +3,10 @@ $(document).ready ->
     manualContinuousScrolling: true
     touchScrolling: true
     hotSpotMouseDownSpeedBooster: 1
-    hotSpotScrollingStep: 2
+    hotSpotScrollingStep: 3
 
   $("#makeMeScrollable2").smoothDivScroll
     manualContinuousScrolling: true
     touchScrolling: true
     hotSpotMouseDownSpeedBooster: 1
-    hotSpotScrollingStep: 2
+    hotSpotScrollingStep: 3
