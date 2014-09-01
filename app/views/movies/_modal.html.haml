@@ -28,10 +28,12 @@
           .modal-schedules
             = @schedule.description
           .modal-options
-            =link_to "#", id:"button_add_watchlist", class: "pull-right" do
-              =image_tag "boton_watchlist.png"
-            =link_to "#", id:"button_delete_watchlist", class: "btn btn-default pull-right" do
-              Watchlist -
+            - if current_user.movies.include? @movie
+              =link_to "#", id:"button_delete_watchlist", class: "pull-right" do
+                =image_tag "boton_remove_from_watchlist.png"
+            - else
+              =link_to "#", id:"button_add_watchlist", class: "pull-right" do
+                =image_tag "boton_watchlist.png"
       .modal-row-trailer.modal-body.modal-body-padding.row
         .modal-trailer.col-sm-12
           -if @movie.trailer?

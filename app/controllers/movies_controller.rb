@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   def show
     @movie             = Movie.includes(:theaters).find params[:id]
     @favorite_theaters = current_user.find_favorite_theaters_by_movie @movie
-    @schedule          = select_first_schedule
+    @schedule          = select_first_schedule_to_show
   end
 
   private
@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
       params.require(:movie).permit(:id)
     end
 
-    def select_first_schedule
+    def select_first_schedule_to_show
       if @favorite_theaters.empty?
         @movie.schedules.find_by theater_id: @movie.theaters.first.id
       else
