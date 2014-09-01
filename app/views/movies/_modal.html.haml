@@ -8,13 +8,14 @@
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
         =link_to "#", id: "link_boton_back_video" do
-          =image_tag "boton_back_video.png", class: "boton_back_video"
+          =image_tag "boton_back_video.png", class: "boton-back-video"
         %h4.modal-title= @movie.name
-      .modal-body.row.modal-row-details
+      .modal-row-details.modal-body.row
         .col-sm-4
           .modal-poster
-            %a{:href => "#", id:"play-trailer"}
-              =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
+            -if @movie.trailer?
+              %a{:href => "#", id:"play-trailer"}
+                =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
             .modal-poster-img
               =image_tag @movie.poster_path, class: "poster-modal hidden-xs"
         .col-sm-8
@@ -31,5 +32,7 @@
               =image_tag "boton_watchlist.png"
             =link_to "#", id:"button_delete_watchlist", class: "btn btn-default pull-right" do
               Watchlist -
-      .modal-body.modal-body-padding.row.modal-row-trailer
+      .modal-row-trailer.modal-body.modal-body-padding.row
         .modal-trailer.col-sm-12
+          -if @movie.trailer?
+            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => "http://www.youtube.com/embed/#{@movie.trailer}", :width => "598"}
