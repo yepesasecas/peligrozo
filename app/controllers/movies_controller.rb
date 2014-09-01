@@ -7,21 +7,22 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.includes(:theaters).find params[:id]
-    @favorite_theaters = current_user.find_favorite_theaters_by_movie @movie if current_user
-    @response = {
-      movie: @movie, 
-      theaters: @movie.theaters, 
-      favorite_theaters: @favorite_theaters,
-      in_watchlist: current_user.movies.include?(@movie)
-    }
-    respond_to do |format|
-      format.json  { render :json => @response }
-    end
+    @movie             = Movie.includes(:theaters).find params[:id]
+    @favorite_theaters = current_user.find_favorite_theaters_by_movie @movie
+    @schedule          = select_first_schedule
   end
 
   private
-  def movie_params
-    params.require(:movie).permit(:id)
-  end
+    def movie_params
+      params.require(:movie).permit(:id)
+    end
+
+    def select_first_schedule
+      if @favorite_theaters.empty?
+        @movie.schedules.find_by theater_id: @movie.theaters.first.id
+      else
+        @movie.schedules.find_by theater_id: @favorite_theaters.first.id
+      end
+    end
+
 end

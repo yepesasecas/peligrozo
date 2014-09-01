@@ -8,9 +8,9 @@
             - next if movie.poster_path.nil?
             .upcoming-movie
               .upcoming-poster
-                %a{href: ".movie-details", "data-movie"=>movie.id, class:"movie-poster"}  
+                %a{href: ".movie-details", "data-movie-id"=>movie.id, class:"movie-poster"}  
                   = image_tag movie.poster_path, class:"poster"
     .category
       %h3 PROXIMAMENTE
       = render "movies/upcoming_slider"
-= render "modal"
+.modal-container
