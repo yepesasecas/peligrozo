@@ -4,9 +4,9 @@ $(document).ready ->
   $(".modal-container").on "change", ".select-movie-theater", -> 
     url       = "/movies/" + $(this).data("movie-id") + "/theaters/" + $(this).val()
     spinner   = new Spinner(SpinnerBlack).spin()
-    eschedule = $(".movie-details").find(".modal-body").find(".modal-schedules")
+    schedule = $(".movie-details").find(".modal-body").find(".modal-schedules")
 
-    eschedule.html(spinner.el)
+    schedule.html(spinner.el)
 
     $.getJSON url, (response)->
-      eschedule.html(response[0].description)
+      schedule.html(response[0].description)
