@@ -3,4 +3,8 @@ class Theater < ActiveRecord::Base
   has_many :favorite_theaters
   has_many :movies, through: :schedules
   has_many :users,  through: :favorite_theaters
+
+  def to_s
+    name
+  end
 end

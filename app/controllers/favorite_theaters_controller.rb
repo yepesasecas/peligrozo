@@ -6,7 +6,7 @@ class FavoriteTheatersController < ApplicationController
   end
 
   def create
-    saved = current_user.favorite_theaters.create favorite_theaters_params
+    saved = current_user.favorite_theaters.create favorite_theaters_params 
     respond_to do |format|
       format.json  { render :json => saved }
     end
