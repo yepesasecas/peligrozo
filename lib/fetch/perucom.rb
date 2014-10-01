@@ -61,7 +61,13 @@ module Fetch
             movie.update_attributes overview: overview
           end
 
-          if not description.empty?
+          if description.empty?
+            schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
+            if schedule
+              schedule.delete
+              p "deleting schedule"
+            end
+          else
             schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
             if schedule
               schedule.update_attributes description: description
