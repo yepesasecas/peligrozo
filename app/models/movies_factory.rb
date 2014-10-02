@@ -42,6 +42,7 @@ class MoviesFactory
         p "new movie added"
       else
         movie.playing
+        movie.update_attributes(value: nMovie.value)
         movie.save
         saved_movies.push movie
         p "movie exist #{movie.name}"
