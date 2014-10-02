@@ -60,6 +60,7 @@ class MoviesFactory
         theaters_saved.push nTheater
         p "new Theater added #{nTheater.id}"
       else
+        theater.update_attributes(value: nTheater.value)
         theaters_saved.push theater
         p "theater exist #{theater.id}"
       end
@@ -69,10 +70,10 @@ class MoviesFactory
 
   def self.take_out_movies(movies)
     p "taking out movies"
+    
     movies.each do |movie|
       p "take out: #{movie.name}"
       movie.take_out
     end
-    p "Done taking out movies"
   end
 end

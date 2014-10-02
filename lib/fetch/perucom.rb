@@ -79,9 +79,7 @@ module Fetch
               end
             end
           rescue Exception => e
-            p "####--------####"
-            p "EXCEPTION movie: #{movie.value} - Theater: #{theater.value}"
-            p "####--------####"
+            p "#### EXCEPTION movie: #{movie.value} - Theater: #{theater.value}"
           end
         end
       end
@@ -115,7 +113,7 @@ module Fetch
                 posters[poster_movie] = poster_path
                 p "adding poster  #{poster_movie}:#{poster_path}"
               else
-                p "WARNING - poster empty"
+                p "#### WARNING poster empty"
               end
             end
           end
