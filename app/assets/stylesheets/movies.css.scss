@@ -41,24 +41,23 @@
   }
 }
 
-.upcoming-date{
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #000;
-  position: relative;
-  top: 100px;
-  padding: 2px;
-  margin: 0px 10px;
-  z-index: 1;
-}
-.cartelera-date{
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
+.upcoming-date, .cartelera-date {
   position: absolute;
   top: 33%;
   padding: 2px;
   margin: 0px 10px;
   width: 155px;
   z-index: 1;
+}
+
+.upcoming-date{
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
+
+}
+.cartelera-date{
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
 }
 
 .fix-upcoming-date{
