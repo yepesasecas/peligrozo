@@ -1,4 +1,5 @@
 User =
+
   add_watchlist: (movie_id)->
     user_id = $("body").data("user")
     url = "/users/" + user_id + "/favorite_movies"
