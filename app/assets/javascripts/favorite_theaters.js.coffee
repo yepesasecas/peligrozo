@@ -1,6 +1,8 @@
 $(document).ready ->
+  
   path = window.location.pathname
-  $("body").css("background-color", "#eee") if path.search('favorite_theaters') != -1 and path.search('users') != -1
+  if path.search('favorite_theaters') != -1 and path.search('users') != -1
+    $("body").css("background-color", "#eee")
   checkboxes = $(".checkbox.checkbox-theaters").slice(15)
   checkboxes.hide()
   

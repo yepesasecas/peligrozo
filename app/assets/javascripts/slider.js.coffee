@@ -1,4 +1,5 @@
 $(document).ready ->
+  
   $("#makeMeScrollable").smoothDivScroll
     manualContinuousScrolling: true
     touchScrolling: true
