@@ -1,5 +1,4 @@
 User =
-
   add_watchlist: (movie_id)->
     user_id = $("body").data("user")
     url = "/users/" + user_id + "/favorite_movies"
@@ -19,6 +18,7 @@ User =
           $('.movie-details').modal('hide')
           return
         ), 1000
+
   delete_watchlist: (movie_id)->
     user_id = $("body").data("user")
     url = "/users/" + user_id + "/favorite_movies/delete"
@@ -32,12 +32,15 @@ User =
       success: (response)-> 
         $('.movie-details').modal('hide')
         location.reload true
+
 $(document).ready ->
-  $("#button_add_watchlist").on "click", (e)->
+
+  $(".modal-container").on "click", "#button_add_watchlist", (e)->
     e.preventDefault()
-    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie")
+    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie-id")
     User.add_watchlist(movie_id)
-  $("#button_delete_watchlist").on "click", (e)->
+
+  $(".modal-container").on "click", "#button_delete_watchlist", (e)->
     e.preventDefault()
-    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie")
+    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie-id")
     User.delete_watchlist(movie_id)

@@ -6,7 +6,7 @@ class FavoriteMoviesController < ApplicationController
   end
 
   def create
-    id = favorite_movies_params[:movie_id]
+    id    = favorite_movies_params[:movie_id]
     movie = current_user.watchlist.find_by_movie_id(id)
     response = 
       if movie
@@ -21,15 +21,14 @@ class FavoriteMoviesController < ApplicationController
   end
 
   def delete
-    id = favorite_movies_params[:movie_id]
-    movie = current_user.watchlist.find_by_movie_id(id)
-    response = 
-      if movie
-        movie.delete
-        :ok
-      else
-        :bad_request
-      end
+    id       = favorite_movies_params[:movie_id]
+    movie    = current_user.watchlist.find_by_movie_id(id)
+    response = if movie
+      movie.delete
+      :ok
+    else
+      :bad_request
+    end
     respond_to do |format|
       format.json  { render json: response}
     end
