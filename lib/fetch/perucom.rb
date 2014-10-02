@@ -47,35 +47,41 @@ module Fetch
 
       movies.each do |movie|
         theaters.each do |theater|
-          form             = page.forms[1]
-          form["pelicula"] = movie.value
-          form["cine"]     = theater.value
-          response         = agent.submit(form)
-          noko             = Nokogiri::HTML(response.body)
-          address          = noko.css('td.direccion').children.text
-          price            = noko.css('td.precio').children.text
-          description      = noko.css('td.horario').children.text
-          overview         = noko.css('p')[2].children.text
-          
-          if movie.overview.nil?
-            movie.update_attributes overview: overview
-          end
+          begin
+            form             = page.forms[1]
+            form["pelicula"] = movie.value
+            form["cine"]     = theater.value
+            response         = agent.submit(form)
+            noko             = Nokogiri::HTML(response.body)
+            address          = noko.css('td.direccion').children.text
+            price            = noko.css('td.precio').children.text
+            description      = noko.css('td.horario').children.text
+            overview         = noko.css('p')[2].children.text
+            
+            if movie.overview.nil?
+              movie.update_attributes overview: overview
+            end
 
-          if description.empty?
-            schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
-            if schedule
-              schedule.delete
-              p "deleting schedule"
-            end
-          else
-            schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
-            if schedule
-              schedule.update_attributes description: description
-              p "updating schedule.. #{schedule.id}"
+            if description.empty?
+              schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
+              if schedule
+                schedule.delete
+                p "deleting schedule"
+              end
             else
-              schedule = Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
-              p "adding schedule.. #{schedule.id}"
+              schedule = Schedule.where(movie_id: movie.id, theater_id: theater.id).first
+              if schedule
+                schedule.update_attributes description: description
+                p "updating schedule.. #{schedule.id}"
+              else
+                schedule = Schedule.create movie_id: movie.id, theater_id: theater.id, description: description, price: price
+                p "adding schedule.. #{schedule.id}"
+              end
             end
+          rescue Exception => e
+            p "####--------####"
+            p "EXCEPTION movie: #{movie.value} - Theater: #{theater.value}"
+            p "####--------####"
           end
         end
       end
