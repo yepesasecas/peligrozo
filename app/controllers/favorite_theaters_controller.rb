@@ -3,6 +3,7 @@ class FavoriteTheatersController < ApplicationController
   def index
     @theaters = Theater.all
     @favorite_theaters = current_user.theaters
+    @steps = true if params[:steps] == "true"
   end
 
   def create

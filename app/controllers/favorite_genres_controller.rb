@@ -1,9 +1,10 @@
 class FavoriteGenresController < ApplicationController
   before_action :user_logged_in?
   def index
-    @genres               = Genre.all
+    @genres = Genre.all
     @user_favorite_genres = current_user.favorite_genres
-    @user_genres          = current_user.genres
+    @user_genres = current_user.genres
+    @steps = true if params[:steps] == "true"
   end
 
   def create

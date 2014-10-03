@@ -1,6 +1,10 @@
+= params[:steps]
 .container-fluid.white-background
   .row-fluid
-    .col-sm-6.col-sm-offset-3.header-title
+    - if @steps
+      .steps.col-sm-6.col-sm-offset-3
+        = image_tag "step1.png"
+    .header-title.col-sm-6.col-sm-offset-3
       %h3 ¿Con qué frecuencia ves estos géneros ...
       %h2
         %small (Usted puede cambiar sus respuestas en cualquier momento)

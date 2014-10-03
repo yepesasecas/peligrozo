@@ -1,5 +1,8 @@
 .container-fluid.white-background
   .row-fluid
+    - if @steps
+      .steps.col-sm-6.col-sm-offset-3
+        = image_tag "step2.png"
     .col-sm-6.col-sm-offset-3.header-title
       %h3 Encuentra todos los cines aquí
       %h2
