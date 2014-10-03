@@ -1,20 +1,16 @@
 class MoviesFactory
   def initialize(args)
-    
   end
 
   def self.fetch(args={})
     p "fetchMovies.."
-    
     #Guardar peliculas y teatros en la DB si no existen 
     peru_movies = fetch_movies(args[:perucom_div_position])
     theaters    = fetch_theaters
-    
     #Agregar schedules, IF args["schedules"]
     if args[:schedules] == "true"
       Fetch::Perucom.create_schedules(peru_movies, theaters) 
     end
-    
     # quitar peliculas de cartelera
     playing_now = Movie.playing_now
     not_showing = playing_now - peru_movies
