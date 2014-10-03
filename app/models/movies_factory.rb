@@ -15,6 +15,10 @@ class MoviesFactory
     playing_now = Movie.playing_now
     not_showing = playing_now - peru_movies
     take_out_movies not_showing
+
+    # delete theaters from peligrozo
+    theaters_to_delete = Theater.all - theaters
+    delete_theaters(theaters_to_delete)
     p "DONE"
   end
 
@@ -72,5 +76,10 @@ class MoviesFactory
       p "take out: #{movie.name}"
       movie.take_out
     end
+  end
+
+  def self.delete_theaters(theaters)
+    p "delete theaters.."
+    theaters.each{|theater| theater.delete}
   end
 end
