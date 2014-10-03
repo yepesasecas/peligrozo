@@ -36,7 +36,7 @@ class Movie < ActiveRecord::Base
       trailers = Fetch::Moviesdb.trailers self.tmdb_id
       youtube  = trailers['youtube']
       if not youtube.nil?
-        trailers = youtube.select {|video| video['type']=='Trailer'} 
+        trailers = youtube.select {|video| video['type'] == 'Trailer'} 
         if trailers.empty?
           self.trailer = youtube[0]
         else
