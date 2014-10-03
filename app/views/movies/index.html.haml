@@ -1,7 +1,7 @@
 .container-fluid
   .row-fluid
     .category
-      %h3 CARTELERA
+      %h4 CARTELERA
       .slider
         #makeMeScrollable
           - @movies.each do |movie|
@@ -14,6 +14,6 @@
                 .upcoming-poster
                   = image_tag movie.poster_path, class:"poster"
     .category
-      %h3 PROXIMAMENTE
+      %h4 PROXIMAMENTE
       = render "movies/upcoming_slider"
 .modal-container
