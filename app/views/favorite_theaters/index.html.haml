@@ -25,5 +25,7 @@
             VER MAS
             %span.caret
       .div-footer
-        =link_to "GUARDAR", movies_path, class:"btn btn-primary pull-right submit-btn"
-        =link_to "CANCELAR", movies_path, class:"btn btn-default pull-right" 
+        =link_to movies_path, class:"pull-right submit-btn" do
+          = image_tag "btn/continue.png" 
+        =link_to movies_path, class:"pull-right submit-btn" do
+          = image_tag "btn/skip.png" 

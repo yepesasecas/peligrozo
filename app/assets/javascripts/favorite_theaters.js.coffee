@@ -25,4 +25,4 @@ $(document).ready ->
       type: "POST"
       url: url
       data: data
-      success: (response)-> console.log response
+      success: (response)-> console.log response 

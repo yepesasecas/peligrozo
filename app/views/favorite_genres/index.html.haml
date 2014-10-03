@@ -36,7 +36,7 @@
                   =link_to  "#", class: "center", id: "more-genres" do
                     VER MAS
                     %span.caret
-        .div-footer
-          =submit_tag "GUARDAR", class:"btn btn-primary pull-right submit-btn"
-          =link_to "CANCELAR", movies_path, class:"btn btn-default pull-right" 
-          
+        .div-footer 
+          = image_submit_tag "btn/continue.png", class:"pull-right submit-btn"
+          = link_to movies_path, class:"pull-right submit-btn" do
+            = image_tag "btn/skip.png"           
