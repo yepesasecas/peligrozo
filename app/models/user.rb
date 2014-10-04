@@ -31,12 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def favorite_theaters_by(args= {})
-    favorite_theaters = self.theaters
-    movie_theaters    = args[:movie].theaters
-    theaters          = []
-    favorite_theaters.each do |favorite_theater|
-      theaters.push favorite_theater if movie_theaters.include? favorite_theater
-    end
-    theaters
+    movie_theaters = args[:movie].theaters
+    self.theaters.select { |theater| movie_theaters.include? theater }
   end
 end
