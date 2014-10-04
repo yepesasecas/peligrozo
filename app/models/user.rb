@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def find_favorite_theaters_by_movie movie
+  def favorite_theaters_by(args= {})
     favorite_theaters = self.theaters
-    movie_theaters    = movie.theaters
+    movie_theaters    = args[:movie].theaters
     theaters          = []
     favorite_theaters.each do |favorite_theater|
       theaters.push favorite_theater if movie_theaters.include? favorite_theater

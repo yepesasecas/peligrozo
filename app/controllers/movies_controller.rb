@@ -8,7 +8,8 @@ class MoviesController < ApplicationController
 
   def show
     @movie             = Movie.includes(:theaters).find params[:id]
-    @favorite_theaters = current_user.find_favorite_theaters_by_movie @movie
+    @favorite_theaters = current_user.favorite_theaters_by movie: @movie
+    @movie_theaters    = @movie.theaters
     @schedule          = select_first_schedule_to_show
   end
 

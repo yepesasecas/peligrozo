@@ -23,7 +23,7 @@
             =@movie.overview
           %h5 TUS CINES
           .modal-theaters
-            = select_tag "movie-theaters", select_theater_options(@favorite_theaters, @movie.theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie.id
+            = select_tag "movie-theaters", select_theater_options(@favorite_theaters, @movie_theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie.id
           %h5 HORARIOS
           .modal-schedules
             = @schedule.description
