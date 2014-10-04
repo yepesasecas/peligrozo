@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :movies, -> { uniq }, through: :favorite_movies
   has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
 
+  scope :playing_now, -> { where(state: "playing_now").order("created_at") }
+
   state_machine :state, initial: :at_genres do
     event :genres_done do
       transition from: :at_genres, to: :at_theaters

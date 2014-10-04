@@ -1,7 +1,7 @@
 class FavoriteMoviesController < ApplicationController
   
   def index
-    @watchlist = current_user.movies.order("created_at")
+    @watchlist = current_user.movies.playing_now
     @upcoming  = Movie.upcoming
   end
 
