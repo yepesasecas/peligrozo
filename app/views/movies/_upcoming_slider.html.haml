@@ -1,10 +1,10 @@
 .slider
   #makeMeScrollable2
     - @upcoming.each do |movie|
-      - next if movie["poster_path"].nil?
+      - next if movie.poster_path.nil?
       .upcoming-movie
         .upcoming-date.center
           EN
-          = distance_of_time_in_words_to_now(movie["release_date"]).upcase
+          = distance_of_time_in_words_to_now(movie.release_date).upcase
         .upcoming-poster
-          = image_tag("http://image.tmdb.org/t/p/w154#{movie['poster_path']}", class:"poster movie-poster fix-upcoming-date")
+          = image_tag("http://image.tmdb.org/t/p/w154#{movie.poster_path}", class:"poster movie-poster fix-upcoming-date")

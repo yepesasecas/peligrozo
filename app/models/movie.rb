@@ -7,7 +7,7 @@ class Movie < ActiveRecord::Base
   has_many :users, through: :favorite_movies
 
   scope :playing_now, ->{ where("state = 'playing_now'").order("created_at DESC") }
-  scope :upcoming, ->{ Fetch::Moviesdb.upcoming }
+  # scope :upcoming, ->{ Fetch::Moviesdb.upcoming }
   
   state_machine :state, initial: :coming_soon do
     event :playing do
@@ -18,6 +18,16 @@ class Movie < ActiveRecord::Base
     end
   end
   
+  def self.upcoming
+    upcomings = Fetch::Moviesdb.upcoming
+    upcomings.map do |upcoming|
+      Movie.new name: upcoming["original_title"], 
+        release_date: upcoming["release_date"], 
+         poster_path: upcoming["poster_path"], 
+             tmdb_id: upcoming["tmdb_id"]
+    end
+  end
+
   private
     def get_details
       p "get_details"
