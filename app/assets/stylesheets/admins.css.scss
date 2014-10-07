@@ -7,3 +7,8 @@
   /* add padding to account for vertical scrollbar */
   padding-right: 20px;
 } 
+
+.table-admins > tbody > tr > td {
+  vertical-align: top !important;
+  max-width: 300px
+}

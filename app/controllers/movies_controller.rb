@@ -13,10 +13,19 @@ class MoviesController < ApplicationController
     @schedule          = select_first_schedule_to_show
   end
 
+  def update
+    @movie = Movie.find params[:id]
+    if @movie.update(movie_params)
+      redirect_to admins_index_path, notice: "Se actualizo correctamente"
+    else
+      redirect_to admins_index_path, error: "No se pudo actualizo"
+    end
+  end
+
   private
   
     def movie_params
-      params.require(:movie).permit(:id)
+      params.require(:movie).permit(:tmdb_id, :trailer)
     end
 
     def select_first_schedule_to_show

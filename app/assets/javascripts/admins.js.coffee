@@ -23,3 +23,8 @@ $(document).ready ->
   $("#tmdb_movie_id").on "input", ->
     $.getJSON movieDB_url(this.value), (response)-> 
       update_autocomplete(response.results)
+
+  $("#tmdb_movie_id").on "autocompleteselect", (event, ui)->
+    tr = $(this).parents("tr")
+    tr.find(".label_movie_db").html(ui.item.id)
+    tr.find("#movie_tmdb_id").val(ui.item.id)

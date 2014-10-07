@@ -8,6 +8,7 @@ class Movie < ActiveRecord::Base
 
   scope :playing_now, ->{ where(state: "playing_now").order("created_at DESC") }
   scope :not_in_tmdb, ->{ where(tmdb_id: nil).order("created_at DESC") }
+  scope :with_no_trailer, ->{ where(trailer: nil).order("created_at DESC") }
 
   state_machine :state, initial: :coming_soon do
     event :playing do

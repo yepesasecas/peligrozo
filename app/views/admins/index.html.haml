@@ -1,17 +1,30 @@
 .container-fluid.white-background
   .row-fluid
     .col-sm-12
-      %table.table
+      %table.table.table-admins
         %tr
           %th Movie
-          %th Search Field
+          %th TheMovieDB
+          %th Trailer
         - @movies.each do |movie|
           = form_for movie do |t|
             %tr
               %td
-                = image_tag movie.poster_path
-                = movie.name
+                = image_tag movie.poster_path, class: "pull-left"
+                %p= movie.name
               %td
-                = t.text_field :tmdb_id, id:"tmdb_movie_id", class: "form-control", placeholder: "search tmDB"
+                -if movie.tmdb_id
+                  = text_field_tag :name, nil, id: "tmdb_movie_id", class: "form-control", placeholder: "Search", disabled: true
+                  %p
+                    TheMovieDB ID:
+                    %span.label_movie_db= movie.tmdb_id
+                -else
+                  = text_field_tag :name, nil, id: "tmdb_movie_id", class: "form-control", placeholder: "Search"
+                  = t.hidden_field :tmdb_id
+                  %p 
+                    TheMovieDB ID:
+                    %span.label_movie_db
+              %td
+                = t.text_field :trailer, class: "form-control", placeholder: "Trailer Path"
               %td
                 = submit_tag "Guardar", class: "btn btn-primary"

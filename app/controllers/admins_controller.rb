@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
   
   def index
     # @movies = Movie.playing_now
-    @movies = Movie.not_in_tmdb
+    @movies = Movie.with_no_trailer
   end
 
 end
