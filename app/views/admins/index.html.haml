@@ -7,24 +7,19 @@
           %th TheMovieDB
           %th Trailer
         - @movies.each do |movie|
-          = form_for movie do |t|
+          = form_for movie do |f|
             %tr
               %td
                 = image_tag movie.poster_path, class: "pull-left"
                 %p= movie.name
               %td
-                -if movie.tmdb_id
-                  = text_field_tag :name, nil, id: "tmdb_movie_id", class: "form-control", placeholder: "Search", disabled: true
-                  %p
-                    TheMovieDB ID:
-                    %span.label_movie_db= movie.tmdb_id
-                -else
-                  = text_field_tag :name, nil, id: "tmdb_movie_id", class: "form-control", placeholder: "Search"
-                  = t.hidden_field :tmdb_id
-                  %p 
-                    TheMovieDB ID:
-                    %span.label_movie_db
+                = text_field_tag :name, nil, id: "tmdb_movie_id", class: "form-control tmdb_movie_id", placeholder: "Search"
+                = f.hidden_field :tmdb_id
+                %p 
+                  TheMovieDB ID:
+                  %span.label_movie_db
               %td
-                = t.text_field :trailer, class: "form-control", placeholder: "Trailer Path"
+                = f.text_field :trailer, class: "form-control", placeholder: "Trailer Path"
+                .movie_trailer
               %td
                 = submit_tag "Guardar", class: "btn btn-primary"
