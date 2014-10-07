@@ -10,11 +10,21 @@ class ApplicationController < ActionController::Base
         @current_user ||= User.find(session[:user_id]) 
       end
     end
+
+    def current_user_is_an_admin?
+      [1, 2, 3, 5].include? current_user.id
+    end
     
     def user_logged_in?
       unless current_user
         flash[:error] = "You must be logged in to access this section"
         redirect_to landing_index_path
+      end
+    end
+
+    def admin_logged_in?
+      unless current_user_is_an_admin?
+        redirect_to root_path, notice: "Lo siento mucho, no eres administrador"
       end
     end
 
@@ -31,5 +41,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    helper_method :current_user, :user_logged_in?, :user_first_time?
+    helper_method :current_user, :user_logged_in?, :user_first_time?,
+                  :current_user_is_an_admin?, :admin_logged_in?
+                  
 end
