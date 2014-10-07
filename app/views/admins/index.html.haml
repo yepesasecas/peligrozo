@@ -1,0 +1,17 @@
+.container-fluid.white-background
+  .row-fluid
+    .col-sm-6
+      %table.table.table-hover
+        %tr
+          %th Movie
+          %th Search Field
+        - @movies.each do |movie|
+          = form_for movie do |t|
+            %tr
+              %td
+                = image_tag movie.poster_path
+                = movie.name
+              %td
+                = t.text_field :tmdb_id, id:"tmdb_movie_id", class: "form-control", placeholder: "search tmDB"
+              %td
+                = submit_tag "Guardar", class: "btn btn-primary"
