@@ -1,3 +1,14 @@
-// Place all the styles related to the admins controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.ui-autocomplete {
+  max-height: 500px;
+  width: auto;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  /* add padding to account for vertical scrollbar */
+  padding-right: 20px;
+} 
+
+.table-admins > tbody > tr > td {
+  vertical-align: top !important;
+  max-width: 300px
+}
