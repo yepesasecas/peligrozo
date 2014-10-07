@@ -13,7 +13,7 @@
       %li.divider
       - if current_user_is_an_admin?
         %li
-          =link_to movie_match, admins_index_path
+          =link_to movie_match_helper, admins_index_path
         %li.divider
       %li
         = link_to "CERRAR SESION", signout_path, id: "sign_out"

@@ -15,7 +15,7 @@ module ApplicationHelper
     end
   end
 
-  def movie_match
+  def movie_match_helper
     count = Movie.with_no_trailer.count
     if count > 0
       "MOVIE MATCH (#{count})"
@@ -23,5 +23,5 @@ module ApplicationHelper
       "MOVIE MATCH"
     end
   end
-  
+
 end

@@ -13,7 +13,7 @@ $(document).ready ->
     (->
       background_stage = 1
       background = ->
-        $(".landing-back").css "background", "url(/assets/background_" + background_stage + ".png) no-repeat"
+        $(".landing-back").css "background", "url(/assets/background/" + background_stage + ".png) no-repeat"
         $(".landing-back").css "background-size", "cover"
         $(".landing-back").css "bottom", "0px"
         $(".landing-back").css "position", "absolute"
