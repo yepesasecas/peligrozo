@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'upcoming_movies_controller/show'
+
   root 'movies#index'
 
   get 'admins/index'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
       post :delete, on: :collection
     end
   end
+
+  resources :upcoming_movies, only: [:show]
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

@@ -6,14 +6,11 @@
         #makeMeScrollable
           - @movies.each do |movie|
             - next if movie.poster_path.nil?
-            .upcoming-movie
-              %a{href: ".movie-details", "data-movie-id"=>movie.id, class:"movie-poster"}
-                / .cartelera-date.center
-                /   = distance_of_time_in_words_to_now(movie.created_at).upcase
-                /   EN FUNCIÓN
+            =link_to movie, remote: true do
+              .upcoming-movie
                 .upcoming-poster
                   = image_tag movie.poster_path, class:"poster"
     .category
       %h4 PROXIMAMENTE
-      = render "movies/upcoming_slider"
+      = render "upcoming_movies/slider"
 .modal-container
