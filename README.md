@@ -4,7 +4,7 @@ Peliculas peligrozas!
 
 Url
 =========
-http://peligrozo.herokuapp.com
+http://peligroso.co
 
 Credit
 =========
