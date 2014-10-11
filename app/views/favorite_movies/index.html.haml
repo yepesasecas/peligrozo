@@ -6,8 +6,8 @@
         #makeMeScrollable
           - @watchlist.each do |movie|
             - next if movie.poster_path.nil?
-            .upcoming-movie
-              %a{href: ".movie-details", "data-movie-id"=>movie.id, class:"movie-poster "}
+            =link_to movie, remote: true do
+              .upcoming-movie
                 .cartelera-date.center
                   = distance_of_time_in_words_to_now(movie.created_at).upcase
                   EN FUNCIÓN
