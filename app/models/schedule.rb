@@ -1,5 +1,6 @@
 class Schedule < ActiveRecord::Base
   before_save :description_organize
+  
   belongs_to :movie
   belongs_to :theater
 
