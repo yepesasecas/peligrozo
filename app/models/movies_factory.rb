@@ -34,7 +34,7 @@ class MoviesFactory
     movies       = Fetch::Perucom.get_movies(perucom_div_position)
     saved_movies = []
     movies.each do |nMovie|
-      movie = Movie.find_by_name nMovie.name
+      movie = Movie.find_by_name nMovie.name 
       if movie.nil?
         nMovie.playing
         nMovie.save
