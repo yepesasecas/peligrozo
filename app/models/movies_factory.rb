@@ -12,10 +12,9 @@ class MoviesFactory
       Fetch::Perucom.create_schedules(peru_movies, theaters) 
     end
     # quitar peliculas de cartelera
-    playing_now = Movie.playing_now
-    not_showing = playing_now - peru_movies
-    take_out_movies not_showing
-
+    not_showing = Movie.playing_now - peru_movies
+    puts not_showing.inspect
+    take_out_movies(not_showing)
     # delete theaters from peligrozo
     theaters_to_delete = Theater.all - theaters
     delete_theaters(theaters_to_delete)
@@ -34,17 +33,17 @@ class MoviesFactory
     movies       = Fetch::Perucom.get_movies(perucom_div_position)
     saved_movies = []
     movies.each do |nMovie|
-      movie = Movie.find_by_name nMovie.name 
+      movie = Movie.find_by(name: nMovie.name)
       if movie.nil?
         nMovie.playing
         nMovie.save
-        saved_movies.push nMovie
+        saved_movies.push(nMovie)
         p "new movie added"
       else
         movie.playing
         movie.update_attributes(value: nMovie.value)
         movie.save
-        saved_movies.push movie
+        saved_movies.push(movie)
         p "movie exist #{movie.name}"
       end
     end
