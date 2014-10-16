@@ -18,7 +18,7 @@ class Movie < ActiveRecord::Base
 
   state_machine :state, initial: :coming_soon do
     event :playing do
-      transition from: :coming_soon, to: :playing_now
+      transition from: [:coming_soon, :not_show], to: :playing_now
     end
     event :take_out do
       transition from: :playing_now, to: :not_show
