@@ -12,9 +12,9 @@ class MoviesFactory
       Fetch::Perucom.create_schedules(peru_movies, theaters) 
     end
     # quitar peliculas de cartelera
-    # not_showing = Movie.playing_now - peru_movies
-    # puts not_showing.inspect
-    # take_out_movies(not_showing)
+    not_showing = Movie.playing_now - peru_movies
+    puts not_showing.inspect
+    take_out_movies(not_showing)
     
     # delete theaters from peligrozo
     theaters_to_delete = Theater.all - theaters
