@@ -24,7 +24,7 @@ module MovieDetails
       
       self.name         = response.title || response.original_title
       self.overview     = response.overview if overview.nil?
-      self.poster_path  = response.poster_path if poster_path.nil?
+      self.poster_path  = "http://image.tmdb.org/t/p/w154#{response.poster_path}" if poster_path.nil?
       self.release_date = response.release_date
     end
 
