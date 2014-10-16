@@ -21,7 +21,7 @@
               =image_tag @movie.poster_path, class: "poster-modal hidden-xs"
         .col-sm-8
           .modal-overview
-            =@movie.overview
+            %p= @movie.overview
           .modal-theaters
             %h5 TUS CINES
             = select_tag "movie-theaters", select_theater_options(@favorite_theaters, @movie_theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie.id

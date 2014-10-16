@@ -21,7 +21,10 @@
               =image_tag @movie.poster_path, class: "poster-modal hidden-xs"
         .col-sm-8
           .modal-overview
-            =@movie.overview
+            - if @movie.overview.present?
+              %p= @movie.overview
+            -else
+              %p.alert La pelicula todavia no cuenta con una descripción
           .modal-options
       .modal-row-trailer.modal-body.modal-body-padding.row
         .modal-trailer.col-sm-12
