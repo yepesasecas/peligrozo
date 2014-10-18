@@ -61,4 +61,24 @@ class MovieDecorator
       schedules.find_by(theater_id: favorite_theaters.first.id)
     end
   end
+
+  def in_watchlist?
+    @in_watchlist ||= user.movies.include?(movie)   
+  end 
+
+  def watchlist_id
+    if in_watchlist?
+      "button_delete_watchlist"
+    else
+      "button_add_watchlist"
+    end
+  end
+
+  def watchlist_image
+    if in_watchlist?
+      "boton_remove_from_watchlist.png"
+    else
+      "boton_watchlist.png"
+    end
+  end
 end
