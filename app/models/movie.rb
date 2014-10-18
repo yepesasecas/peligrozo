@@ -28,10 +28,10 @@ class Movie < ActiveRecord::Base
   def self.upcoming
     upcomings = Fetch::Moviesdb.upcoming
     upcomings.map do |upcoming|
-      Movie.new( name:         upcoming["original_title"], 
-                 release_date: upcoming["release_date"], 
-                 poster_path:  "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
-                 tmdb_id:      upcoming["id"] )
+      Movie.new(name: upcoming["original_title"], 
+                release_date: upcoming["release_date"], 
+                poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
+                tmdb_id: upcoming["id"] )
     end
   end
 
@@ -39,4 +39,5 @@ class Movie < ActiveRecord::Base
     get_details
     self
   end
+
 end

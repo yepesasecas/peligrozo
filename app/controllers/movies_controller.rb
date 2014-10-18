@@ -30,9 +30,9 @@ class MoviesController < ApplicationController
 
     def select_first_schedule_to_show
       if @favorite_theaters.empty?
-        @movie.schedules.find_by theater_id: @movie.theaters.first.id
+        @movie.schedules.find_by(theater_id: @movie.theaters.first.id)
       else
-        @movie.schedules.find_by theater_id: @favorite_theaters.first.id
+        @movie.schedules.find_by(theater_id: @favorite_theaters.first.id)
       end
     end
 
