@@ -11,7 +11,7 @@
           =image_tag "boton_back_video.png", class: "boton-back-video"
         =image_tag "logo/small.png", class: "pull-left modal-logo"
         %h4.modal-title= @movie_decorator.name
-      .modal-row-details.modal-body.row
+      .modal-body.modal-row-details.row{"data-movie-id" => @movie_decorator.id}
         .col-sm-4
           .modal-poster
             -if @movie_decorator.trailer?
@@ -23,6 +23,8 @@
           .modal-overview
             %p{class: @movie_decorator.overview_class}= @movie_decorator.overview
           .modal-options
+            =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
+              =image_tag @movie_decorator.watchlist_image
       .modal-row-trailer.modal-body.modal-body-padding.row
         .modal-trailer.col-sm-12
           -if @movie_decorator.trailer?

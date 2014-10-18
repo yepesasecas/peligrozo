@@ -37,10 +37,10 @@ $(document).ready ->
 
   $(".modal-container").on "click", "#button_add_watchlist", (e)->
     e.preventDefault()
-    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie-id")
+    movie_id = $(".movie-details").find(".modal-body").data("movie-id")
     User.add_watchlist(movie_id)
 
   $(".modal-container").on "click", "#button_delete_watchlist", (e)->
     e.preventDefault()
-    movie_id = $(".movie-details").find(".modal-body").find(".select-movie-theater").data("movie-id")
+    movie_id = $(".movie-details").find(".modal-body").data("movie-id")
     User.delete_watchlist(movie_id)

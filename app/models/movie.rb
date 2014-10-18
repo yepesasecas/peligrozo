@@ -13,6 +13,7 @@ class Movie < ActiveRecord::Base
   default_scope { order('created_at DESC') }
   scope :playing_now,     ->{ where(state: "playing_now") }
   scope :coming_soon,     ->{ where(state: "coming_soon") }
+  scope :in_watchlist,    ->{ where(state: [:coming_soon, :playing_now]) }
   scope :not_in_tmdb,     ->{ where(tmdb_id: nil) }
   scope :with_no_trailer, ->{ where(trailer: nil) }
 

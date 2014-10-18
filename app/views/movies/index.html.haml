@@ -4,12 +4,12 @@
       %h4 CARTELERA
       .slider
         #makeMeScrollable
-          - @movies.each do |movie|
-            - next if movie.poster_path.nil?
-            =link_to movie, remote: true do
+          - @movies.each do |movie_decorator|
+            - next if movie_decorator.poster_path.nil?
+            =link_to movie_decorator.movie, remote: true do
               .upcoming-movie
                 .upcoming-poster
-                  = image_tag movie.poster_path, class:"poster"
+                  = image_tag movie_decorator.poster_path, class:"poster"
     .category
       %h4 PROXIMAMENTE
       = render "upcoming_movies/slider"

@@ -4,13 +4,22 @@
       %h4 WATCHLIST
       .slider
         #makeMeScrollable
-          - @watchlist.each do |movie|
-            - next if movie.poster_path.nil?
-            =link_to movie, remote: true do
-              .upcoming-movie
-                .cartelera-date.center
-                  = distance_of_time_in_words_to_now(movie.created_at).upcase
-                  EN FUNCIÓN
-                .upcoming-poster
-                  = image_tag movie.poster_path, class:"poster fix-upcoming-date"
+          - @watchlist.each do |movie_decorator|
+            - next if movie_decorator.poster_path.nil?
+            - if movie_decorator.coming_soon?
+              =link_to upcoming_movie_path(movie_decorator.tmdb_id), remote: true do
+                .upcoming-movie
+                  .center{class: movie_decorator.label_class}
+                    = distance_of_time_in_words_to_now(movie_decorator.created_at).upcase
+                    EN FUNCIÓN
+                  .upcoming-poster
+                    = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
+            - else
+              =link_to movie_decorator.movie, remote: true do
+                .upcoming-movie
+                  .center{class: movie_decorator.label_class}
+                    = distance_of_time_in_words_to_now(movie_decorator.created_at).upcase
+                    EN FUNCIÓN
+                  .upcoming-poster
+                    = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
 .modal-container

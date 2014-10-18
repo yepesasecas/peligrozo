@@ -1,6 +1,10 @@
 class MovieDecorator
   attr_reader :movie, :user
 
+  def self.build_with(array)
+    array.map{ |movie| MovieDecorator.new(movie) }
+  end
+
   def initialize(movie, user = nil )
     @movie = movie
     @user  = user
@@ -20,6 +24,22 @@ class MovieDecorator
 
   def schedules
     @schedules ||= movie.schedules
+  end
+
+  def created_at
+    @created_at ||= movie.created_at
+  end
+
+  def tmdb_id
+    @tmdb_id ||= movie.tmdb_id
+  end
+
+  def release_date
+    @release_date ||= movie.release_date
+  end
+
+  def coming_soon?
+    movie.coming_soon?
   end
 
   def trailer?
@@ -80,5 +100,13 @@ class MovieDecorator
     else
       "boton_watchlist.png"
     end
+  end
+
+  def label_class
+    if movie.playing_now?
+      "cartelera-date"
+    elsif movie.coming_soon?
+      "upcoming-date"
+    end 
   end
 end

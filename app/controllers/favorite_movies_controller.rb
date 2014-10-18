@@ -1,15 +1,14 @@
 class FavoriteMoviesController < ApplicationController
   
   def index
-    @watchlist = current_user.movies.playing_now
-    @upcoming  = Movie.upcoming
+    movies     = current_user.movies.in_watchlist
+    @watchlist = MovieDecorator.build_with(movies)
   end
 
   def create
-    id    = favorite_movies_params[:movie_id]
-    movie = current_user.watchlist.find_by_movie_id(id)
-    response = 
-      if movie
+    id       = favorite_movies_params[:movie_id]
+    movie    = current_user.watchlist.find_by_movie_id(id)
+    response = if movie
         :bad_request
       else
         current_user.watchlist.create(movie_id: id)  
