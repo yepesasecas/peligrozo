@@ -24,10 +24,10 @@
             %p= @movie_decorator.overview
           .modal-theaters
             %h5 TUS CINES
-            = select_tag "movie-theaters", select_theater_options(@favorite_theaters, @movie_theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id
+            = select_tag "movie-theaters", select_theater_options(@movie_decorator.favorite_theaters, @movie_decorator.theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id
           .modal-schedules
             %h5 HORARIOS
-            = @schedule.description
+            %p= @movie_decorator.first_schedule.description
           .modal-options
             - if current_user.movies.include? @movie_decorator
               =link_to "#", id:"button_delete_watchlist", class: "pull-right" do
