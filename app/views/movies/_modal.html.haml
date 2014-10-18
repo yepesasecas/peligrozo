@@ -10,26 +10,26 @@
         =link_to "#", id: "link_boton_back_video" do
           =image_tag "boton_back_video.png", class: "boton-back-video"
         =image_tag "logo/small.png", class: "pull-left modal-logo"
-        %h4.modal-title= @movie.name
+        %h4.modal-title= @movie_decorator.name
       .modal-row-details.modal-body.row
         .col-sm-4
           .modal-poster
-            -if @movie.trailer?
+            -if @movie_decorator.trailer?
               %a{:href => "#", id:"play-trailer"}
                 =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
             .modal-poster-img
-              =image_tag @movie.poster_path, class: "poster-modal hidden-xs"
+              =image_tag @movie_decorator.poster_path, class: "poster-modal hidden-xs"
         .col-sm-8
           .modal-overview
-            %p= @movie.overview
+            %p= @movie_decorator.overview
           .modal-theaters
             %h5 TUS CINES
-            = select_tag "movie-theaters", select_theater_options(@favorite_theaters, @movie_theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie.id
+            = select_tag "movie-theaters", select_theater_options(@favorite_theaters, @movie_theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id
           .modal-schedules
             %h5 HORARIOS
             = @schedule.description
           .modal-options
-            - if current_user.movies.include? @movie
+            - if current_user.movies.include? @movie_decorator
               =link_to "#", id:"button_delete_watchlist", class: "pull-right" do
                 =image_tag "boton_remove_from_watchlist.png"
             - else
@@ -37,5 +37,5 @@
                 =image_tag "boton_watchlist.png"
       .modal-row-trailer.modal-body.modal-body-padding.row
         .modal-trailer.col-sm-12
-          -if @movie.trailer?
-            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => "http://www.youtube.com/embed/#{@movie.trailer}", :width => "598"}
+          -if @movie_decorator.trailer?
+            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => "http://www.youtube.com/embed/#{@movie_decorator.trailer}", :width => "598"}

@@ -5,8 +5,20 @@ class MovieDecorator
     @movie = movie
   end
 
+  def id
+    movie.id
+  end
+
   def name
     movie.name
+  end
+
+  def theaters
+    movie.theaters
+  end
+
+  def schedules
+    movie.schedules
   end
 
   def trailer?
