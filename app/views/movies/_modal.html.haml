@@ -24,7 +24,10 @@
             %p= @movie_decorator.overview
           .modal-theaters
             %h5 TUS CINES
-            = select_tag "movie-theaters", select_theater_options(@movie_decorator.favorite_theaters, @movie_decorator.theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id
+            - if @movie_decorator.favorite_theaters.empty?
+              %p.alert "Ninguno de tus cines esta seleccionado"
+            - else
+              = select_tag "movie-theaters", options_for_select(@movie_decorator.theaters_to_show, disabled: @movie_decorator.disabled_options), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id              
           .modal-schedules
             %h5 HORARIOS
             %p= @movie_decorator.first_schedule.description
