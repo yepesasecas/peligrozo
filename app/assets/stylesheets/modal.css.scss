@@ -1,21 +1,30 @@
 .modal{
   color: #000;
-
+  text-align: justify;
   .modal-logo{
     margin-right: 10px;
   }
 }
 
+.modal-overview{
+  max-height: 80px;
+  overflow: hidden;
+}
+
 .modal-options{
   margin-top: 20px
 }
-/*.modal-content{
-  margin-top: -300px;
-}*/
+
+.modal-see-theaters, .modal-take-control{
+  color: #777;
+  img{
+    width: 100%;
+  }
+}
 
 .message_watchlist{
   background-color: rgba(255, 255, 255, 0.3);
-   display: none; 
+  display: none; 
   position: relative;
   top: 10px;
   margin: 80px 0px 0px 0px;
@@ -25,5 +34,30 @@
     position: relative;
     top: 30%;
     left: 25%;
+  }
+}
+
+.read-more-box {
+  max-height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+.read-more-box .read-more { 
+  position: absolute; 
+  bottom: 0; left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; 
+  padding: 5px 0; 
+  
+  /* "transparent" only works here because == rgba(0,0,0,0) */ 
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, #555));
+  background-image: -webkit-linear-gradient(top, transparent, #555);
+  background-image: -moz-linear-gradient(top, transparent, #555);
+  background-image: -ms-linear-gradient(top, transparent, #555);
+  background-image: -o-linear-gradient(top, transparent, #555);
+
+  a{
+    color: #fff !important;
   }
 }

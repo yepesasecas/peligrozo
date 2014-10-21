@@ -25,7 +25,7 @@
           .modal-options
             =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
               =image_tag @movie_decorator.watchlist_image
-      .modal-row-trailer.modal-body.modal-body-padding.row
+      .modal-body.modal-row-trailer.modal-body-padding.row
         .modal-trailer.col-sm-12
           -if @movie_decorator.trailer?
             %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => @movie_decorator.youtube, :width => "598"}
