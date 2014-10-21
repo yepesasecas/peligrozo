@@ -20,9 +20,8 @@
             .modal-poster-img
               =image_tag @movie_decorator.poster_path, class: "poster-modal hidden-xs"
         .col-sm-8
-          .modal-overview.read-more-box
+          .modal-overview
             %p= @movie_decorator.overview
-            %p.read-more= link_to "Read More", "#", class: "read-more-link"
           #modal-no-favorite-movie
             .modal-theaters
               %h5 

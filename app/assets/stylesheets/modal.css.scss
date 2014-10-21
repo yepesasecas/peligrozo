@@ -7,7 +7,6 @@
 }
 
 .modal-overview{
-  max-height: 80px;
   overflow: hidden;
 }
 
@@ -34,30 +33,5 @@
     position: relative;
     top: 30%;
     left: 25%;
-  }
-}
-
-.read-more-box {
-  max-height: 120px;
-  position: relative;
-  overflow: hidden;
-}
-.read-more-box .read-more { 
-  position: absolute; 
-  bottom: 0; left: 0;
-  width: 100%; 
-  text-align: center; 
-  margin: 0; 
-  padding: 5px 0; 
-  
-  /* "transparent" only works here because == rgba(0,0,0,0) */ 
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, #555));
-  background-image: -webkit-linear-gradient(top, transparent, #555);
-  background-image: -moz-linear-gradient(top, transparent, #555);
-  background-image: -ms-linear-gradient(top, transparent, #555);
-  background-image: -o-linear-gradient(top, transparent, #555);
-
-  a{
-    color: #fff !important;
   }
 }
