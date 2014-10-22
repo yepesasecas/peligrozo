@@ -8,14 +8,14 @@ class Movie < ActiveRecord::Base
   has_many :theaters, through: :schedules
   has_many :users, through: :favorite_movies
 
-  # validates :tmdb_id, uniqueness: true  
+  validates :tmdb_id, uniqueness: true  
 
-  default_scope { order('created_at DESC') }
-  scope :playing_now,     ->{ where(state: "playing_now") }
-  scope :coming_soon,     ->{ where(state: "coming_soon") }
-  scope :in_watchlist,    ->{ where(state: [:coming_soon, :playing_now]) }
-  scope :not_in_tmdb,     ->{ where(tmdb_id: nil) }
-  scope :with_no_trailer, ->{ where(trailer: nil) }
+  # default_scope { order('created_at DESC') }
+  scope :playing_now,     ->{ where(state: "playing_now").order('created_at DESC') }
+  scope :coming_soon,     ->{ where(state: "coming_soon").order('created_at DESC') }
+  scope :in_watchlist,    ->{ where(state: [:coming_soon, :playing_now]).order('created_at ASC') }
+  scope :not_in_tmdb,     ->{ where(tmdb_id: nil).order('created_at DESC') }
+  scope :with_no_trailer, ->{ where(trailer: nil).order('created_at DESC') }
 
   state_machine :state, initial: :coming_soon do
     event :playing do
@@ -29,10 +29,10 @@ class Movie < ActiveRecord::Base
   def self.upcoming
     upcomings = Fetch::Moviesdb.upcoming
     upcomings.map do |upcoming|
-      Movie.new(name: upcoming["original_title"], 
+      Movie.new(name:         upcoming["original_title"], 
                 release_date: upcoming["release_date"], 
-                poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
-                tmdb_id: upcoming["id"] )
+                poster_path:  "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
+                tmdb_id:      upcoming["id"] )
     end
   end
 

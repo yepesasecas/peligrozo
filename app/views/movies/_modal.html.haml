@@ -22,16 +22,34 @@
         .col-sm-8
           .modal-overview
             %p= @movie_decorator.overview
-          .modal-theaters
-            %h5 TUS CINES
-            = select_tag "movie-theaters", select_theater_options(@movie_decorator.favorite_theaters, @movie_decorator.theaters, @disabled), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id
-          .modal-schedules
-            %h5 HORARIOS
-            %p= @movie_decorator.first_schedule.description
-          .modal-options
-            =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
-              =image_tag @movie_decorator.watchlist_image
-      .modal-row-trailer.modal-body.modal-body-padding.row
+          #modal-no-favorite-movie
+            .modal-theaters
+              %h5 
+                TUS CINES
+                %small= link_to image_tag("btn/edit.png"), user_favorite_theaters_path(current_user) 
+              = image_tag "logo/sad_red.png", class: "pull-left"
+              %p.alert "ESTA PELI NO LA ESTAN DANDO EN TUS CINES"
+            .row  
+              .modal-see-theaters.col-sm-6
+                %p Si deseas saber en que otros cines que no son de tus favoritos estan pasando la pelicula.
+                =link_to "#", {id: "modal-see-theaters"} do
+                  =image_tag("btn/see_theaters.png")
+              .modal-take-control.col-sm-6
+                %p Tu toma el control y mandales un troll pidiendo la pelicula que solicitas. ¿Que esperas?
+                =link_to image_tag("btn/take_control.png")
+          #modal-favorite-movie
+            .modal-theaters
+              %h5 
+                TUS CINES
+                %small= link_to image_tag("btn/edit.png"), user_favorite_theaters_path(current_user)
+              = select_tag "movie-theaters", options_for_select(@movie_decorator.theaters_to_show, disabled: @movie_decorator.disabled_options), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id              
+            .modal-schedules
+              %h5 HORARIOS
+              %p= @movie_decorator.first_schedule.description
+            .modal-options
+              =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
+                =image_tag @movie_decorator.watchlist_image
+      .modal-body.modal-row-trailer.modal-body-padding.row
         .modal-trailer.col-sm-12
           -if @movie_decorator.trailer?
             %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => "http://www.youtube.com/embed/#{@movie_decorator.trailer}", :width => "598"}

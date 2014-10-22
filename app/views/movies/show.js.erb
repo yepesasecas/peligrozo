@@ -1,2 +1,10 @@
-$(".modal-container").html("<%=j render 'modal' %>")
-$('.movie-details').modal('show')
+
+$(".modal-container").html("<%=j render 'modal' %>");
+
+<%- if @movie_decorator.favorite_theaters.empty? %>
+  $("#modal-favorite-movie").hide();
+<%- else %>
+  $("#modal-no-favorite-movie").hide();
+<%- end %>
+
+$('.movie-details').modal('show');

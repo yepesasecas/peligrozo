@@ -22,7 +22,7 @@ module MovieDetails
     def get_details_by_id
       response = Fetch::Moviesdb.detail tmdb_id
       
-      self.name         = response.title || response.original_title
+      self.name         = response.title || response.original_title if name.nil?
       self.overview     = response.overview if overview.nil?
       self.poster_path  = "http://image.tmdb.org/t/p/w154#{response.poster_path}" if poster_path.nil?
       self.release_date = response.release_date

@@ -1,21 +1,29 @@
 .modal{
   color: #000;
-
+  text-align: justify;
   .modal-logo{
     margin-right: 10px;
   }
 }
 
+.modal-overview{
+  overflow: hidden;
+}
+
 .modal-options{
   margin-top: 20px
 }
-/*.modal-content{
-  margin-top: -300px;
-}*/
+
+.modal-see-theaters, .modal-take-control{
+  color: #777;
+  img{
+    width: 100%;
+  }
+}
 
 .message_watchlist{
   background-color: rgba(255, 255, 255, 0.3);
-   display: none; 
+  display: none; 
   position: relative;
   top: 10px;
   margin: 80px 0px 0px 0px;

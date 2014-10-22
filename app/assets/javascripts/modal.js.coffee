@@ -12,5 +12,10 @@ $(document).ready ->
     $(".modal-row-trailer").hide()
     $(".boton-back-video").hide()
 
-  $(".modal-container"). on "hide.bs.modal", (e) ->
+  $(".modal-container").on "hide.bs.modal", (e) ->
     $(".modal-trailer").html("")
+
+  $(".modal-container").on "click", "#modal-see-theaters", (e) ->
+    e.preventDefault()
+    $("#modal-favorite-movie").toggle()
+    $("#modal-no-favorite-movie").toggle()
