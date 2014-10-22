@@ -125,4 +125,5 @@ class MovieDecorator
   def disabled_options
     ["Teatros Favoritos", "Teatros"]
   end
+
 end
