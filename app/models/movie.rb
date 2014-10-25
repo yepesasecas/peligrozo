@@ -8,7 +8,7 @@ class Movie < ActiveRecord::Base
   has_many :theaters, through: :schedules
   has_many :users, through: :favorite_movies
 
-  validates :tmdb_id, uniqueness: true  
+  # validates :tmdb_id, uniqueness: true  
 
   # default_scope { order('created_at DESC') }
   scope :playing_now,     ->{ where(state: "playing_now").order('created_at DESC') }
