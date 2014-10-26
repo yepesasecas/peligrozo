@@ -4,9 +4,6 @@
       - next if movie_decorator.poster_path.nil?
       =link_to upcoming_movie_path(movie_decorator.tmdb_id), remote: true do
         .upcoming-movie
-          .center{class: movie_decorator.label_class}
-            EN
-            = distance_of_time_in_words_to_now(movie_decorator.release_date).upcase
           .upcoming-poster
             = image_tag(movie_decorator.poster_path, class:"poster fix-upcoming-date")
             
