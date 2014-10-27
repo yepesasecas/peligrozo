@@ -1,5 +1,6 @@
 class FavoriteTheatersController < ApplicationController
   before_action :user_logged_in?
+
   def index
     @theaters = Theater.all
     @favorite_theaters = current_user.theaters
@@ -12,6 +13,7 @@ class FavoriteTheatersController < ApplicationController
       format.json  { render :json => saved }
     end
   end
+
   def delete
     saved = current_user.favorite_theaters.find_by_theater_id favorite_theaters_params[:theater_id]
     saved.delete if saved
@@ -19,8 +21,10 @@ class FavoriteTheatersController < ApplicationController
       format.json  { render :json => saved}
     end
   end
+
   private
   def favorite_theaters_params
     params.require(:theater).permit(:theater_id)
   end
+
 end

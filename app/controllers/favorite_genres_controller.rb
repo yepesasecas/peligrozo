@@ -11,7 +11,7 @@ class FavoriteGenresController < ApplicationController
     user = User.find params["user_id"]
     genres = params["genres"]
     genres.each_key do |id|
-      value          = genres[id].to_i
+      value = genres[id].to_i
       favorite_genre = user.favorite_genres.find_by_genre_id(id)
       if value == 1
         favorite_genre.delete if not favorite_genre.nil?

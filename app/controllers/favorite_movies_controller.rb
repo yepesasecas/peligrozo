@@ -1,13 +1,13 @@
 class FavoriteMoviesController < ApplicationController
   
   def index
-    movies     = current_user.movies.in_watchlist
+    movies = current_user.movies.in_watchlist
     @watchlist = MovieDecorator.build_with(movies)
   end
 
   def create
-    id       = favorite_movies_params[:movie_id]
-    movie    = current_user.watchlist.find_by_movie_id(id)
+    id = favorite_movies_params[:movie_id]
+    movie = current_user.watchlist.find_by_movie_id(id)
     response = if movie
         :bad_request
       else
@@ -20,8 +20,8 @@ class FavoriteMoviesController < ApplicationController
   end
 
   def delete
-    id       = favorite_movies_params[:movie_id]
-    movie    = current_user.watchlist.find_by_movie_id(id)
+    id = favorite_movies_params[:movie_id]
+    movie = current_user.watchlist.find_by_movie_id(id)
     response = if movie
       movie.delete
       :ok
