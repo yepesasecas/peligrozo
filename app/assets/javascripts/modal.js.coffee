@@ -5,6 +5,7 @@ $(document).ready ->
     $(".modal-row-details").hide()
     $(".modal-row-trailer").show()
     $(".boton-back-video").show()
+    player = createYoutubePlayer( $("#player").data("id") )
   
   $(".modal-container").on "click", ".boton-back-video", (e) ->
     e.preventDefault()

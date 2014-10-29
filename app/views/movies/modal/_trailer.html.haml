@@ -1,2 +1,2 @@
 -if @movie_decorator.trailer?
-  %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => "http://www.youtube.com/embed/#{@movie_decorator.trailer}", :width => "598"}
+  #player{"data-id" => @movie_decorator.trailer }

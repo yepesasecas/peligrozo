@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all' %>
-
     <%= csrf_meta_tags %>
   </head>
   <body data-user=<%= current_user.id if current_user%> >
@@ -20,9 +19,12 @@
     <% else %>
       <%= render "layouts/navigation" %>
     <% end %>
+
     <%= yield %>
+    
     <%= javascript_include_tag 'application' %>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   </body>
 </html>
