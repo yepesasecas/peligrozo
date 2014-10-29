@@ -110,20 +110,12 @@ class MovieDecorator
     end 
   end
 
-  def theaters_to_show
-    _theaters = theaters.map { |theater| [theater.name, theater.id] }
-    _favorite = favorite_theaters.map { |theater| [theater.name, theater.id] }
-
-    options = if favorite_theaters.empty?
-      ["Teatros"] + _theaters
-    else
-      ["Teatros Favoritos"] + _favorite + ["Teatros"] + _theaters
-    end
-    options
+  def favorite_theaters_to_show
+    favorite_theaters.map { |theater| [theater.name, theater.id] }
   end
 
-  def disabled_options
-    ["Teatros Favoritos", "Teatros"]
+  def all_theaters_to_show
+    theaters.map { |theater| [theater.name, theater.id] }
   end
 
 end

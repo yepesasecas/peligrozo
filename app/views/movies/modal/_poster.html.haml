@@ -1,0 +1,6 @@
+.modal-poster
+  -if @movie_decorator.trailer?
+    %a{:href => "#", id:"play-trailer"}
+      =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
+  .modal-poster-img
+    =image_tag @movie_decorator.poster_path, class: "poster-modal hidden-xs"

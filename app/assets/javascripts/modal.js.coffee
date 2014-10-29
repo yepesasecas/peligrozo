@@ -17,5 +17,5 @@ $(document).ready ->
 
   $(".modal-container").on "click", "#modal-see-theaters", (e) ->
     e.preventDefault()
-    $("#modal-favorite-movie").toggle()
-    $("#modal-no-favorite-movie").toggle()
+    $("#all-theaters").toggle()
+    $("#no-theaters").toggle()
