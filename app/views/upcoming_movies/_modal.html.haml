@@ -27,5 +27,4 @@
               =image_tag @movie_decorator.watchlist_image
       .modal-body.modal-row-trailer.modal-body-padding.row
         .modal-trailer.col-sm-12
-          -if @movie_decorator.trailer?
-            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "419", :src => @movie_decorator.youtube, :width => "598"}
+          = render "movies/modal/trailer"
