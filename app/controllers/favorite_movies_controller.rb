@@ -6,14 +6,14 @@ class FavoriteMoviesController < ApplicationController
   end
 
   def create
-    id = favorite_movies_params[:movie_id]
+    id    = favorite_movies_params[:movie_id]
     movie = current_user.watchlist.find_by_movie_id(id)
-    response = if movie
-        :bad_request
-      else
-        current_user.watchlist.create(movie_id: id)  
-        :ok
-      end
+    if movie
+      response = :bad_request
+    else
+      current_user.watchlist.create(movie_id: id)  
+      response = :ok
+    end
     respond_to do |format|
       format.json  { render json: response}
     end
@@ -22,11 +22,11 @@ class FavoriteMoviesController < ApplicationController
   def delete
     id = favorite_movies_params[:movie_id]
     movie = current_user.watchlist.find_by_movie_id(id)
-    response = if movie
+    if movie
       movie.delete
-      :ok
+      response = :ok
     else
-      :bad_request
+      response = :bad_request
     end
     respond_to do |format|
       format.json  { render json: response}
@@ -34,6 +34,7 @@ class FavoriteMoviesController < ApplicationController
   end
 
   private
+  
   def favorite_movies_params
     params.require(:movie).permit(:movie_id)
   end
