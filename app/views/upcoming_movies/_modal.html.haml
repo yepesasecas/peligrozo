@@ -1,27 +1,15 @@
 .movie-details.modal.fade
   .modal-dialog
     .message_watchlist
-      =image_tag "icon_menssage_watchlist.png"
+      = image_tag "icon_menssage_watchlist.png"
     .modal-content
       .modal-header
-        %button.close{"data-dismiss" => "modal", type: "button"}
-          %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        =link_to "#", id: "link_boton_back_video" do
-          =image_tag "boton_back_video.png", class: "boton-back-video"
-        =image_tag "logo/small.png", class: "pull-left modal-logo"
-        %h4.modal-title= @movie_decorator.name
+        = render "movies/modal/header"
       .modal-body.modal-row-details.row{"data-movie-id" => @movie_decorator.id}
         .col-sm-4
-          .modal-poster
-            -if @movie_decorator.trailer?
-              %a{:href => "#", id:"play-trailer"}
-                =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
-            .modal-poster-img
-              =image_tag @movie_decorator.poster_path, class: "poster-modal hidden-xs"
+          = render "movies/modal/poster"
         .col-sm-8
-          .modal-overview
-            %p{class: @movie_decorator.overview_class}= @movie_decorator.overview
+          = render "movies/modal/overview"
           .modal-options
             =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
               =image_tag @movie_decorator.watchlist_image
