@@ -10,9 +10,7 @@
           = render "movies/modal/poster"
         .col-sm-8
           = render "movies/modal/overview"
-          .modal-options
-            =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
-              =image_tag @movie_decorator.watchlist_image
+          = render "movies/modal/options"
       .modal-body.modal-row-trailer.modal-body-padding.row
         .modal-trailer.col-sm-12
           = render "movies/modal/trailer"

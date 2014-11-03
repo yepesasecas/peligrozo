@@ -23,9 +23,7 @@
   .modal-schedules
     %h5 HORARIOS
     %p= @movie_decorator.first_schedule.description
-  .modal-options
-    =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
-      =image_tag @movie_decorator.watchlist_image
+  = render "movies/modal/options"
 
 #all-theaters
   .modal-theaters
@@ -36,6 +34,4 @@
   .modal-schedules
     %h5 HORARIOS
     %p= @movie_decorator.first_schedule.description
-  .modal-options
-    =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
-      =image_tag @movie_decorator.watchlist_image
+  = render "movies/modal/options"
