@@ -86,6 +86,14 @@ class MovieDecorator
     @in_watchlist ||= user.movies.include?(movie)   
   end 
 
+  def watchlist
+    if in_watchlist?
+      user.favorite_movies.find_by(movie_id: movie.id)
+    else
+      user.favorite_movies.new
+    end
+  end
+
   def watchlist_id
     if in_watchlist?
       "button_delete_watchlist"

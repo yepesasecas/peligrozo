@@ -1,3 +1,4 @@
 .modal-options
-  =link_to "#", id: @movie_decorator.watchlist_id, class: "pull-right" do
-    =image_tag @movie_decorator.watchlist_image
+  = form_for([current_user, @movie_decorator.watchlist], remote: true) do |f|
+    = f.hidden_field(:movie_id, value: @movie_decorator.id)
+    = f.submit "Movie", type: :image, src: url_to_image(@movie_decorator.watchlist_image), class: "pull-right", id:"watchlist-button"

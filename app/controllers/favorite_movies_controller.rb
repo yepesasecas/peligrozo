@@ -1,42 +1,29 @@
 class FavoriteMoviesController < ApplicationController
   
   def index
-    movies = current_user.movies.in_watchlist
+    movies     = current_user.movies.in_watchlist
     @watchlist = MovieDecorator.build_with(movies)
   end
 
   def create
-    id    = favorite_movies_params[:movie_id]
-    movie = current_user.watchlist.find_by_movie_id(id)
-    if movie
-      response = :bad_request
-    else
-      current_user.watchlist.create(movie_id: id)  
-      response = :ok
-    end
-    respond_to do |format|
-      format.json  { render json: response}
+    fav_movie = current_user.favorite_movies.new(favorite_movies_params)
+    if fav_movie.save
+      @movies = MovieDecorator.build_with(Movie.playing_now.remove(current_user.movies.ids))
     end
   end
 
-  def delete
-    id = favorite_movies_params[:movie_id]
-    movie = current_user.watchlist.find_by_movie_id(id)
-    if movie
-      movie.delete
-      response = :ok
-    else
-      response = :bad_request
-    end
-    respond_to do |format|
-      format.json  { render json: response}
+  def update
+    fav_movie = current_user.favorite_movies.find_by(movie_id: favorite_movies_params["movie_id"])
+    if fav_movie.destroy
+      movies     = current_user.movies.in_watchlist
+      @watchlist = MovieDecorator.build_with(movies)
     end
   end
 
   private
   
-  def favorite_movies_params
-    params.require(:movie).permit(:movie_id)
-  end
+    def favorite_movies_params
+      params.require(:favorite_movie).permit(:movie_id)
+    end
 
 end

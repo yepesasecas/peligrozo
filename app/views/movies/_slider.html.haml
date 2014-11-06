@@ -1,0 +1,8 @@
+.slider
+  #makeMeScrollable
+    - @movies.each do |movie_decorator|
+      - next if movie_decorator.poster_path.nil?
+      =link_to movie_decorator.movie, remote: true do
+        .upcoming-movie
+          .upcoming-poster
+            = image_tag movie_decorator.poster_path, class:"poster"
