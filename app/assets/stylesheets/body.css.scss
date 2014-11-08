@@ -64,14 +64,21 @@ h1, h2, h3, h4, h5, h6{
     ul{
       li{
         border-left: 1px solid #ccc;
+
+        .coming-soon{
+          text-align: center;
+          color: #ccc;
+        }
       }
       li:last-child{
         border-right: 1px solid #ccc;
       }
+      li:hover{
+      }
     }
   }
 
-  .navbar-nav > li >a {
+  .navbar-nav > li > a{
     padding-top:    30px;
     padding-bottom: 15px;
     height:         80px;

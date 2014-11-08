@@ -3,4 +3,6 @@
 %li{class: "#{'active' if current_page?(user_favorite_movies_path(current_user))}"}
   = link_to "WATCHLIST", user_favorite_movies_path(current_user)
 %li{class: "#{'active' if false}"}
-  = link_to "MOVIE NIGHT", "#"
+  = link_to "#" do
+    "MOVIE NIGHT"
+    .coming-soon coming soon
