@@ -4,3 +4,8 @@ one:
   description: Schedule de prueba
   price:       12 Soles de prueba
 
+two:
+  movie:       two
+  theater:     one
+  description: Schedule de prueba
+  price:       12 Soles de prueba

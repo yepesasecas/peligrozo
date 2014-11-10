@@ -20,8 +20,9 @@ class MoviesTest < ActionDispatch::IntegrationTest
 
   test "As a User, I want movies to disappear from CARTELERA when added to watchlist" do
     # Setup Movies Data
-    movie = movies(:one)
-    movies = Movie.playing_now.remove(users(:one).movies.ids)
+    user   = users(:one)
+    movies = Movie.playing_now.remove(user.movies.ids)
+    movie  = movies(:one)
     assert_includes movies, movie, "movies should contain atleast one movie to Test CARTELERA Slider"
 
     # Verify Cartelera Slider and click Movie Poster
