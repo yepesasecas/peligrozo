@@ -1,8 +1,13 @@
 one:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  oauth_token: MyString
-  oauth_expires_at: 2014-08-10 12:03:07
+  provider:   facebook
+  uid:        1234567
+  name:       Andres yepes
   first_time: false
+  state:      config_done
 
+two:
+  provider:   facebook
+  uid:        12345678
+  name:       Pedro Perez
+  first_time: false
+  state:      at_genres  
