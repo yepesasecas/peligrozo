@@ -14,7 +14,6 @@ gem 'themoviedb', '0.0.22'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'state_machine'
-gem 'pusher'
 gem 'omniauth-facebook', '1.4.0'
 gem "figaro"
 gem 'rails-i18n', '~> 4.0.0'
@@ -26,6 +25,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :development, :test  do

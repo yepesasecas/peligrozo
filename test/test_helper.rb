@@ -2,26 +2,46 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
-
+require 'database_cleaner'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  DatabaseCleaner.strategy = :transaction
+
   def sign_in_with_facebook
     click_link "Boton facebook"
   end
 
-  def configuration_steps
-    assert_equal user_favorite_genres_path("980190963"), current_path, "after clicking BOTON FACEBOOK, should go to favorite genres"
-    
-    click_link "skip"
-    assert_equal user_favorite_theaters_path("980190963"), current_path, "after clicking OMITIR, should go to favorite theaters"
-    
-    click_link "skip"
-    assert_equal movies_path, current_path, "after clicking OMITIR, should go to CARTELERA"
+  def setup_omniauth_test(status)
+    user = case status
+    when :config_done then users(:one)
+    when :at_genres then users(:two)
+    end
+
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+      provider: 'facebook',
+      uid: user.uid,
+      info: {
+        first_name: "Gaius",
+        last_name:  "Baltar",
+        email:      "test@example.com"
+      },
+      credentials: {
+        token:      "123456",
+        expires_at: Time.now + 1.week
+      },
+      extra: {
+        raw_info: {
+          gender: 'male'
+        }
+      }
+    })
   end
+
 end
 
 class ActionDispatch::IntegrationTest
