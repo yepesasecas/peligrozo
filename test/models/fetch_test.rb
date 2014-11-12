@@ -1,11 +1,8 @@
 require 'test_helper'
 
 class FetchTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
   test "Fetch::Perucom.get_movies" do
-    assert Fetch::Perucom.get_movies != [], "Module Perucom is not fetching movies"
+    assert Fetch::Perucom.get_movies(1) != [], "Module Perucom is not fetching movies"
   end
 
   test "Fetch::Perucom.get_theaters" do

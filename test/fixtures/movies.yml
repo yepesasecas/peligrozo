@@ -1,5 +1,16 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  name: "El planeta de los simios: Confrontación"
-  value: 597
+  name:         El amanecer del planeta de los simios
+  overview:     Un grupo de simios con grandes cualidades para...
+  release_date: 2014-07-11
+  value:        597
+  tmdb_id:      119450
+  state:        playing_now
+  poster_path:  http://cde.peru.com/ima/0/0/8/6/7/867596/137x197/planeta-simios.jpg
+two:
+  name:         El juez
+  overview:     Cuando un testigo clave en un asunto de corrupción...
+  release_date: 2001-05-06
+  value:        657
+  tmdb_id:      182256
+  state:        playing_now
+  poster_path:  http://cde.peru.com/ima/0/0/9/3/7/937012/137x197/juez.jpg

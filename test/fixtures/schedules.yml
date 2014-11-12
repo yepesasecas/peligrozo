@@ -1,8 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  movie_id: 1
-  theater_id: 1
-  description: "Schedule de prueba"
-  price: "12 Soles de prueba"
+  movie:       one
+  theater:     one
+  description: Schedule de prueba
+  price:       12 Soles de prueba
 
+two:
+  movie:       two
+  theater:     one
+  description: Schedule de prueba
+  price:       12 Soles de prueba

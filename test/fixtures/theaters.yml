@@ -1,5 +1,3 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  name: "CINÉPOLIS SANTA ANITA"
+  name:  CINÉPOLIS SANTA ANITA
   value: 70

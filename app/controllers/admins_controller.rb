@@ -4,5 +4,5 @@ class AdminsController < ApplicationController
   def index
     @movies = Movie.with_no_trailer
   end
-
+  
 end
