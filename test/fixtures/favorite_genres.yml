@@ -1,8 +1,8 @@
 one:
-  user:     two
-  genre:    one
-  interest: 1
-two:
-  user:     two
+  user:     one
   genre:    two
-  interest: 1
+  interest: 3
+two:
+  user:     one
+  genre:    one
+  interest: 2
