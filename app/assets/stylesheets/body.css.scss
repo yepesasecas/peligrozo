@@ -8,6 +8,11 @@
   src: font_url('ebrimabd.ttf');
 }
 
+@font-face {
+  font-family: 'grobold';
+  src: font_url('GROBOLD.ttf');
+}
+
 body{
   background-color: #000;
   color:            #fff;
@@ -21,6 +26,10 @@ hr{
 
 h1, h2, h3, h4, h5, h6{
   font-family: 'ebrima-bold'
+}
+
+.troll{
+  font-family: 'grobold';
 }
 
 .center{

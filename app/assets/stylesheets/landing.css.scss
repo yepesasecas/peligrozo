@@ -27,10 +27,18 @@
 .hero-description{
   padding: 0.8% 0;
   text-align: center;
+  span {
+
+  }
   h1{
-    font-size: 1.3em;}
+    font-size: 1.3em;
+    .troll{
+      margin: 0px -10px;
+    }
+  }
   p{
-    font-size: 1em;}
+    font-size: 1em;
+  }
 }
 
 @media (min-width: 768px) {
