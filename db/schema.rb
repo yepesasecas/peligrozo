@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112143422) do
+ActiveRecord::Schema.define(version: 20141113225400) do
 
   create_table "favorite_genres", force: true do |t|
     t.integer  "user_id"
@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20141112143422) do
     t.integer  "movie_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   add_index "favorite_movies", ["movie_id"], name: "index_favorite_movies_on_movie_id"
+  add_index "favorite_movies", ["state"], name: "index_favorite_movies_on_state"
   add_index "favorite_movies", ["user_id"], name: "index_favorite_movies_on_user_id"
 
   create_table "favorite_theaters", force: true do |t|
