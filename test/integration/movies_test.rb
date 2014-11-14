@@ -19,6 +19,7 @@ class MoviesTest < ActionDispatch::IntegrationTest
   end
 
   test "As a User, I want movies to disappear from CARTELERA when added to watchlist" do
+    
     # Setup Movies Data
     user   = users(:one)
     movies = Movie.playing_now.remove(user.movies.ids)

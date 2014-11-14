@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
+
   has_many :favorite_genres, dependent: :destroy
   has_many :favorite_theaters, dependent: :destroy
   has_many :favorite_movies, dependent: :destroy
+  has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
+  has_many :eliminated_movies, dependent: :destroy
   has_many :genres, through: :favorite_genres
   has_many :theaters, through: :favorite_theaters
   has_many :movies, -> { uniq }, through: :favorite_movies
-  has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
 
   scope :playing_now, -> { where(state: "playing_now").order("created_at") }
 
@@ -32,6 +34,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def eliminated_movies_ids
+    eliminated_movies.map { |e| e.movie_id  }
+  end
+  
   def favorite_theaters_by(args= {})
     movie_theaters = args[:movie].theaters
     self.theaters.select { |theater| movie_theaters.include? theater }

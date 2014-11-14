@@ -1,0 +1,2 @@
+module EliminatedMoviesHelper
+end
