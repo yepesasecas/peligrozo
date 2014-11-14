@@ -28,7 +28,7 @@ class EliminatedMoviesTest < ActionDispatch::IntegrationTest
       click_button("delete-movie-button")
     end
 
-    assert_not has_link?(movie.id), "Movie Poster should dissapear from CARTELERA after adding it to 'Watchlist'"
-    assert_includes user.eliminated_movies, EliminatedMovie.where(movie_id: movie.id, user_id: user.id).first
+    assert_not has_link?(movie.id), "Movie Poster should dissapear from CARTELERA after 'deleting' movie"
+    assert_includes user.eliminated_movies, EliminatedMovie.where(movie_id: movie.id, user_id: user.id).first, "User.eliminated_movies should contain deleted movie."
   end
 end

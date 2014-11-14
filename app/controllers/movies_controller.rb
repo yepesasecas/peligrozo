@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :user_logged_in?, :user_first_time?
   
   def index
-    @upcoming = MovieDecorator.build_with(Movie.upcoming)
+    @upcoming = MovieDecorator.build_with(Movie.upcoming_for(current_user))
     @movies   = MovieDecorator.build_with(Movie.playing_now_for(current_user))
   end
 

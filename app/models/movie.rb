@@ -13,6 +13,7 @@ class Movie < ActiveRecord::Base
   scope :coming_soon, ->{ where(state: "coming_soon").order('created_at DESC') }
   scope :in_watchlist, ->{ where(state: [:coming_soon, :playing_now]).order('created_at ASC') }
   scope :remove, ->(movies_ids) { where.not(id: movies_ids) }
+  scope :remove_tmdb, ->(tmdb_movies_ids) { where.not(tmdb_id: tmdb_movies_ids)}
   scope :not_in_tmdb, ->{ where(tmdb_id: nil).order('created_at DESC') }
   scope :with_no_trailer, ->{ where(trailer: nil).order('created_at DESC') }
 
@@ -25,20 +26,22 @@ class Movie < ActiveRecord::Base
     end
   end
   
-  def self.upcoming
+  def self.upcoming_for(user)
     upcomings = Fetch::Moviesdb.upcoming
-    upcomings.map do |upcoming|
+    upcomings.map! do |upcoming|  
       Movie.new(name: upcoming["original_title"], 
                 release_date: upcoming["release_date"], 
                 poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
                 tmdb_id: upcoming["id"] )
     end
+    upcomings.select {|movie| not user.eliminated_tmdb_movies_ids.include?(movie.tmdb_id) }
   end
 
   def self.playing_now_for(user)
     self.playing_now
         .remove(user.movies.ids)
         .remove(user.eliminated_movies_ids)
+        .remove_tmdb(user.eliminated_tmdb_movies_ids)
   end
 
   def details

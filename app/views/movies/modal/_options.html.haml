@@ -5,4 +5,5 @@
 
   = form_for [current_user, current_user.eliminated_movies.new], remote: true do |f|
     = f.hidden_field(:movie_id, value: @movie_decorator.id)
+    = f.hidden_field(:tmdb_id, value: @movie_decorator.tmdb_id)
     = f.submit "Delete Movie", type: :image, src: url_to_image("btn/delete.png"), class: "pull-left", id: "delete-movie-button"
