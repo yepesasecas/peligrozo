@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post :delete, on: :collection
     end
     resources :favorite_movies
+    resources :eliminated_movies
   end
 
   resources :upcoming_movies, only: [:show]

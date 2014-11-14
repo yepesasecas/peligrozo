@@ -3,10 +3,11 @@ class Movie < ActiveRecord::Base
   
   before_create :get_details
  
-  has_many :schedules
+  has_many :schedules, dependent: :destroy
   has_many :favorite_movies
   has_many :theaters, through: :schedules
   has_many :users, through: :favorite_movies
+  has_many :eliminated_movies
  
   scope :playing_now, ->{ where(state: "playing_now").order('created_at DESC') }
   scope :coming_soon, ->{ where(state: "coming_soon").order('created_at DESC') }
@@ -32,6 +33,10 @@ class Movie < ActiveRecord::Base
                 poster_path:  "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
                 tmdb_id:      upcoming["id"] )
     end
+  end
+
+  def self.playing_now_for(user)
+    self.playing_now.remove(user.movies.ids).remove(user.eliminated_movies_ids)
   end
 
   def details

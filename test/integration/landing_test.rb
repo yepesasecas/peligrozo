@@ -10,7 +10,7 @@ class LandingTest < ActionDispatch::IntegrationTest
     assert_equal landing_index_path, current_path, "root path doesnt redirect to landing_index_path"
 
     within("h1") do
-      assert has_content?("CONTROLA LOS CINES"), "landing should contain CONTROLA LOS CINES"
+      assert has_content?("LOS CINES"), "landing should contain CONTROLA LOS CINES"
     end
   end
 

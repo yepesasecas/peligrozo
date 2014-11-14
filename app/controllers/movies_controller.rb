@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   
   def index
     @upcoming = MovieDecorator.build_with(Movie.upcoming)
-    @movies   = MovieDecorator.build_with(Movie.playing_now.remove(current_user.movies.ids))
+    @movies   = MovieDecorator.build_with(Movie.playing_now_for(current_user))
   end
 
   def show

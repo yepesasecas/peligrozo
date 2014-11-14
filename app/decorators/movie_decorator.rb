@@ -81,7 +81,7 @@ class MovieDecorator
       schedules.find_by(theater_id: favorite_theaters.first.id)
     end
   end
-
+  
   def in_watchlist?
     @in_watchlist ||= user.movies.include?(movie)   
   end 

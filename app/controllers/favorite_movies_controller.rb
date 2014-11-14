@@ -8,7 +8,7 @@ class FavoriteMoviesController < ApplicationController
   def create
     fav_movie = current_user.favorite_movies.new(favorite_movies_params)
     if fav_movie.save
-      @movies = MovieDecorator.build_with(Movie.playing_now.remove(current_user.movies.ids))
+      @movies = MovieDecorator.build_with(Movie.playing_now_for(current_user))
     end
   end
 
