@@ -28,15 +28,17 @@ class Movie < ActiveRecord::Base
   def self.upcoming
     upcomings = Fetch::Moviesdb.upcoming
     upcomings.map do |upcoming|
-      Movie.new(name:         upcoming["original_title"], 
+      Movie.new(name: upcoming["original_title"], 
                 release_date: upcoming["release_date"], 
-                poster_path:  "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
-                tmdb_id:      upcoming["id"] )
+                poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
+                tmdb_id: upcoming["id"] )
     end
   end
 
   def self.playing_now_for(user)
-    self.playing_now.remove(user.movies.ids).remove(user.eliminated_movies_ids)
+    self.playing_now
+        .remove(user.movies.ids)
+        .remove(user.eliminated_movies_ids)
   end
 
   def details
