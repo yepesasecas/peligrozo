@@ -4,9 +4,9 @@ class TheatersController < ApplicationController
   end
 
   def show
-    @schedule = Schedule.where("movie_id = ? and theater_id = ?", params[:movie_id], params[:id])
+    @schedule = Schedule.where("movie_id = ? and theater_id = ?", params[:movie_id], params[:id]).first
     respond_to do |format|
-      format.json  { render :json => @schedule }
+      format.json  { render :json => @schedule.description_decorator }
     end
   end
 end

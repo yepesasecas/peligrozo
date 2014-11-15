@@ -8,4 +8,9 @@ $(document).ready ->
     schedule.html(spinner.el)
 
     $.getJSON url, (response)->
-      schedule.html(response[0].description)
+      schedule.html("")
+      for e in response
+        html = "<span>"
+        html += e
+        html += "</span>"
+        schedule.append(html)
