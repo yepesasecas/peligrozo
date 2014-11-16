@@ -5,13 +5,8 @@ class Schedule < ActiveRecord::Base
   belongs_to :theater
 
   def description_decorator
-    array = []
-    ScheduleDescription.new(self).description.each do |e| 
-      e[:hours].each do |h| 
-        array << "#{h}" 
-      end
-    end
-    array
+    desc = ScheduleDescription.new(self)
+    desc.description_decorator
   end
 
   private
