@@ -3,11 +3,9 @@ class UserMailer < ActionMailer::Base
 
   def new_movies(user)
     @user   = user
-    @mail   = 'yepes07@gmail.com'
     @movies = Movie.last_week
-    @url    = 'http://www.peligrozo.co'
 
-    mail to: @mail, subject: 'email test'
+    mail to: @user.email, subject: 'email test'
   end
 
 end
