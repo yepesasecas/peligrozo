@@ -1,11 +1,13 @@
 desc "This task is called by the Heroku scheduler add-on"
 
-task :week_new_movies => :environment do
-  puts "Send an email with all new movies from last week"
+task :day_new_movies => :environment do
+  puts "Send an email with all new movies from last day"
   
-  User.all.each do |user|
-    unless user.email.nil?
-      UserMailer.new_movies(user).deliver 
+  movies = Movie.last_day
+  
+  unless movies.empty?
+    User.all.each do |user|
+      UserMailer.new_movies(user, movies).deliver unless user.email.nil?
     end
   end
 end
