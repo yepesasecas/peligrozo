@@ -4,8 +4,8 @@ class UserMailer < ActionMailer::Base
   def new_movies(user)
     @user   = user
     @movies = Movie.last_week
-
-    mail to: @user.email, subject: 'email test'
+    
+    mail to: @user.email, subject: 'Ultimas peliculas peligrozas!'
   end
 
 end
