@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114182027) do
+ActiveRecord::Schema.define(version: 20141121004912) do
 
   create_table "eliminated_movies", force: true do |t|
     t.integer  "user_id"
@@ -121,8 +121,10 @@ ActiveRecord::Schema.define(version: 20141114182027) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
+    t.string   "email"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["id"], name: "index_users_on_id"
   add_index "users", ["uid"], name: "index_users_on_uid"
 
