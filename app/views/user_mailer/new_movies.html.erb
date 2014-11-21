@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  
+  <head> 
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> 
   </head>
+  
   <body>
-    <h1>
-      <%= @user.name%>!
-    </h1>
-    <p>
-      Estas son las nuevas peliculas: 
-    </p>
+    <h1> <%= @user.name%>! </h1>
+    <p> Estas son las nuevas peliculas: </p>
     <ul>
       <% @movies.each do |movie| %>
-        <li>
-          <%= movie.name %>
-        </li>
+        <li> <%= movie.name %> </li>
       <% end %>
     </ul>
-    <p>
-      Entra a <%= link_to "peligroso", 'http://www.peligroso.co'%> y descubre mas peliculas.
-    </p>
+    <p> Entra a <%= link_to "peligroso", 'http://www.peligroso.co'%> y descubre mas peliculas. </p>
   </body>
 </html>
