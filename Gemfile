@@ -15,8 +15,10 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'state_machine'
 gem 'omniauth-facebook', '1.4.0'
-gem "figaro"
+gem 'figaro'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'sendgrid-ruby'
+
 
 group :development do
   gem 'spring'
