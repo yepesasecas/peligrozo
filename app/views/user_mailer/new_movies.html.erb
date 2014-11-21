@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body>
+    <h1>
+      <%= @user.name%>!
+    </h1>
+    <p>
+      Estas son las nuevas peliculas: 
+    </p>
+    <ul>
+      <% @movies.each do |movie| %>
+        <li>
+          <%= movie.name %>
+        </li>
+      <% end %>
+    </ul>
+    <p>
+      Entra a <%= link_to "peligrozo", @url%> y descubre mas peliculas.
+    </p>
+  </body>
+</html>
