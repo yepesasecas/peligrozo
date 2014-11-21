@@ -6,6 +6,6 @@ class AdminMailer < ActionMailer::Base
     @email  = 'yepes07@gmail.com'
     @movies = Movie.last_week
     
-    mail to: @email, subject: '[ADMIN] Ultimas peliculas peligrozas!'
+    mail to: @email, subject: "#{@movies.count} nuevas peliculas peligrozas!"
   end
 end
