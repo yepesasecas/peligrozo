@@ -4,8 +4,6 @@ class MoviesController < ApplicationController
   def index
     @upcoming = MovieDecorator.build_with(Movie.upcoming_for(current_user))
     @movies   = MovieDecorator.build_with(Movie.playing_now_for(current_user))
-
-    UserMailer.new_movies(current_user).deliver
   end
 
   def show
