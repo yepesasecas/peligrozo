@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  default from: "notifications@peligrozo.co"
+  default from: "notifications@peligroso.co"
 
   def new_movies
     @user   = User.first
