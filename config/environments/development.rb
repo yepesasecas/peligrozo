@@ -22,9 +22,9 @@ Rails.application.configure do
     port:           587,
     authentication: 'plain',
     user_name:      ENV['SENDGRID_USER'],
-    password:       ENV['SENDGRID_PASS']
+    password:       ENV['SENDGRID_PASS'],
     domain:         'localhost:3000',
-    enable_starttls_auto: true,
+    enable_starttls_auto: true
   }
 
   # Print deprecation notices to the Rails logger.
