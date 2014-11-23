@@ -6,17 +6,18 @@
         =link_to upcoming_movie_path(movie_decorator.tmdb_id), id:movie_decorator.id, remote: true do
           .watchlist-movie
             .upcoming-movie
-              .center{class: movie_decorator.label_class}
+              %p.center{class: movie_decorator.label_class}
                 EN
-                = distance_of_time_in_words_to_now(movie_decorator.release_date).upcase
+                %span= movie_decorator.distance_of_time_to_release_date
+                DÍAS
               .upcoming-poster
                 = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
       - else
         =link_to movie_decorator.movie, id:movie_decorator.id, remote: true do
           .watchlist-movie
             .upcoming-movie
-              .center{class: movie_decorator.label_class}
-                = distance_of_time_in_words_to_now(movie_decorator.created_at).upcase
-                EN FUNCIÓN
+              %p.center{class: movie_decorator.label_class}
+                %span= movie_decorator.distance_of_time_to_release_date
+                DÍAS EN FUNCIÓN
               .upcoming-poster
                 = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"

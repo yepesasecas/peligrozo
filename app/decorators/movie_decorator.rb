@@ -1,5 +1,7 @@
 class MovieDecorator
   attr_reader :movie, :user
+  
+  include ActionView::Helpers::TagHelper
 
   def self.build_with(array)
     array.map{ |movie| MovieDecorator.new(movie) }
@@ -36,6 +38,18 @@ class MovieDecorator
 
   def release_date
     @release_date ||= movie.release_date
+  end
+
+  def distance_of_time_to_release_date
+    days = days_to_release_date
+    
+    if 0 > days
+      -days
+    end
+  end
+
+  def days_to_release_date
+    (release_date - Date.today).to_i
   end
 
   def coming_soon?
@@ -125,5 +139,7 @@ class MovieDecorator
   def all_theaters_to_show
     theaters.map { |theater| [theater.name, theater.id] }
   end
+
+
 
 end
