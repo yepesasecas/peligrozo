@@ -54,8 +54,8 @@ class MovieDecorator
     else
       created_at.to_date
     end
-    
-    (release - Date.today).to_i
+
+    (release - Date.current).to_i
   end
 
   def coming_soon?
