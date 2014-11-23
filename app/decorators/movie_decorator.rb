@@ -49,11 +49,13 @@ class MovieDecorator
   end
 
   def days_to_release_date
-    if coming_soon?
-      (release_date - Date.today).to_i
+    release = if coming_soon?
+      release_date
     else
-      (created_at - Date.today).to_i
+      created_at.to_date
     end
+    
+    (release - Date.today).to_i
   end
 
   def coming_soon?
