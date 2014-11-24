@@ -45,7 +45,12 @@ class MovieDecorator
     
     if 0 > days
       -days
+    elsif days.nil?
+      '?'
+    else
+      days
     end
+    
   end
 
   def days_to_release_date
