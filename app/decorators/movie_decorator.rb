@@ -45,8 +45,6 @@ class MovieDecorator
     
     if 0 > days
       -days
-    elsif days.nil?
-      '?'
     else
       days
     end
@@ -54,12 +52,7 @@ class MovieDecorator
   end
 
   def days_to_release_date
-    release = if coming_soon?
-      release_date
-    else
-      created_at.to_date
-    end
-
+    release = release_date.presence || created_at.to_date || 9999
     (release - Date.current).to_i
   end
 
