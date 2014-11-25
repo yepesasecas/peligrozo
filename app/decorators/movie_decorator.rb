@@ -41,13 +41,7 @@ class MovieDecorator
   end
 
   def distance_of_time_to_release_date
-    days = days_to_release_date
-    
-    if 0 > days
-      -days
-    else
-      days
-    end
+    days_to_release_date.abs
   end
 
   def days_to_release_date
