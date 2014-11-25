@@ -4,10 +4,10 @@ class Movie < ActiveRecord::Base
   before_create :get_details
  
   has_many :schedules, dependent: :destroy
-  has_many :favorite_movies
+  has_many :favorite_movies, dependent: :destroy
   has_many :theaters, through: :schedules
   has_many :users, through: :favorite_movies
-  has_many :eliminated_movies
+  has_many :eliminated_movies, dependent: :destroy
  
   scope :coming_soon, ->{ where(state: "coming_soon").order('created_at DESC') }
   scope :in_watchlist, ->{ where(state: [:coming_soon, :playing_now]).order('created_at ASC') }
