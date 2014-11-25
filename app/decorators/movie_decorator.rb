@@ -48,7 +48,6 @@ class MovieDecorator
     else
       days
     end
-    
   end
 
   def days_to_release_date

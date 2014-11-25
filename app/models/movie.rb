@@ -11,8 +11,8 @@ class Movie < ActiveRecord::Base
  
   scope :coming_soon, ->{ where(state: "coming_soon").order('created_at DESC') }
   scope :in_watchlist, ->{ where(state: [:coming_soon, :playing_now]).order('created_at ASC') }
-  scope :last_day, ->{ playing_now.where("created_at >= ?", 1.day.ago) }
-  scope :last_week, ->{ playing_now.where("created_at >= ?", 1.week.ago) }
+  scope :last_day, ->{ where("created_at >= ?", 1.day.ago) }
+  scope :last_week, ->{ where("created_at >= ?", 1.week.ago) }
   scope :not_in_tmdb, ->{ where(tmdb_id: nil).order('created_at DESC') }
   scope :playing_now, ->{ where(state: "playing_now").order('created_at DESC') }
   scope :remove, ->(movies_ids) { where.not(id: movies_ids) }
