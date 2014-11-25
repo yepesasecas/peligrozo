@@ -11,7 +11,7 @@ module Fetch
         name  = li.children.text
         value = li.attributes["data"].value.to_i
         if 500 < value
-          movie = Movie.new name: name, value: value
+          movie = Movie.new name: name.titleize, value: value
           movies.push movie
         end
       end
