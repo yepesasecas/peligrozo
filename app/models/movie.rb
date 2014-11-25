@@ -1,7 +1,7 @@
 class Movie < ActiveRecord::Base
   include MovieDetails
   
-  before_create :get_details
+  before_create :get_details, :titleize_name
  
   has_many :schedules, dependent: :destroy
   has_many :favorite_movies, dependent: :destroy
@@ -50,6 +50,10 @@ class Movie < ActiveRecord::Base
   def details
     get_details
     self
+  end
+
+  def titleize_name
+    self.name = name.titleize
   end
 
 end
