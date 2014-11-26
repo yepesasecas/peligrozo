@@ -7,7 +7,7 @@ task :day_new_movies => :environment do
   
   unless movies.empty?
     User.all.each do |user|
-      UserMailer.new_movies(user, movies).deliver unless user.email.nil?
+      UserMailer.new_movies(user, movies).deliver if user.email.present?
     end
   end
 end
