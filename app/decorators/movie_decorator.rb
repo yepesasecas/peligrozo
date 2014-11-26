@@ -137,6 +137,4 @@ class MovieDecorator
     theaters.map { |theater| [theater.name, theater.id] }
   end
 
-
-
 end

@@ -1,18 +1,156 @@
-<!DOCTYPE html>
-<html>
-  
-  <head> 
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> 
-  </head>
-  
-  <body>
-    <h1> <%= @user.name%>! </h1>
-    <p> Estas son las nuevas peliculas: </p>
-    <ul>
-      <% @movies.each do |movie| %>
-        <li> <%= movie.name %> </li>
-      <% end %>
-    </ul>
-    <p> Entra a <%= link_to "peligroso", 'http://www.peligroso.co'%> y descubre mas peliculas. </p>
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>A Simple Responsive HTML Email</title>
+  <style type="text/css">
+    body {margin: 0; padding: 0; min-width: 100%!important;}
+    .content {width: 100%; max-width: 600px;}
+    .header {padding: 20px 30px 0px 30px;} 
+    .col425 {width: 425px!important;} 
+    .subhead {font-size: 15px; color: #ffffff; font-family: sans-serif;}
+    .h1 {font-size: 25px; line-height: 38px; font-weight: bold;}
+    .bodycopy {color: #153643; font-family: sans-serif;}
+    .h1, .h2, .h3 {color: #153643!important; font-family: sans-serif;}
+
+    .innerpadding {padding: 30px 30px 30px 30px;}
+    .borderbottom {border-bottom: 1px solid #f2eeed;}
+    .h2 {padding: 0 0 15px 0; font-size: 24px; line-height: 28px; font-weight: bold;}
+    .h3 {padding: 0 0 5px 0; font-size: 18px; line-height: 18px; font-weight: bold;}
+    .bodycopy {font-size: 16px; line-height: 22px;}
+
+    .button {text-align: center; font-size: 18px; font-family: sans-serif; font-weight: bold; padding: 0 30px 0 30px;}
+    .button a {color: #ffffff; text-decoration: none;}
+
+    .footer {padding: 20px 30px 15px 30px;}
+    .footercopy {font-family: sans-serif; font-size: 14px; color: #ffffff;}
+    .footercopy a {color: #ffffff; text-decoration: underline;}
+  </style>
+
+  <style type="text/css">
+    @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
+      body[yahoo] .buttonwrapper {background-color: transparent!important;}
+      body[yahoo] .button a {background-color: #e05443; padding: 15px 15px 13px!important; display: block!important;}
+    }
+
+    @media only screen and (min-device-width: 601px) {
+      .content {width: 600px !important;}
+      .col315 {width: 315px!important;}
+      .col380 {width: 380px!important;}
+    }
+  </style>
+</head>
+<body yahoo bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;">
+  <table width="100%" bgcolor="#fff" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+      <!--[if (gte mso 9)|(IE)]>
+      <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td>
+            <![endif]-->
+            <table class="content" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 600px;">
+              <tr>
+                <td class="header" bgcolor="#000000" style="padding: 20px 30px 0px 30px;">
+                  <table width="300" align="left" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="40" style="padding: 0 20px 20px 0;">
+                      <img src="http://peligroso.co/assets/logo/big.png" width="300" border="0" alt="" / >
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="innerpadding borderbottom" style="border-bottom: 1px solid #f2eeed; padding: 30px 30px 30px 30px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="h2" style="color: #153643!important; font-family: sans-serif; padding: 0 0 15px 0; font-size: 24px; line-height: 28px; font-weight: bold;">
+                        Hola <%= @user.name %>! 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="bodycopy" style="color: #153643; font-family: sans-serif; font-size: 16px; line-height: 22px;">
+                        Te contamos que las siguientes peliculas estan en cartelera :)
+                        Entra a <a href="http://peligroso.co">Peligroso</a> y descubre peliculas Peligrosas!!
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <% @movies.each do |movie| %>
+                <tr>
+                  <td class="innerpadding borderbottom" style="border-bottom: 1px solid #f2eeed; padding: 30px 30px 30px 30px;">
+                    <table width="115" align="left" border="0" cellpadding="0" cellspacing="0">  
+                      <tr>
+                        <td height="115" style="padding: 0 20px 20px 0;">
+                          <img src=<%= movie.poster_path %> width="115" border="0" alt="" />
+                        </td>
+                      </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+                      <table width="380" align="left" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td>
+                            <![endif]-->
+                            <table class="col380" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 380px;">  
+                              <tr>
+                                <td>
+                                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr >
+                                      <td class="h3" style="color: #153643!important; font-family: sans-serif; padding: 0 0 5px 0; font-size: 18px; line-height: 18px; font-weight: bold;">
+                                        <%= movie.name %>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="bodycopy">
+                                        <%= movie.overview %>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding: 20px 0 0 0;">
+                                        <table class="buttonwrapper" border="0" cellspacing="0" cellpadding="0">
+                                          <tr>
+                                            <a href="http://peligroso.co">
+                                              <img src="http://peligroso.co/assets/boton_watchlist.png" border="0" alt="Ver Pelicula" />
+                                            </a>
+                                          </tr>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                            <!--[if (gte mso 9)|(IE)]>
+                          </td>
+                        </tr>
+                      </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+              <% end %>
+              <tr>
+                <td class="footer" bgcolor="#000" style="padding: 20px 30px 15px 30px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td align="center" class="footercopy" style="font-family: sans-serif; font-size: 14px; color: #ffffff;">
+                        &amp;reg; Peligroso 2014<br/>
+                        Entra a <a href="http://peligroso.co" style="color: #ffffff; text-decoration: underline;"><font color="#ffffff">Peligroso</font></a> y descubre nuevas peliculas y promociones.
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+          </td>
+        </tr>
+      </table>
+      <![endif]-->
+      </td>
+    </tr>
+
+  </table>
+</body>
 </html>
