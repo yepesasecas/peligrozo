@@ -1,6 +1,8 @@
 class AdminMailer < ActionMailer::Base
   default from: "notifications@peligroso.co"
 
+  layout 'user_mailer'
+
   def new_movies
     @user   = User.first
     @email  = 'yepes07@gmail.com'
