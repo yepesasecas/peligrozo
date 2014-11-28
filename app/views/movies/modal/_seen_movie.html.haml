@@ -1,0 +1,18 @@
+- if @movie_decorator.in_watchlist?
+  = form_for([current_user, @movie_decorator.add_or_update_seen_movies], remote: true, role:"form") do |f|
+    = f.hidden_field(:movie_id, value: @movie_decorator.id)
+    = f.hidden_field(:seen, value: true)
+    = f.hidden_field(:stars, value: 5)
+    .form-group
+      = f.label "Comparte tu comentario sobre la pelicula:"
+      = f.text_area :review, class: "form-control"
+    .form-group
+      .btn-group-stars.btn-group.btn-group-justified{role: "group", row:5, "aria-label" => "..."}
+        %a#movie-one-star.btn.btn-default{type: "button"} 
+          = image_tag "stars/1.png", width: "70"
+        %a#movie-three-star.btn.btn-default{type: "button"} 
+          = image_tag "stars/3.png", width: "70"
+        %a#movie-five-star.btn.btn-default.selected{type: "button"} 
+          = image_tag "stars/5.png", width: "70"
+    .form-group
+      = f.submit "seen", type: :image, src: url_to_image("btn/save.png"), class: "pull-right"

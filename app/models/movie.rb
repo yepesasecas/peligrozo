@@ -47,6 +47,14 @@ class Movie < ActiveRecord::Base
         .remove_tmdb(user.eliminated_tmdb_movies_ids)
   end
 
+  def stars_percentage
+    (stars.to_f / 5 * 100).to_i
+  end
+
+  def stars
+    favorite_movies.average(:stars).to_i
+  end
+
   def details
     get_details
     self

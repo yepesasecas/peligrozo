@@ -8,7 +8,7 @@
     = f.hidden_field(:movie_id, value: @movie_decorator.id)
     = f.submit "watchlist", type: :image, src: url_to_image(@movie_decorator.watchlist_image), class: "pull-right", id:"watchlist-button"
   
-  - if @movie_decorator.in_watchlist?
+  - if @movie_decorator.in_watchlist? && @movie_decorator.playing_now?
     = link_to "#", id: "button-seen", class:"pull-right" do
       = image_tag "btn/saw.png"
 

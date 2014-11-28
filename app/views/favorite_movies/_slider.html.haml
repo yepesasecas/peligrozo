@@ -21,3 +21,8 @@
                 DÍAS EN FUNCIÓN
               .upcoming-poster
                 = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
+            - if movie_decorator.stars_present?
+              .stars-label
+                %p.center.pull-left
+                  = movie_decorator.stars_percentage
+                  =image_tag(movie_decorator.stars_image, width:"50px")

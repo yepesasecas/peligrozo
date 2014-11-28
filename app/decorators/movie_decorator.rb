@@ -20,6 +20,10 @@ class MovieDecorator
     movie.name
   end
 
+  def playing_now?
+    @playing_now ||= movie.playing_now?
+  end
+
   def theaters
     @theaters ||= movie.theaters
   end
@@ -38,6 +42,30 @@ class MovieDecorator
 
   def release_date
     @release_date ||= movie.release_date
+  end
+
+  def stars
+    @stars ||= movie.stars
+  end
+
+  def stars_percentage
+    @stars_percentage ||= "#{movie.stars_percentage} %"
+  end
+
+  def stars_present?
+    if stars > 0
+      true
+    else
+      false
+    end  
+  end
+
+  def stars_image
+    case movie.stars
+    when 0..1.666 then "stars/1-white.png"
+    when 1.667..3.332 then "stars/3-white.png"
+    when 3.332..5 then "stars/5-white.png"
+    end
   end
 
   def distance_of_time_to_release_date
