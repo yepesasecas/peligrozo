@@ -1,9 +1,15 @@
 .modal-options
-  = form_for([current_user, @movie_decorator.watchlist], remote: true) do |f|
-    = f.hidden_field(:movie_id, value: @movie_decorator.id)
-    = f.submit "Movie", type: :image, src: url_to_image(@movie_decorator.watchlist_image), class: "pull-right", id:"watchlist-button"
-
-  = form_for [current_user, current_user.eliminated_movies.new], remote: true do |f|
+  = form_for([current_user, current_user.eliminated_movies.new], remote: true) do |f|
     = f.hidden_field(:movie_id, value: @movie_decorator.id)
     = f.hidden_field(:tmdb_id, value: @movie_decorator.tmdb_id)
     = f.submit "Delete Movie", type: :image, src: url_to_image("btn/delete.png"), class: "pull-left", id: "delete-movie-button"
+  
+  = form_for([current_user, @movie_decorator.add_or_update_watchlist], remote: true) do |f|
+    = f.hidden_field(:movie_id, value: @movie_decorator.id)
+    = f.submit "Movie", type: :image, src: url_to_image(@movie_decorator.watchlist_image), class: "pull-right", id:"watchlist-button"
+  
+  - if @movie_decorator.in_watchlist?
+    = form_for([current_user, @movie_decorator.add_or_update_seen_movies], remote: true) do |f|
+      = f.hidden_field(:movie_id, value: @movie_decorator.id)
+      = f.submit "Seen", type: :image, src: url_to_image("btn/saw.png"), class: "pull-right"
+

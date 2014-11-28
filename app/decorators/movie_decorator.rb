@@ -97,12 +97,12 @@ class MovieDecorator
     @in_watchlist ||= user.movies.include?(movie)   
   end 
 
-  def watchlist
-    if in_watchlist?
-      user.favorite_movies.find_by(movie_id: movie.id)
-    else
-      user.favorite_movies.new
-    end
+  def add_or_update_watchlist
+    user.favorite_movies.find_by(movie_id: movie.id).presence || user.favorite_movies.new
+  end
+
+  def add_or_update_seen_movies
+    user.favorite_movies.find_by(movie_id: movie.id)
   end
 
   def watchlist_id

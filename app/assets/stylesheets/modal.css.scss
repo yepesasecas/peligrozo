@@ -17,13 +17,19 @@
 
   .modal-options{
     margin-top: 20px;
+    
     #delete-movie-button{
-      height: 37px;
+      height: 30px;
+    }
+
+    #saw{
+      margin-right: 3px;
     }
   }
 
   .modal-see-theaters, .modal-take-control{
     color: #777;
+    
     img{
       width: 100%;
     }
