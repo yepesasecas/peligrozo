@@ -14,16 +14,17 @@ class FavoriteMoviesController < ApplicationController
 
   def update
     fav_movie = current_user.favorite_movies.find_by(movie_id: favorite_movies_params["movie_id"])
-    if fav_movie.destroy
-      movies     = current_user.movies.in_watchlist
-      @watchlist = MovieDecorator.build_with(movies)
-    end
+    
+    fav_movie.destroy if params["commit"] == "watchlist"
+    fav_movie.update(favorite_movies_params) if params["commit"] == "seen"
+
+    @watchlist = MovieDecorator.build_with(current_user.movies.in_watchlist)
   end
 
   private
   
     def favorite_movies_params
-      params.require(:favorite_movie).permit(:movie_id)
+      params.require(:favorite_movie).permit(:movie_id, :seen, :review, :stars)
     end
 
 end
