@@ -12,12 +12,13 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    get :history, on: :member
     resources :favorite_genres
+    resources :favorite_movies
+    resources :eliminated_movies
     resources :favorite_theaters do
       post :delete, on: :collection
     end
-    resources :favorite_movies
-    resources :eliminated_movies
   end
 
   resources :upcoming_movies, only: [:show]

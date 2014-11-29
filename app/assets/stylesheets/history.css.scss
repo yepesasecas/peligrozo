@@ -1,0 +1,13 @@
+.history-movie{
+  color: #777;
+  display: block;
+  padding: 10px 0px;
+
+  .poster, .description{
+    display: inline-block;
+  }
+
+  .created_at, .action{
+    font-family: "ebrima-bold";
+  }
+}

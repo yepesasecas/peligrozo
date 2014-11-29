@@ -1,8 +1,7 @@
 class FavoriteMoviesController < ApplicationController
   
   def index
-    movies     = current_user.movies.in_watchlist
-    @watchlist = MovieDecorator.build_with(movies)
+    @watchlist = MovieDecorator.build_with(current_user.movies.in_watchlist)
   end
 
   def create
