@@ -1,0 +1,8 @@
+%li{class: "#{'active' if current_page?(movies_path) or current_page?(root_path)}"}
+  = link_to "CARTELERA", movies_path
+%li{class: "#{'active' if current_page?(user_favorite_movies_path(current_user))}"}
+  = link_to "WATCHLIST", user_favorite_movies_path(current_user)
+%li{class: "#{'active' if false}"}
+  = link_to "#" do
+    MOVIE NIGHT
+    .coming-soon coming soon
