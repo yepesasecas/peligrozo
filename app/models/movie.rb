@@ -31,20 +31,6 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  def self.update_genres
-    all.each do |movie|
-      next unless movie.tmdb_id.present?
-      genres = Fetch::Moviesdb.detail(movie.tmdb_id).genres
-      genres.each do |genre|
-        create_movie_genres(movie, Genre.find_by(tmdb_id: genre["id"]))
-      end
-    end
-  end
-
-  def self.create_movie_genres(movie, genre)
-    movie.movie_genres.create(genre: genre)
-  end
-  
   def self.upcoming_for(user)
     upcomings = Fetch::Moviesdb.upcoming
     upcomings.map! do |upcoming|  

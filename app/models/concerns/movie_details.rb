@@ -1,6 +1,13 @@
 module MovieDetails
   extend ActiveSupport::Concerns
 
+  def update_genres
+    genres = Fetch::Moviesdb.detail(tmdb_id).genres
+    genres.each do |genre|
+      self.movie_genres.create(genre: Genre.find_by(tmdb_id: genre["id"]))
+    end
+  end
+
   private
 
     def get_details
@@ -41,4 +48,5 @@ module MovieDetails
         end
       end
     end
+
 end
