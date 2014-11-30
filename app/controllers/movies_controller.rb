@@ -14,6 +14,7 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find params[:id]
     if @movie.update(movie_params)
+      @movie.update_genres
       redirect_to admins_index_path, notice: "Se actualizo correctamente"
     else
       redirect_to admins_index_path, error: "No se pudo actualizo"

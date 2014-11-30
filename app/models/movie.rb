@@ -1,7 +1,7 @@
 class Movie < ActiveRecord::Base
   include MovieDetails
   
-  before_create :get_details, :titleize_name
+  before_save :get_details, :titleize_name
  
   has_many :eliminated_movies, dependent: :destroy
   has_many :favorite_movies, dependent: :destroy
