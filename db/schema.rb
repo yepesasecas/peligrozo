@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128163256) do
+ActiveRecord::Schema.define(version: 20141130164954) do
 
   create_table "eliminated_movies", force: true do |t|
     t.integer  "user_id"
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 20141128163256) do
   add_index "genres", ["id"], name: "index_genres_on_id"
   add_index "genres", ["name"], name: "index_genres_on_name"
   add_index "genres", ["tmdb_id"], name: "index_genres_on_tmdb_id"
+
+  create_table "movie_genres", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "genre_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movie_genres", ["genre_id"], name: "index_movie_genres_on_genre_id"
+  add_index "movie_genres", ["movie_id"], name: "index_movie_genres_on_movie_id"
 
   create_table "movies", force: true do |t|
     t.string   "name"

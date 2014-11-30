@@ -3,11 +3,13 @@ class Movie < ActiveRecord::Base
   
   before_create :get_details, :titleize_name
  
-  has_many :schedules, dependent: :destroy
+  has_many :eliminated_movies, dependent: :destroy
   has_many :favorite_movies, dependent: :destroy
+  has_many :genres, through: :movie_genres
+  has_many :movie_genres, dependent: :destroy
+  has_many :schedules, dependent: :destroy
   has_many :theaters, through: :schedules
   has_many :users, through: :favorite_movies
-  has_many :eliminated_movies, dependent: :destroy
  
   scope :coming_soon, ->{ where(state: "coming_soon").order('created_at DESC') }
   scope :in_watchlist, ->{ where(state: [:coming_soon, :playing_now]).order('created_at ASC') }
@@ -27,6 +29,20 @@ class Movie < ActiveRecord::Base
     event :take_out do
       transition from: :playing_now, to: :not_show
     end
+  end
+
+  def self.update_genres
+    all.each do |movie|
+      next unless movie.tmdb_id.present?
+      genres = Fetch::Moviesdb.detail(movie.tmdb_id).genres
+      genres.each do |genre|
+        create_movie_genres(movie, Genre.find_by(tmdb_id: genre["id"]))
+      end
+    end
+  end
+
+  def self.create_movie_genres(movie, genre)
+    movie.movie_genres.create(genre: genre)
   end
   
   def self.upcoming_for(user)
