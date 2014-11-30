@@ -24,4 +24,4 @@
 
                   %p
                     = image_tag "asd", width:"15px"
-                    Accion
+                    = user_fav_movie.movie.genres.pluck(:name).to_sentence(locale: 'es')

@@ -2,6 +2,8 @@ module MovieDetails
   extend ActiveSupport::Concerns
 
   def update_genres
+    return unless tmdb_id.present?
+
     genres = Fetch::Moviesdb.detail(tmdb_id).genres
     genres.each do |genre|
       self.movie_genres.create(genre: Genre.find_by(tmdb_id: genre["id"]))
@@ -11,7 +13,11 @@ module MovieDetails
   private
 
     def get_details
-      get_tmdb_id_by_name if tmdb_id.nil?
+
+      if tmdb_id.nil?
+        get_tmdb_id_by_name 
+      end
+
       if tmdb_id.present?
         get_details_by_id
         get_trailer
