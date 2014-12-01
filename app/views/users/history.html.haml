@@ -17,11 +17,11 @@
                   = image_tag user_fav_movie.movie.poster_path
                 .description
                   %p
-                    = image_tag "asd", width:"15px"
+                    = image_tag "icon/calendar.png", width:"20px"
                     %span.created_at= user_fav_movie.movie.created_at.to_date
                     Agrego a
                     %span.action Watchlist
 
                   %p
-                    = image_tag "asd", width:"15px"
+                    = image_tag "icon/movie.png", width:"20px"
                     = user_fav_movie.movie.genres.pluck(:name).to_sentence(locale: 'es')

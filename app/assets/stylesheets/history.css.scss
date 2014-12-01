@@ -7,11 +7,21 @@
     display: inline-block;
   }
 
-  .poster img{
-    width: 155px;
+  .poster {
+    
+    img{
+      width: 155px;
+    }
   }
 
-  .created_at, .action{
-    font-family: "ebrima-bold";
+  .description{
+
+    p img{
+      margin-right: 5px;
+    }
+    
+    .created_at, .action{
+      font-family: "ebrima-bold";
+    }
   }
 }
