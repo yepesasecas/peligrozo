@@ -4,9 +4,8 @@ class Schedule < ActiveRecord::Base
   belongs_to :movie
   belongs_to :theater
 
-  def description_decorator
-    desc = ScheduleDescription.new(self)
-    desc.description_decorator
+  def schedule_description
+    ScheduleDescription.new(self)
   end
 
   private

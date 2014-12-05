@@ -22,9 +22,13 @@
     = select_tag "movie-theaters", options_for_select(@movie_decorator.favorite_theaters_to_show), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id              
   .modal-schedules
     %h5 HORARIOS
-    %p.schedule
-      - @movie_decorator.first_schedule.description_decorator.each do |schedule|
-        %span= schedule
+    .schedules
+      - @movie_decorator.first_schedule.schedule_description.to_a.each do |schedule|
+        - classes = "coming" if schedule[:coming]
+        - classes = " first_coming" if schedule[:first_coming]
+        .schedule{class: classes }
+          %p= schedule[:hours]
+
   = render "movies/modal/options"
 
 #all-theaters
@@ -35,7 +39,11 @@
     = select_tag "movie-theaters", options_for_select(@movie_decorator.all_theaters_to_show), class: "form-control select-movie-theater", "data-movie-id"=> @movie_decorator.id              
   .modal-schedules
     %h5 HORARIOS
-    %p.schedule
-      - @movie_decorator.first_schedule.description_decorator.each do |schedule|
-        %span= schedule
+    .schedules
+      - @movie_decorator.first_schedule.schedule_description.to_a.each do |schedule|
+        - classes = "coming" if schedule[:coming]
+        - classes = " first_coming" if schedule[:first_coming]
+        .schedule{class: classes }
+          %p= schedule[:hours]
+
   = render "movies/modal/options"

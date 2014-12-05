@@ -52,14 +52,31 @@
   }
   
   .modal-schedules{
-    span{
-      background-color: #ccc;
-      color: #000;
-      display: inline-block;
-      font-size: 100% !important;
-      margin: 2px 1px;
-      padding: .2em .6em .3em;
-      border-radius: .25em;
+    .schedules{
+      .schedule{
+        border-radius: 5px ;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        color: #CCCCCC;
+        display: inline-block;
+        text-align: center;
+        font-size: 1.4em;
+        padding: 2px 5px;
+        width: 60px;
+
+        p{
+          margin: 0px !important
+        }
+      }
+
+      .coming{
+        color: #4D4D4D !important;
+      }
+
+      .first_coming{
+        color: #FFFFFF !important;
+        background-color: #333333 !important;
+      }
     }
   }
 
