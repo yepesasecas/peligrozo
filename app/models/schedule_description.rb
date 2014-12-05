@@ -56,7 +56,7 @@ class ScheduleDescription
     end
 
     def set_tags(hash)
-      now = DateTime.now
+      now = DateTime.now.in_time_zone("Bogota")
       first_coming = nil
     
       hash.each do |schedule|
