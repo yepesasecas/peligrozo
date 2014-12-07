@@ -24,3 +24,7 @@ config/initializers/secret_token.rb
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore Mac DS_Store Files 
+*.DS_Store
+
