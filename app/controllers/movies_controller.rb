@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
   def show
     movie            = Movie.includes(:theaters).find(params[:id])
     @movie_decorator = MovieDecorator.new(movie, current_user)
+    @today           = Date.today.iso8601
   end
 
   def update
