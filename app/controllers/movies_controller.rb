@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
       @movie.update_genres
       redirect_to admins_index_path, notice: "Se actualizo correctamente"
     else
+      p @movie.errors
       redirect_to admins_index_path, error: "No se pudo actualizo"
     end
   end
