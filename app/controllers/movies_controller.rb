@@ -14,11 +14,13 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find params[:id]
+    puts movie_params
+
     if @movie.update(movie_params)
       @movie.update_genres
       redirect_to admins_index_path, notice: "Se actualizo correctamente"
     else
-      p @movie.errors
+      puts @movie.errors
       redirect_to admins_index_path, error: "No se pudo actualizo"
     end
   end
