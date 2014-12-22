@@ -20,7 +20,7 @@ module MovieDetails
 
       if tmdb_id.present?
         get_details_by_id
-        get_trailer
+        get_trailer unless trailer.present?
       end
     end
 
