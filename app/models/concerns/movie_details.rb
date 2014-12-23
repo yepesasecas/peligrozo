@@ -13,10 +13,7 @@ module MovieDetails
   private
 
     def get_details
-
-      if tmdb_id.nil?
-        get_tmdb_id_by_name 
-      end
+      get_tmdb_id_by_name if tmdb_id.nil?
 
       if tmdb_id.present?
         get_details_by_id

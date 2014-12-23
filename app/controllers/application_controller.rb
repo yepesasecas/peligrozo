@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user_is_an_admin?
-      [1, 2, 3, 5].include? current_user.id
+      [1, 2, 3, 5, 11, 17].include? current_user.id
     end
     
     def user_logged_in?
