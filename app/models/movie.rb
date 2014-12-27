@@ -19,7 +19,9 @@ class Movie < ActiveRecord::Base
   scope :playing_now, ->{ where(state: "playing_now").order('created_at DESC') }
   scope :remove, ->(movies_ids) { where.not(id: movies_ids) }
   scope :remove_tmdb, ->(tmdb_movies_ids) { where.not(tmdb_id: tmdb_movies_ids)}
-  scope :with_no_trailer, ->{ where(trailer: nil).order('created_at DESC') }
+  scope :with_no_trailer, ->{ where(trailer: nil) }
+  scope :with_no_overview, ->{ where(overview: nil) }
+  scope :with_no_trailer_or_overview, -> { where("trailer is NULL OR overview is NULL") }
 
 
   state_machine :state, initial: :coming_soon do

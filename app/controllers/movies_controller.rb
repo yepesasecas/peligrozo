@@ -14,7 +14,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find params[:id]
-    puts movie_params
 
     if @movie.update(movie_params)
       @movie.update_genres
@@ -28,7 +27,7 @@ class MoviesController < ApplicationController
   private
   
     def movie_params
-      params.require(:movie).permit(:tmdb_id, :trailer)
+      params.require(:movie).permit(:tmdb_id, :trailer, :overview)
     end
 
 end
