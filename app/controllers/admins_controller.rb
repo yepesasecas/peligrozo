@@ -4,5 +4,4 @@ class AdminsController < ApplicationController
   def index
     @movies = Movie.with_no_trailer_or_overview.order('created_at DESC')
   end
-  
 end
