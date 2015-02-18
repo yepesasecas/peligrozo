@@ -42,6 +42,44 @@ class ActiveSupport::TestCase
     })
   end
 
+
+  def movie_demo
+    [{source: "Demo",
+      data:
+      {movies:
+        [{:name=>"En El Bosque", 
+          :value=>730, 
+          :poster_path=>"http://cde.peru.com/ima/0/1/0/1/7/1017618/137x197/bosque.jpg", 
+          :schedules=>[{
+            :theater=>22, :description=>"En el bosque [14][S] 9:30", :price=>"S/.15,5"}, 
+            {:theater=>15, :description=>"", :price=>""}], 
+          :overview=>"El musical entremezcla argumentos de distintos cuentos de los Hermanos Grimm (Cenicienta, Caperucita Roja, Rapunzel) intentando analizar las consecuencias de los actos y deseos de sus protagonistas. "}],
+        theaters: [{
+          :name=>"CINEPLANET PRIMAVERA", :value=>22}]}
+    }]
+  end
+
+  def movie_demo_two
+    [{source: "Demo",
+      data:{
+        movies:[{
+          :name=>"En El Bosque", 
+          :value=>730, 
+          :poster_path=>"http://cde.peru.com/ima/0/1/0/1/7/1017618/137x197/bosque.jpg", 
+          :schedules=>[
+            {:theater=>15, :description=>"En el bosque [14][S] 9:30", :price=>"S/.15,5"}, 
+            {:theater=>22, :description=>"", :price=>""}
+          ], 
+          :overview=>"El musical entremezcla argumentos de distintos cuentos de los Hermanos Grimm (Cenicienta, Caperucita Roja, Rapunzel) intentando analizar las consecuencias de los actos y deseos de sus protagonistas. "
+        }],
+        theaters: [{
+          :name=>"CINEPLANET SALAVERRY", :value=>15
+        }]
+      }
+    }]
+  end
+
+
 end
 
 class ActionDispatch::IntegrationTest

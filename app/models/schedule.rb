@@ -13,5 +13,4 @@ class Schedule < ActiveRecord::Base
     def description_organize
       self.description = description.rpartition(self.movie.name)[2]
     end
-
 end
