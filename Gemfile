@@ -30,6 +30,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'mocha'
 end
 
 group :development, :test  do

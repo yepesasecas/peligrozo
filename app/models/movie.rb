@@ -23,7 +23,6 @@ class Movie < ActiveRecord::Base
   scope :with_no_overview, ->{ where(overview: nil) }
   scope :with_no_trailer_or_overview, -> { where("trailer is NULL OR overview is NULL") }
 
-
   state_machine :state, initial: :coming_soon do
     event :playing do
       transition from: [:coming_soon, :not_show], to: :playing_now
