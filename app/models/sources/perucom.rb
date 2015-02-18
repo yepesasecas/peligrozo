@@ -6,7 +6,7 @@ module Sources
 
     def initialize(args = {})
       @doc = args[:doc] || DOC
-      @div_position = args[:perucom_div_position] || 1
+      @div_position = args[:production] ? 0 : 1
       @schedules_bool = args[:schedules] || false
 
       @movies   = Sources::Perucom::Movie.new(doc: doc, perucom_div_position: div_position).all
@@ -20,9 +20,9 @@ module Sources
     end
 
     private
-
-      def schedules?
-        schedules_bool
-      end
+    
+    def schedules?
+      schedules_bool
+    end
   end
 end
