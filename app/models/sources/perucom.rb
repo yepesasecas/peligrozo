@@ -15,12 +15,11 @@ module Sources
     end
 
     def fetch
-      {movies: movies, 
-      theaters: theaters}
+      {movies: movies, theaters: theaters}
     end
 
     private
-    
+
     def schedules?
       schedules_bool
     end

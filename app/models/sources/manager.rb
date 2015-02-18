@@ -5,7 +5,7 @@ module Sources
 
     def self.fetch_movies(args ={})
       response = []
-      self.sources.each{|source| response.push(self.fetch_source(source, args))}
+      self.sources.each { |source| response.push(self.fetch_source(source, args)) }
       response
     end
 
