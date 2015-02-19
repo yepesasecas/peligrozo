@@ -18,7 +18,7 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'figaro'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'sendgrid-ruby'
-
+gem 'rails_admin'
 
 group :development do
   gem 'spring'
