@@ -1,6 +1,8 @@
 class Movie < ActiveRecord::Base
   include MovieDetails
   
+  has_paper_trail
+  
   before_save :get_details, :titleize_name
  
   has_many :eliminated_movies, dependent: :destroy

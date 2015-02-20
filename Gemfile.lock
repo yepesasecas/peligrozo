@@ -144,6 +144,9 @@ GEM
     omniauth-oauth2 (1.0.3)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    paper_trail (4.0.0.beta2)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
     pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -323,6 +326,7 @@ DEPENDENCIES
   mocha
   nokogiri
   omniauth-facebook (= 1.4.0)
+  paper_trail (~> 4.0.0.beta)
   pg
   rails (= 4.1.8)
   rails-i18n (~> 4.0.0)

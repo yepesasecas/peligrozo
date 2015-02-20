@@ -19,6 +19,8 @@ gem 'figaro'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'sendgrid-ruby'
 gem 'rails_admin'
+gem 'paper_trail', '~> 4.0.0.beta'
+
 
 group :development do
   gem 'spring'

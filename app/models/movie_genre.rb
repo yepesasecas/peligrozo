@@ -1,5 +1,6 @@
 class MovieGenre < ActiveRecord::Base
-
+  has_paper_trail
+  
   belongs_to :movie
   belongs_to :genre
 

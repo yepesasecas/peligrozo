@@ -1,4 +1,6 @@
 class Theater < ActiveRecord::Base
+  has_paper_trail
+
   has_many :schedules
   has_many :favorite_theaters
   has_many :movies, through: :schedules
