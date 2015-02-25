@@ -1,0 +1,29 @@
+.container-fluid.white-background
+  .row-fluid
+    .col-sm-12
+      %h4 Movie Match
+      %table.table.table-admins
+        %tr
+          %th Movie
+          %th TheMovieDB
+          %th Trailer
+          %th
+        - @movies.each do |movie|
+          =form_for movie do |f|
+            %tr
+              %td
+                =image_tag movie.poster_path, class: "pull-left"
+                %p= movie.name
+              %td
+                =text_field_tag :name, nil, id: "tmdb_movie_id", class: "form-control tmdb_movie_id", placeholder: "Search"
+                =f.hidden_field :tmdb_id
+                %p 
+                  TheMovieDB ID:
+                  %span.label_movie_db
+              %td
+                =f.text_field :trailer, class: "form-control", placeholder: "Youtube ID"
+                .movie_trailer
+              %td
+                =f.text_area :overview, class: "form-control", placeholder: "Overview", rows: 8
+              %td
+                =submit_tag "Guardar", class: "btn btn-primary"

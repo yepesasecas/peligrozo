@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'movies#index'
 
-  get 'admins/index'
+  get 'matches/index'
   get 'landing/index'
 
   resources :movies do

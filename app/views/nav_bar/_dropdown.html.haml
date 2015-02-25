@@ -10,7 +10,8 @@
       %li= link_to "PELI PALS", "#"
       %li.divider
       - if current_user_is_an_admin?
-        %li= link_to movie_match_helper, admins_index_path
+        %li= link_to movie_match_helper, matches_index_path
+        %li= link_to "ADMIN TOOL", rails_admin_path
         %li.divider
       %li= link_to "CERRAR SESION", signout_path, id: "sign_out"
 
