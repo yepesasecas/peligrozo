@@ -90,7 +90,8 @@ class MovieDecorator
   end
 
   def youtube
-    "http://www.youtube.com/embed/#{movie.trailer}"
+    trailer_id = is_a_url?(trailer) ? get_trailer_id(trailer) : movie.trailer
+    "http://www.youtube.com/embed/#{trailer_id}"
   end
 
   def poster_path
@@ -164,5 +165,14 @@ class MovieDecorator
   def all_theaters_to_show
     theaters.map { |theater| [theater.name, theater.id] }
   end
+
+  private
+    def is_a_url?(trailer)
+      trailer.include? "https://www.youtube.com/watch?v="
+    end
+
+    def get_trailer_id(trailer)
+      trailer.split("?v=")[1]
+    end
 
 end
