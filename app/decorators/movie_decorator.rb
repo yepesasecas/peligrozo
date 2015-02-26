@@ -99,11 +99,13 @@ class MovieDecorator
   end
 
   def overview
-    if movie.overview.present?
-      movie.overview
-    else
-      "La pelicula todavia no cuenta con una descripción."
-    end
+    #TODO
+    movie.overview.presence || "La pelicula todavia no cuenta con una descripción."
+    # if movie.overview.present?
+    #   movie.overview
+    # else
+    #   "La pelicula todavia no cuenta con una descripción."
+    # end
   end
 
   def overview_class

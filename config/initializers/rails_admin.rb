@@ -1,7 +1,10 @@
 RailsAdmin.config do |config|
   
-  config.included_models = ["Movie", "User", "Genre", "Theater", "Schedule"]
-
+  config.included_models = [
+    "Movie", "User", "Genre", "Theater", "Schedule",
+    "EliminatedMovie", "FavoriteGenre", "FavoriteMovie",
+    "FavoriteTheater", "MovieGenre"
+  ]
   config.authorize_with do
     authenticate_or_request_with_http_basic('Site Message') do |username, password|
       username == ENV["ADMIN_USER"] && password == ENV["ADMIN_PASS"]
