@@ -4,7 +4,9 @@ class Movie < ActiveRecord::Base
   has_paper_trail
   
   before_save :get_details, :titleize_name
- 
+
+  has_one :country_movie
+  has_one :country, through: :country_movie
   has_many :eliminated_movies, dependent: :destroy
   has_many :favorite_movies, dependent: :destroy
   has_many :genres, through: :movie_genres
@@ -14,6 +16,7 @@ class Movie < ActiveRecord::Base
   has_many :users, through: :favorite_movies
  
   scope :coming_soon, -> { where(state: "coming_soon").order('created_at DESC') }
+  scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
   scope :in_watchlist, -> { where(state: [:coming_soon, :playing_now]).order('created_at ASC') }
   scope :last_day, -> { where("created_at >= ?", 1.day.ago) }
   scope :last_week, -> { where("created_at >= ?", 1.week.ago) }

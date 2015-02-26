@@ -1,9 +1,10 @@
 module Factories
   class Theaters
-    attr_reader :theaters
+    attr_reader :theaters, :country
 
     def initialize(args)
       @theaters = args[:theaters]
+      @country  = args[:country]
     end
     
     def update
@@ -15,8 +16,8 @@ module Factories
 
     private
       def find_or_create_theater(n_theater)
-        Theater.find_by(value: n_theater[:value]) || 
-          Theater.create(value: n_theater[:value], name: n_theater[:name])
+        country.theaters.find_by(value: n_theater[:value]) || 
+          country.theaters.create(value: n_theater[:value], name: n_theater[:name])
       end
   end
 end

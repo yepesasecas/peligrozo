@@ -2,7 +2,9 @@ require 'test_helper'
 
 class MovieTest < ActiveSupport::TestCase
 
+  
   context "a Movie" do
+    should have_one :country
     should have_many :eliminated_movies
   end
 

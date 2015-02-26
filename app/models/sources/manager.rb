@@ -10,7 +10,10 @@ module Sources
     end
 
     def self.fetch_source(source, args = {})
-      {source: source.to_s, data: source.new(args).fetch}
+      { source:       source.to_s, 
+        data:         source.new(args).fetch, 
+        country_code: source.country_code
+      }
     end
 
     def self.sources

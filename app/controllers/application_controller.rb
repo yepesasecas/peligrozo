@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     def current_user_is_an_admin?
       [1, 2, 3, 5, 11, 16, 17].include?(current_user.id)
     end
+
+    def current_user_country_code
+      "PE"
+    end
     
     def user_logged_in?
       unless current_user
@@ -42,6 +46,6 @@ class ApplicationController < ActionController::Base
     end
     
     helper_method :current_user, :user_logged_in?, :user_first_time?,
-                  :current_user_is_an_admin?, :admin_logged_in?
+                  :current_user_is_an_admin?, :admin_logged_in?, :current_user_country_code
                   
 end
