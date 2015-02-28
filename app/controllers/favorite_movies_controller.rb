@@ -3,7 +3,7 @@ class FavoriteMoviesController < ApplicationController
   def index
     @watchlist = MovieDecorator.build_with(
       current_user.movies
-                  .in(country_code: current_user_country_code)
+                  .in(country_code: current_country.code)
                   .in_watchlist
     )
   end
@@ -12,7 +12,7 @@ class FavoriteMoviesController < ApplicationController
     fav_movie = current_user.favorite_movies.new(favorite_movies_params)
     if fav_movie.save
       @movies = MovieDecorator.build_with(
-        Movie.in(country_code: current_user_country_code)
+        Movie.in(country_code: current_country.code)
              .playing_now_for(current_user)
       )
     end
@@ -26,7 +26,7 @@ class FavoriteMoviesController < ApplicationController
 
     @watchlist = MovieDecorator.build_with(
       current_user.movies
-                  .in(country_code: current_user_country_code)
+                  .in(country_code: current_country.code)
                   .in_watchlist
     )
   end

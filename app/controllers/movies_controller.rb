@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   
   def index
     @movies = MovieDecorator.build_with(
-      Movie.in(country_code: current_user_country_code)
+      Movie.in(country_code: current_country.code)
            .playing_now_for(current_user)
     )
     @upcoming = MovieDecorator.build_with(Movie.upcoming_for(current_user))

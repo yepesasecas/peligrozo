@@ -16,10 +16,7 @@ class ActiveSupport::TestCase
   end
 
   def setup_omniauth_test(status)
-    user = case status
-    when :config_done then users(:one)
-    when :at_genres then users(:two)
-    end
+    user = (status == :config_done ? users(:one) : users(:two))
 
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
@@ -45,6 +42,7 @@ class ActiveSupport::TestCase
 
   def movie_demo
     [{source: "Demo",
+      country_code: "PE",
       data:
       {movies:
         [{:name=>"En El Bosque", 
@@ -61,6 +59,7 @@ class ActiveSupport::TestCase
 
   def movie_demo_two
     [{source: "Demo",
+      country_code: "PE",
       data:{
         movies:[{
           :name=>"En El Bosque", 

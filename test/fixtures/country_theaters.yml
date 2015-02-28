@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  country_id: 1
-  theater_id: 1
-
-two:
-  country_id: 1
-  theater_id: 1
+  theater: one
+  country: two

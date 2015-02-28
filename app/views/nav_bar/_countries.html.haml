@@ -1,0 +1,7 @@
+%li.dropdown
+  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", title: "dropdown"}
+    = current_country.name.upcase
+    %span.caret
+  %ul.dropdown-menu{role: "menu"}
+    - Country.all.each do |country|
+      %li= link_to country.name.upcase, {country: country.code}

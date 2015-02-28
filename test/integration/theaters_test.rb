@@ -9,12 +9,13 @@ class TheatersTest < ActionDispatch::IntegrationTest
     
     setup_omniauth_test(:config_done)
     sign_in_with_facebook
-    click_link "dropdown"
+    click_link "user-dropdown"
     click_link "TUS CINES"
   end
 
   test "As a user, I can change my favorite theaters" do 
-    assert has_content?("CINÉPOLIS SANTA ANITA"), "'Tus Cines' should have one theater."
+    assert has_content?("CINÉPOLIS SANTA ANITA"), 
+      "'Tus Cines' should have one theater."
   end
   
 end

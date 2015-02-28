@@ -2,8 +2,8 @@ class FavoriteTheatersController < ApplicationController
   before_action :user_logged_in?
 
   def index
-    @theaters = Theater.in(country_code: current_user_country_code)
-    @favorite_theaters = current_user.theaters.in(country_code: current_user_country_code)
+    @theaters = Theater.in(country_code: current_country.code)
+    @favorite_theaters = current_user.theaters.in(country_code: current_country.code)
     @steps = true if params[:steps] == "true"
   end
 

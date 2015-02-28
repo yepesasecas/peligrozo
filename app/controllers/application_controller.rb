@@ -1,22 +1,25 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  
+  before_action :set_user_country
 
   private
 
     def current_user
-      if session[:user_id]
-        @current_user ||= User.find(session[:user_id]) 
-      end
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
     def current_user_is_an_admin?
       [1, 2, 3, 5, 11, 16, 17].include?(current_user.id)
     end
 
-    def current_user_country_code
-      "PE"
+    def current_country
+      code = cookies[:country_code].presence || "PE"
+      @current_country = Country.find_by(code: code) || Country.find_by(code: "PE")
+    end
+
+    def set_user_country
+      cookies[:country_code] = params[:country].upcase if params[:country]
     end
     
     def user_logged_in?
@@ -46,6 +49,5 @@ class ApplicationController < ActionController::Base
     end
     
     helper_method :current_user, :user_logged_in?, :user_first_time?,
-                  :current_user_is_an_admin?, :admin_logged_in?, :current_user_country_code
-                  
+      :current_user_is_an_admin?, :admin_logged_in?, :current_country            
 end
