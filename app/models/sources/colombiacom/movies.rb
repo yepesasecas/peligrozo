@@ -1,35 +1,19 @@
 module Sources
   class Colombiacom
     class Movies
-      attr_reader :doc
+      attr_reader :doc, :movie_class
 
       def initialize(args)
-        @doc = args[:doc]
+        p "Colombiacom::Movies"
+        @doc    = args[:doc]
       end
       
       def get
-        movies = []
-
         doc_movies = doc.css(".menuTopCine>ul>li")[0].css("ul>li>a")
-        doc_movies.each do |doc_movie|
-          movies.push({
-            name: name(doc_movie),
-            value: value(doc_movie)
-          })
+        #TODO map all doc_movies
+        doc_movies.map do |doc_movie|
+          Sources::Colombiacom::Moviem.new(doc_movie: doc_movie).get
         end
-
-        movies
-      end
-
-      private
-      def name(doc_movie)
-        doc_movie.children.text
-      end
-
-      def value(doc_movie)
-        doc_movie.attributes["href"]
-          .value
-          .split("/")[2]
       end
     end
   end
