@@ -21,15 +21,15 @@ module Sources
       end
 
       private
-      def name(doc_cities)
-        doc_cities.children.text
-      end
+        def name(doc_cities)
+          doc_cities.children.text
+        end
 
-      def value(doc_cities)
-        doc_cities.attributes["href"]
-          .value
-          .split("/")[2]
-      end
+        def value(doc_cities)
+          doc_cities.attributes["href"]
+            .value
+            .split("/")[2]
+        end
     end
   end
 end

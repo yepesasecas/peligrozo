@@ -1,7 +1,7 @@
 module Sources
   class Manager
 
-    SOURCES = [Sources::Perucom]  
+    SOURCES = [Sources::Colombiacom]  
 
     def self.fetch_movies(args ={})
       response = []

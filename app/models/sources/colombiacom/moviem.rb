@@ -101,7 +101,8 @@ module Sources
                   .text,
                 theater_value: doc_schedule.css(".direccion>.nombreTeatro>a")[0]
                   .attributes["href"]
-                  .value,
+                  .value
+                  .split("/")[2],
                 theater_city: args[:city]
               })
             end

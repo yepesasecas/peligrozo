@@ -7,8 +7,9 @@ module Sources
     
     def initialize(args = {})
       p "Colombiacom"
-      @cities = Sources::Colombiacom::Cities.new(doc: DOC).get
-      @movies = Sources::Colombiacom::Movies.new(doc: DOC).get
+      @cities   = Sources::Colombiacom::Cities.new(doc: DOC).get
+      @movies   = Sources::Colombiacom::Movies.new(doc: DOC).get
+      @theaters = Sources::Colombiacom::Theaters.new(movies: movies).rearrange
     end
 
     def fetch
