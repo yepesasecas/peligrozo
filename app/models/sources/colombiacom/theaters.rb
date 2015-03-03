@@ -12,7 +12,7 @@ module Sources
         movies.each do |movie|
           movie[:schedules].each do |schedule|
             theaters[schedule[:theater_value]] = {
-              name: schedule.delete(:theater_name),
+              name: schedule.delete(:theater_name).upcase,
               value: schedule.delete(:theater_value),
               city: schedule.delete(:theater_city)
             }

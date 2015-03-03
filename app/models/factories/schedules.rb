@@ -13,8 +13,10 @@ module Factories
           find_and_delete_schedule(n_schedule)
         else
           schedule = find_or_create_schedule(n_schedule)
-          schedule.update(description: n_schedule[:description], 
-                          price: n_schedule[:price])
+          schedule.update(
+            description: n_schedule[:description], 
+            price: n_schedule[:price]
+          )
         end
       end
     end
@@ -26,8 +28,10 @@ module Factories
 
         if theater_id
           movie.schedules.find_by(theater_id: theater_id) || 
-            movie.schedules.create(theater_id: theater_id,
-                                   description: n_schedule[:description])
+            movie.schedules.create(
+              theater_id: theater_id,
+              description: n_schedule[:description]
+            )
         end
       end
 

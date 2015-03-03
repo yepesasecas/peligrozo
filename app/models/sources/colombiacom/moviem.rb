@@ -35,7 +35,7 @@ module Sources
 
       private
         def get_name
-          self.name = doc_movie.children.text
+          self.name = doc_movie.children.text.titleize
         end
 
         def get_value
@@ -89,26 +89,49 @@ module Sources
           begin
             movie_city_doc.css(".programacionListaT>.teatroP").each do |doc_schedule|
               self.schedules.push({
-                theater: doc_schedule.css(".direccion>.nombreTeatro>a")[0]
-                  .attributes["href"]
-                  .value
-                  .split("/")[2],
-                description: doc_schedule.css(".hora")[0]
-                  .children.last
-                  .text,
-                theater_name: doc_schedule.css(".direccion>.nombreTeatro>a")[0]
-                  .children[0]
-                  .text,
-                theater_value: doc_schedule.css(".direccion>.nombreTeatro>a")[0]
-                  .attributes["href"]
-                  .value
-                  .split("/")[2],
+                theater: get_schedule_theater(doc_schedule),
+                description: get_schedule_description(doc_schedule),
+                theater_name: get_schedule_theater_name(doc_schedule),
+                theater_value: get_schedule_theater_value(doc_schedule),
                 theater_city: args[:city]
               })
             end
           rescue
             p "get_movie_city_schedules issue"
           end
+        end
+
+        def get_schedule_theater(doc_schedule)
+          doc_schedule.css(".direccion>.nombreTeatro>a")[0]
+            .attributes["href"]
+            .value
+            .split("/")[2]
+        end
+
+        def get_schedule_description(doc_schedule)
+          doc_description = doc_schedule.css(".hora")[0]
+            .children.last
+            .text
+          schedule_description_parse(doc_description)
+        end
+
+        def schedule_description_parse(doc_description)
+          # 
+          # Kingsman: el servicio secreto [14][S] 4:40, 7:00, 9:50
+          doc_description
+        end
+
+        def get_schedule_theater_name(doc_schedule)
+          doc_schedule.css(".direccion>.nombreTeatro>a")[0]
+            .children[0]
+            .text
+        end
+
+        def get_schedule_theater_value(doc_schedule)
+          doc_schedule.css(".direccion>.nombreTeatro>a")[0]
+            .attributes["href"]
+            .value
+            .split("/")[2]
         end
 
         def get_poster_path(movie_city_doc)

@@ -16,8 +16,8 @@ module Factories
 
     private
       def find_or_create_theater(n_theater)
-        country.theaters.find_by(value: n_theater[:value]) || 
-          country.theaters.create(value: n_theater[:value], name: n_theater[:name])
+        country.theaters.find_by(value: n_theater[:value].to_s) || 
+          country.theaters.create(value: n_theater[:value].to_s, name: n_theater[:name])
       end
   end
 end

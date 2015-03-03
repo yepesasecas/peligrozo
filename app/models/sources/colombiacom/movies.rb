@@ -10,7 +10,7 @@ module Sources
       
       def get
         doc_movies = doc.css(".menuTopCine>ul>li")[0].css("ul>li>a")
-        [doc_movies[1]].map do |doc_movie|
+        doc_movies.map do |doc_movie|
           Sources::Colombiacom::Moviem.new(doc_movie: doc_movie).get
         end
       end

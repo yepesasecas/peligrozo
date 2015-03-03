@@ -3,6 +3,7 @@ module Factories
 
     def self.update(args={})
       sources = Sources::Manager.fetch_movies(args)
+      p sources
       self.update_sources(sources)
     end
 
@@ -39,7 +40,8 @@ module Factories
       movies = args[:movies]
 
       movies.each do |n_movie|
-        movie = self.find_or_create_movie(n_movie)
+        next if n_movie[:name] == "ángeles Guerreros"
+        movie = self.find_or_create_movie(n_movie, country: args[:country])
         movie.update value: n_movie[:value]
         movie.save
         movie.country = args[:country]
@@ -47,27 +49,29 @@ module Factories
         movie.playing
         new_movies.push(movie)
         if n_movie[:schedules]
-          self.update_movie_schedules(movie: movie,schedules: n_movie[:schedules])
+          self.update_movie_schedules(movie: movie, schedules: n_movie[:schedules])
         end
       end
-      self.remove_old_movies(new_movies)
+      self.remove_old_movies(new_movies, country: args[:country])
     end
 
     def self.update_theaters(args={})
       Factories::Theaters.new(args).update
     end
 
-    def self.remove_old_movies(new_movies)
-      remove = Movie.playing_now - new_movies
+    def self.remove_old_movies(new_movies, args = {})
+      remove = Movie.in(country_code: args[:country].code).playing_now - new_movies
       remove.each { |movie| movie.take_out }
     end
 
-    def self.find_or_create_movie(n_movie)
-      Movie.find_by(name: n_movie[:name]) ||
-        Movie.create(name: n_movie[:name],
-                     value: n_movie[:value],
-                     overview: n_movie[:overview],
-                     poster_path: n_movie[:poster_path])
+    def self.find_or_create_movie(n_movie, args)
+      Movie.in(country_code: args[:country].code).find_by(name: n_movie[:name]) ||
+        args[:country].movies.create(
+          name: n_movie[:name],
+          value: n_movie[:value].to_s,
+          overview: n_movie[:overview],
+          poster_path: n_movie[:poster_path]
+        )
     end
 
     def self.update_movie_schedules(args)
