@@ -4,4 +4,4 @@
     %span.caret
   %ul.dropdown-menu{role: "menu"}
     - Country.all.each do |country|
-      %li= link_to country.name.upcase, {country: country.code}
+      %li= link_to country.name.upcase, {default_country: country.code}

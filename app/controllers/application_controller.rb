@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_user_country
-      cookies[:country_code] = params[:country].upcase if params[:country]
+      cookies[:country_code] = params[:default_country].upcase if params[:default_country].present?
     end
     
     def user_logged_in?
