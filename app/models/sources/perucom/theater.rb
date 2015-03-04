@@ -25,7 +25,7 @@ module Sources
             value = li.attributes["data"].value
             # value = li.attributes["data"].value.to_i
 
-            if value < 500
+            if value.to_i < 500
               theater = {name: name, value: value}
               theaters.push theater
             end
