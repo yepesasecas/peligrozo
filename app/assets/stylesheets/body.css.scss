@@ -60,16 +60,12 @@ h1, h2, h3, h4, h5, h6{
     #logo{
       display:      inline-block;
       margin-top:   23px;
-      margin-right: 30px;
       width:        230px;
     }
   }
 
   .navbar{
     ul{
-      li:first-child{
-        border-left: none;
-      }
 
       li{
         border-left: 1px solid #ccc;
@@ -79,11 +75,18 @@ h1, h2, h3, h4, h5, h6{
           color: #ccc;
         }
       }
+      li:first-child{
+        border-left: none;
+      }
       li:last-child{
         border-right: 1px solid #ccc;
       }
       li:hover{
       }
+    }
+    .countries-dropdown{
+      margin-top: -3px;
+      padding-right: 30px;
     }
   }
 

@@ -1,6 +1,6 @@
-%li.dropdown
+%li.dropdown.countries-dropdown
   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", title: "dropdown"}
-    = current_country.name.upcase
+    = image_tag("countries/flags/#{current_country.flag}.png", width: "25px")
     %span.caret
   %ul.dropdown-menu{role: "menu"}
     - Country.all.each do |country|
