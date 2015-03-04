@@ -7,10 +7,12 @@ class LandingTest < ActionDispatch::IntegrationTest
   end
 
   test "anyone can go to Landing page." do
-    assert_equal landing_index_path, current_path, "root path doesnt redirect to landing_index_path"
+    assert_equal landing_index_path, current_path, 
+      "root path doesnt redirect to landing_index_path"
 
     within("h1") do
-      assert has_content?("LOS CINES"), "landing should contain CONTROLA LOS CINES"
+      assert has_content?("LOS CINES"), 
+        "landing should contain CONTROLA LOS CINES"
     end
   end
 
@@ -19,12 +21,15 @@ class LandingTest < ActionDispatch::IntegrationTest
     
     setup_omniauth_test(:at_genres)
     sign_in_with_facebook
-    assert_equal user_favorite_genres_path(user), current_path, "after clicking BOTON FACEBOOK, should go to favorite genres"
+    assert_equal user_favorite_genres_path(user), current_path, 
+      "after clicking BOTON FACEBOOK, should go to favorite genres"
     
     click_link "skip"
-    assert_equal user_favorite_theaters_path(user), current_path, "after clicking OMITIR, should go to favorite theaters"
+    assert_equal user_favorite_theaters_path(user), current_path, 
+      "after clicking OMITIR, should go to favorite theaters"
     
     click_link "skip"
-    assert_equal movies_path, current_path, "after clicking OMITIR, should go to CARTELERA"
+    assert_equal movies_path, current_path, 
+      "after clicking OMITIR, should go to CARTELERA"
   end
 end

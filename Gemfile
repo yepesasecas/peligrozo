@@ -20,6 +20,7 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'sendgrid-ruby'
 gem 'rails_admin'
 gem 'paper_trail', '~> 4.0.0.beta'
+gem 'country_select', github: 'stefanpenner/country_select'
 
 
 group :development do

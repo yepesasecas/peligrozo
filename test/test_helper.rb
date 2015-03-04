@@ -16,10 +16,7 @@ class ActiveSupport::TestCase
   end
 
   def setup_omniauth_test(status)
-    user = case status
-    when :config_done then users(:one)
-    when :at_genres then users(:two)
-    end
+    user = (status == :config_done ? users(:one) : users(:two))
 
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
@@ -45,22 +42,28 @@ class ActiveSupport::TestCase
 
   def movie_demo
     [{source: "Demo",
-      data:
-      {movies:
-        [{:name=>"En El Bosque", 
+      country_code: "PE",
+      data:{
+        movies:[{
+          :name=>"En El Bosque", 
           :value=>730, 
           :poster_path=>"http://cde.peru.com/ima/0/1/0/1/7/1017618/137x197/bosque.jpg", 
-          :schedules=>[{
-            :theater=>22, :description=>"En el bosque [14][S] 9:30", :price=>"S/.15,5"}, 
-            {:theater=>15, :description=>"", :price=>""}], 
-          :overview=>"El musical entremezcla argumentos de distintos cuentos de los Hermanos Grimm (Cenicienta, Caperucita Roja, Rapunzel) intentando analizar las consecuencias de los actos y deseos de sus protagonistas. "}],
-        theaters: [{
-          :name=>"CINEPLANET PRIMAVERA", :value=>22}]}
+          :schedules=>[
+            {:theater=>22, :description=>"En el bosque [14][S] 9:30", :price=>"S/.15,5"}, 
+            {:theater=>15, :description=>"", :price=>""}
+          ], 
+          :overview=>"El musical entremezcla argumentos de distintos cuentos de los Hermanos Grimm (Cenicienta, Caperucita Roja, Rapunzel) intentando analizar las consecuencias de los actos y deseos de sus protagonistas. "
+        }],
+        theaters:[{
+          :name=>"CINEPLANET PRIMAVERA", :value=>22
+        }]
+      }
     }]
   end
 
   def movie_demo_two
     [{source: "Demo",
+      country_code: "PE",
       data:{
         movies:[{
           :name=>"En El Bosque", 

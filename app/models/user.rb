@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_paper_trail
 
+  has_many :countries, through: :country_users
+  has_many :country_users
   has_many :eliminated_movies, dependent: :destroy
   has_many :favorite_genres, dependent: :destroy
   has_many :favorite_theaters, dependent: :destroy
@@ -10,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :theaters, through: :favorite_theaters
   has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
 
+  scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
   scope :playing_now, -> { where(state: "playing_now").order("created_at") }
 
   state_machine :state, initial: :at_genres do

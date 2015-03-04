@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220221606) do
+ActiveRecord::Schema.define(version: 20150303010400) do
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_movies", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_theaters", force: true do |t|
+    t.integer  "country_id"
+    t.integer  "theater_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_users", force: true do |t|
+    t.integer  "country_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "eliminated_movies", force: true do |t|
     t.integer  "user_id"
@@ -85,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150220221606) do
 
   create_table "movies", force: true do |t|
     t.string   "name"
-    t.integer  "value"
+    t.string   "value"
     t.text     "overview"
     t.string   "poster_path"
     t.date     "release_date"
@@ -117,7 +146,7 @@ ActiveRecord::Schema.define(version: 20150220221606) do
 
   create_table "theaters", force: true do |t|
     t.string   "name"
-    t.integer  "value"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
