@@ -60,12 +60,14 @@ class ScheduleDescription
       first_coming = nil
     
       hash.each do |schedule|
-        if now.hour < schedule[:date].hour || (now.hour == schedule[:date].hour && now.min <= schedule[:date].min)
-          schedule[:coming] = true
+        if now.hour < schedule[:date].hour || 
+          (now.hour == schedule[:date].hour && now.min <= schedule[:date].min)
+            schedule[:coming] = true
 
-          if first_coming.nil? || validate_hours_and_minutes(schedule[:date], first_coming[:date])
-            first_coming = schedule
-          end
+            if first_coming.nil? || 
+              validate_hours_and_minutes(schedule[:date], first_coming[:date])
+                first_coming = schedule
+            end
         end
       end
       

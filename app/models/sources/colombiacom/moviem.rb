@@ -116,9 +116,12 @@ module Sources
         end
 
         def schedule_description_parse(doc_description)
-          # 
+          # 3:40 pm - 4:10 pm - 6:30 pm - 7:00 pm - 9:20 pm - 9:50pm
           # Kingsman: el servicio secreto [14][S] 4:40, 7:00, 9:50
           doc_description
+            .gsub(" - ", ", ")
+            .delete("pm")
+            .insert(0, "nombre pelicula [xx] ")
         end
 
         def get_schedule_theater_name(doc_schedule)
