@@ -5,11 +5,14 @@ RailsAdmin.config do |config|
     "EliminatedMovie",
     "MovieGenre", "Country",
   ]
+  
   config.authorize_with do
     authenticate_or_request_with_http_basic('Site Message') do |username, password|
       username == ENV["ADMIN_USER"] && password == ENV["ADMIN_PASS"]
     end
   end
+  
+  config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
   config.actions do
     dashboard                     # mandatory
