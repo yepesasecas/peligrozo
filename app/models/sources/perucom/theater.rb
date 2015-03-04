@@ -22,7 +22,8 @@ module Sources
           theaters = []
           doc.css('li.list-item').each do |li|
             name  = li.children.text
-            value = li.attributes["data"].value.to_i
+            value = li.attributes["data"].value
+            # value = li.attributes["data"].value.to_i
 
             if value < 500
               theater = {name: name, value: value}
