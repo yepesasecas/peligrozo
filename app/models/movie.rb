@@ -5,7 +5,7 @@ class Movie < ActiveRecord::Base
   
   before_save :get_details, :titleize_name
 
-  has_one :country_movie
+  has_one :country_movie, dependent: :destroy
   has_one :country, through: :country_movie
   has_many :eliminated_movies, dependent: :destroy
   has_many :favorite_movies, dependent: :destroy
