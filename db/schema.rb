@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303010400) do
+ActiveRecord::Schema.define(version: 20150306022655) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -149,6 +149,9 @@ ActiveRecord::Schema.define(version: 20150303010400) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "facebook"
+    t.string   "twitter"
   end
 
   add_index "theaters", ["id"], name: "index_theaters_on_id"
