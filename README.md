@@ -1,6 +1,6 @@
 Peligroso
 =========
-Peliculas peligrozas!
+![Landing Page Screenshot](/public/landing.png)
 
 Url
 =========
