@@ -1,5 +1,5 @@
 module Sources
-  class Colombiacom
+  module Colombiacom
     class Movies
       attr_reader :doc, :movie_class
 

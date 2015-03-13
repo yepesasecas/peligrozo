@@ -1,5 +1,5 @@
 module Sources
-  class Colombiacom
+  module Colombiacom
     class Cities
       attr_reader :doc
 

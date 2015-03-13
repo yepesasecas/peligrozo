@@ -1,5 +1,5 @@
 module Sources
-  class Colombiacom
+  module Colombiacom
     class Moviem
       attr_reader :doc_movie
       attr_accessor :poster_path, :schedules, :overview, :movie_cities,

@@ -1,5 +1,5 @@
 module Sources
-  class Colombiacom
+  module Colombiacom
     class Theaters
       attr_reader :movies
 
