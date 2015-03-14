@@ -1,4 +1,5 @@
 .modal-options
+  %hr/
   = form_for([current_user, current_user.eliminated_movies.new], remote: true) do |f|
     = f.hidden_field(:movie_id, value: @movie_decorator.id)
     = f.hidden_field(:tmdb_id, value: @movie_decorator.tmdb_id)
