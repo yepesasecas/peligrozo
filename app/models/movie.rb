@@ -40,10 +40,12 @@ class Movie < ActiveRecord::Base
   def self.upcoming_for(user)
     upcomings = Fetch::Moviesdb.upcoming
     upcomings.map! do |upcoming|  
-      Movie.new(name: upcoming["original_title"], 
-                release_date: upcoming["release_date"], 
-                poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
-                tmdb_id: upcoming["id"] )
+      Movie.new(
+        name: upcoming["original_title"], 
+        release_date: upcoming["release_date"], 
+        poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
+        tmdb_id: upcoming["id"] 
+      )
     end
     upcomings.select {|movie| not user.eliminated_tmdb_movies_ids.include?(movie.tmdb_id) }
   end
