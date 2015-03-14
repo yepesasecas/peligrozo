@@ -16,7 +16,7 @@
                 %a{:href => "#theaters", "aria-controls"=>"theaters", "role"=>"tab", "data-toggle"=>"tab"} Cines
               %li{"role"=>"presentation"}
                 %a{:href => "#movie-description", "aria-controls"=>"movie-description", "role"=>"tab", "data-toggle"=>"tab"} Descripción
-            .tab-content
+            .tab-content.tab-padding
               #theaters.tab-pane.active{"role"=>"tabpanel"}
                 = render "movies/modal/theaters"
               #movie-description.tab-pane{"role"=>"tabpanel"}

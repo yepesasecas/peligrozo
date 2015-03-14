@@ -11,16 +11,20 @@ class ScheduleDescription
 
   private
     def description
-      desc = schedule.description
-      desc = remove_comas(desc)
-      desc = remove_movie_name(desc)
-      desc = split_descriptions(desc)
-      desc = separate_description(desc)
-      
-      hash = create_hash(desc)
-      hash = order_hash(hash)
-      hash = set_tags(hash)
-      hash
+      begin
+        desc = schedule.description
+        desc = remove_comas(desc)
+        desc = remove_movie_name(desc)
+        desc = split_descriptions(desc)
+        desc = separate_description(desc)
+        
+        hash = create_hash(desc)
+        hash = order_hash(hash)
+        hash = set_tags(hash)
+        hash
+      rescue
+        {}
+      end
     end
   
     def remove_comas(desc)
