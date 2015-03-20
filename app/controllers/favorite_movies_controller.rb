@@ -9,7 +9,7 @@ class FavoriteMoviesController < ApplicationController
     if fav_movie.save
       @movies = MovieDecorator.build_with(
         Movie.in(country_code: current_country.code)
-          .playing_now_for(current_user)
+             .playing_now_for(current_user)
       )
     end
   end
@@ -20,11 +20,7 @@ class FavoriteMoviesController < ApplicationController
     fav_movie.destroy if params["commit"] == "watchlist"
     fav_movie.update(favorite_movies_params) if params["commit"] == "seen"
 
-    @watchlist = MovieDecorator.build_with(
-      current_user.movies
-        .in(country_code: current_country.code)
-        .in_watchlist
-    )
+    @watchlist = MovieDecorator.build_with(current_user.movies.in_watchlist)
   end
 
   private
