@@ -1,11 +1,7 @@
 class FavoriteMoviesController < ApplicationController
   
   def index
-    @watchlist = MovieDecorator.build_with(
-      current_user.movies
-        .in(country_code: current_country.code)
-        .in_watchlist
-    )
+    @watchlist = MovieDecorator.build_with(current_user.movies.in_watchlist)
   end
 
   def create
