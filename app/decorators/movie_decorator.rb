@@ -73,7 +73,7 @@ class MovieDecorator
   end
 
   def days_to_release_date
-    release = created_at.to_date.presence || release_date.presence || 9999
+    release = release_date.presence || created_at.to_date.presence || 9999
     (release - Date.current).to_i
   end
 
