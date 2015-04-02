@@ -17,16 +17,15 @@ class Movie < ActiveRecord::Base
  
   scope :coming_soon, -> { where(state: "coming_soon").order('created_at DESC') }
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
-  
   scope :in_watchlist, -> { 
     where(state: [:coming_soon, :playing_now])
       .order(:release_date)
       .order(:created_at)
   }
-  
   scope :last_day, -> { where("created_at >= ?", 1.day.ago) }
   scope :last_week, -> { where("created_at >= ?", 1.week.ago) }
   scope :not_in_tmdb, -> { where(tmdb_id: nil).order('created_at DESC') }
+  scope :out_of_cinemas, -> { where(state: "not_show") }
   scope :playing_now, -> { where(state: "playing_now").order('created_at DESC') }
   scope :remove, -> (movies_ids) { where.not(id: movies_ids) }
   scope :remove_tmdb, -> (tmdb_movies_ids) { where.not(tmdb_id: tmdb_movies_ids)}
