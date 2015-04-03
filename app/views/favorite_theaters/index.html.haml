@@ -8,16 +8,18 @@
       %h2
         %small y selecciona tus más frecuentes
       %hr/
+      = select_tag "countries-list", options_from_collection_for_select(current_country.cities, "id", "name"), class: "form-control select-movie-theater"
+      %hr/
       .row
         .col-sm-6
           -@theaters.each do |theater|
             -if @favorite_theaters.include? theater
-              .checkbox.checkbox-theaters
+              .checkbox.checkbox-theaters{"class" => ("country-#{theater.city_id}")}
                 %label
                   %input{name:theater.name, type:"checkbox", value:theater.id, checked: "checked"}>/
                   =theater.name  
             -else 
-              .checkbox.checkbox-theaters
+              .checkbox.checkbox-theaters{"class" => ("country-#{theater.city_id}")}
                 %label
                   %input{name:theater.name, type:"checkbox", value:theater.id}>/
                   =theater.name 

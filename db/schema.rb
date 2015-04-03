@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306022655) do
+ActiveRecord::Schema.define(version: 20150402180904) do
+
+  create_table "cities", force: true do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "value"
+  end
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -152,6 +160,7 @@ ActiveRecord::Schema.define(version: 20150306022655) do
     t.string   "email"
     t.string   "facebook"
     t.string   "twitter"
+    t.integer  "city_id"
   end
 
   add_index "theaters", ["id"], name: "index_theaters_on_id"

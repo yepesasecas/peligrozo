@@ -1,6 +1,8 @@
 class Theater < ActiveRecord::Base
   has_paper_trail
 
+  belongs_to :city
+
   has_one :country, through: :country_theater
   has_one :country_theater, dependent: :destroy
   has_many :favorite_theaters, dependent: :destroy

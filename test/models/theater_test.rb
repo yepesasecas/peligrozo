@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class TheaterTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  context "a Theater" do
+    should belong_to :city
+  end
 end

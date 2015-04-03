@@ -3,7 +3,7 @@ RailsAdmin.config do |config|
   config.included_models = [
     "Movie", "User", "Genre", "Theater", "Schedule",
     "EliminatedMovie",
-    "MovieGenre", "Country",
+    "MovieGenre", "Country", "City"
   ]
   
   config.authorize_with do

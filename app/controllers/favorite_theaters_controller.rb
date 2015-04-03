@@ -2,7 +2,7 @@ class FavoriteTheatersController < ApplicationController
   before_action :user_logged_in?
 
   def index
-    @theaters = Theater.in(country_code: current_country.code)
+    @theaters = Theater.includes(:city).in(country_code: current_country.code)
     @favorite_theaters = current_user.theaters.in(country_code: current_country.code)
     @steps = true if params[:steps] == "true"
   end

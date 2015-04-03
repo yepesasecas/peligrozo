@@ -26,3 +26,7 @@ $(document).ready ->
       url: url
       data: data
       success: (response)-> console.log response 
+
+  $("#countries-list").on 'change', (ele)->
+    $(".checkbox-theaters").hide()
+    $(".country-#{$("#countries-list").val()}").show()

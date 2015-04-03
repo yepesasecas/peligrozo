@@ -30,10 +30,12 @@ module Factories
         country = self.find_country_by code: source[:country_code]
         raise "country doesnt exist!" if country.nil?
         
+        self.update_cities(cities: source[:data][:cities], country: country) unless source[:data][:cities].nil?
         self.update_theaters(theaters: source[:data][:theaters],  country: country)
         self.update_movies(movies: source[:data][:movies], country: country)
       end
     end
+
 
     def self.update_movies(args)
       new_movies = []
@@ -55,7 +57,11 @@ module Factories
       self.remove_old_movies(new_movies, country: args[:country])
     end
 
-    def self.update_theaters(args={})
+    def self.update_cities(args)
+      Factories::Cities.new(args).update
+    end
+
+    def self.update_theaters(args)
       Factories::Theaters.new(args).update
     end
 

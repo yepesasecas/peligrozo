@@ -1,5 +1,6 @@
 class Country < ActiveRecord::Base
 
+  has_many :cities, dependent: :destroy
   has_many :country_theaters, dependent: :destroy
   has_many :country_movies, dependent: :destroy
   has_many :movies, through: :country_movies
