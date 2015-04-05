@@ -11,20 +11,18 @@
       = select_tag "countries-list", options_from_collection_for_select(current_country.cities, "id", "name"), class: "form-control select-movie-theater"
       %hr/
       .row
-        .col-sm-6
+        .col-sm-6.checkboxes
           -@theaters.each do |theater|
-            -if @favorite_theaters.include? theater
-              .checkbox.checkbox-theaters{"class" => ("country-#{theater.city_id}")}
-                %label
+            .checkbox.checkbox-theaters{"class" => ("country-#{theater.city_id}")}
+              %label
+                -if @favorite_theaters.include? theater
                   %input{name:theater.name, type:"checkbox", value:theater.id, checked: "checked"}>/
                   =theater.name  
-            -else 
-              .checkbox.checkbox-theaters{"class" => ("country-#{theater.city_id}")}
-                %label
+                -else 
                   %input{name:theater.name, type:"checkbox", value:theater.id}>/
                   =theater.name 
           =link_to  "#", class: "center", id: "more-theaters" do
-            VER MAS
+            VER TODOS
             %span.caret
       .div-footer
         =link_to movies_path, class:"pull-right submit-btn" do
