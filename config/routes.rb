@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'upcoming_movies_controller/show'
-
+  
   root 'movies#index'
-
+  
   get 'matches/index'
   get 'landing/index'
 
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :upcoming_movies, only: [:show]
+  resources :out_movies, only: [:show]
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
