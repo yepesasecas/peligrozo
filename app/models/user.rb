@@ -1,4 +1,18 @@
 class User < ActiveRecord::Base
+  public
+  def friends_facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+    @friends = @facebook.get_connections("me","friends")
+  end
+
+  def feed_facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+    #@friends = @facebook.put_connections("me", "feed", message: "Yo también estoy en PELIGROSO!"+ (rand(1..5)).to_s)    
+    amigos = self.friendships.map { |i| i.uid}
+    @friends = @facebook.put_connections("me", "feed", message: "Yo también estoy en PELIGROSO!"+ (rand(1..5)).to_s, place: '106339232734991', tags: amigos)
+    
+  end
+
   has_paper_trail
 
   has_many :countries, through: :country_users
@@ -11,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :movies, -> { uniq }, through: :favorite_movies
   has_many :theaters, through: :favorite_theaters
   has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
+  has_many :friendships, dependent: :destroy
 
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
   scope :playing_now, -> { where(state: "playing_now").order("created_at") }

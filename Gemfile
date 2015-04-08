@@ -16,10 +16,14 @@ gem 'mechanize'
 gem 'state_machine', github: 'seuros/state_machine'
 gem 'omniauth-facebook', '~> 1.4.0'
 gem 'figaro', '~> 1.1.1'
+gem 'koala' #añadido por luis
+gem 'fb_graph', :git => "git://github.com/nov/fb_graph.git" #añadido por luis
+gem 'fb_graph2' # añadido por luis
 gem 'rails-i18n', '~> 4.0.0'
 gem 'sendgrid-ruby'
 gem 'rails_admin'
 gem 'paper_trail', '~> 4.0.0.beta'
+gem 'tzinfo-data' #añadido por luis
 gem 'country_select', github: 'stefanpenner/country_select'
 
 

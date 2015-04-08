@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     def user_first_time?
       if current_user.at_friends?
         current_user.friends_done
-        #TODO
+        redirect_to invite_friends_index_path current_user, steps: true
       elsif current_user.at_theaters?
         current_user.theaters_done
         redirect_to user_favorite_theaters_path current_user, steps: true
