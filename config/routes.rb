@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'invite_friends/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   root 'movies#index'
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
     resources :favorite_genres
     resources :favorite_movies
     resources :eliminated_movies
+    resources :invite_friends do
+      post :delete, on: :collection
+    end
     resources :favorite_theaters do
       post :delete, on: :collection
     end
