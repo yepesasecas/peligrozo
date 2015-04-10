@@ -1,0 +1,52 @@
+.slider-movienight
+  #makeMeScrollable
+    - @movienight.each do |movie_decorator|
+
+      - next if movie_decorator.poster_path.nil?
+      - if movie_decorator.coming_soon?
+        =link_to upcoming_movie_path(movie_decorator.tmdb_id), id:movie_decorator.id, remote: true do
+          .movienight-movie
+            .upcoming-movie
+              %p.center{class: movie_decorator.label_class}
+                EN
+                %span= movie_decorator.distance_of_time_to_release_date
+                DÍAS
+              .upcoming-poster
+                = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
+      - else
+      
+        =link_to movie_decorator.movie, id:movie_decorator.id, remote: true do
+          .row.movie-night
+            .col-md-3
+              .upcoming-movie
+                .upcoming-poster
+                  = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
+
+            .col-md-4
+                            
+              %p.center CINE
+              %p.center= movie_decorator.movie.name 
+              %p.center FECHAS
+              %p.center= movie_decorator.release_date
+              %p.center HORARIOS
+              %p.center= movie_decorator.schedules.first.description
+              %p.center= image_tag "btn/edit.png"
+              %p.center AMIGOS QUIEREN VER
+              .row.center
+                .col-md-3 
+                  = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c18.15.191.191/s50x50/165688_131173143611902_5504398_n.jpg?oh=9820551337d3289c7c138974580d1975&oe=55E1709A&__gda__=1436339365_4fb32e8e646e779b513ab1a570ea1998"
+                .col-md-3
+                  = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=0d6173b2f424d27585b00d7b7190a10c&oe=55AB362F&__gda__=1437591769_4adb584761f22e225809b0a8f10ffbca"
+                .col-md-4
+                  = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c113.33.414.414/s50x50/32629_10200487058920355_1292286623_n.jpg?oh=07e2b1d8b5897042d52c3dca63816231&oe=55A9D612&__gda__=1437296890_38575a7d88d70215843733f7f91561c0"                  
+
+            .col-md-3.movie-night-left
+              = image_tag "logo/small.png"
+              %p.center Vamos todos a ver una pelicula hoy
+              %p.center= text_area(:post, :body, cols: 20, rows: 7)
+
+  
+              
+
+            
+

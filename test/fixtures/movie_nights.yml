@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  user: 
+  movie_id: MyString
+  movie: 
+  schedules_id: MyString
+  schedule_id: 
+
+two:
+  user_id: MyString
+  user: 
+  movie_id: MyString
+  movie: 
+  schedules_id: MyString
+  schedule_id: 

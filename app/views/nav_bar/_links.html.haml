@@ -4,6 +4,8 @@
   = link_to "CARTELERA", movies_path
 %li{class: "#{'active' if current_page?(user_favorite_movies_path(current_user))}"}
   = link_to "WATCHLIST", user_favorite_movies_path(current_user)
+%li{class: "#{'active' if current_page?(user_movie_nights_path(current_user))}"}
+  = link_to "MOVIE NIGHT", user_movie_nights_path(current_user)
 %li{class: "#{'active' if false}"}
   = link_to "#" do
     MOVIE TIME
