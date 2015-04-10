@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     
   end
 
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+
   has_paper_trail
 
   has_many :countries, through: :country_users
@@ -26,6 +30,11 @@ class User < ActiveRecord::Base
   has_many :theaters, through: :favorite_theaters
   has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
   has_many :friendships, dependent: :destroy
+
+  has_many :movie_nights, dependent: :destroy
+  has_many :movienight, foreign_key: "user_id", class_name: "MovieNight"
+  has_many :movienights, -> { uniq }, through: :movie_nights, source: :movie
+
 
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
   scope :playing_now, -> { where(state: "playing_now").order("created_at") }

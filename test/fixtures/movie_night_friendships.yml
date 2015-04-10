@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie_night_id: MyString
+  movie_night: 
+  friendship_id: MyString
+  friendship_id: 
+
+two:
+  movie_night_id: MyString
+  movie_night: 
+  friendship_id: MyString
+  friendship_id: 

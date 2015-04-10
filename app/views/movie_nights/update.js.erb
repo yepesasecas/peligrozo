@@ -1,0 +1,10 @@
+$("#movienight-slider").html("<%= j render 'movie_nights/slider' %>")
+
+$("#makeMeScrollable").smoothDivScroll({
+  manualContinuousScrolling: true, 
+  touchScrolling: true, 
+  hotSpotMouseDownSpeedBooster: 1,
+  hotSpotScrollingStep: 6
+});
+
+$('.movie-details').modal('hide');
