@@ -1,0 +1,2 @@
+module MovieNightsHelper
+end

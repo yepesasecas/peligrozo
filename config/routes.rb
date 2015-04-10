@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'movie_nights/index'
+
   get 'invite_friends/index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
     get :history, on: :member
     resources :favorite_genres
     resources :favorite_movies
+    resources :movie_nights
     resources :eliminated_movies
     resources :invite_friends do
       post :delete, on: :collection

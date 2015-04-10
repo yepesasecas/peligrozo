@@ -146,6 +146,22 @@ class MovieDecorator
     end
   end
 
+  def in_movienight?
+    @in_movienight ||= user.movies.include?(movie)   
+  end 
+
+  def add_or_update_movienight
+    user.movie_nights.find_by(movie_id: movie.id).presence || user.movie_nights.new
+  end
+
+  def movienight_image
+    if in_movienight?
+      "boton_remove_from_movie_night.png"
+    else
+      "boton_movie_night.png"
+    end
+  end  
+
   def label_class
     if movie.playing_now?
       "cartelera-date"
