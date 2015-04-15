@@ -1,6 +1,8 @@
 class MovieNightsController < ApplicationController
 	def index
     @movienight = MovieDecorator.build_with(current_user.movienights.in_movienight)
+    @movienightfriends = MovieDecorator.build_with(current_user.getmovies_by_friends)   
+
   end
 
   def create
