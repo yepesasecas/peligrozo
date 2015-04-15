@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'movie_night_friendships/index'
+
   get 'movie_nights/index'
 
   get 'invite_friends/index'
@@ -19,15 +21,19 @@ Rails.application.routes.draw do
     get :history, on: :member
     resources :favorite_genres
     resources :favorite_movies
-    resources :movie_nights
-    resources :eliminated_movies
+    resources :movie_nights do
+      resources :movie_night_friendships
+    end
+
+
+    resources :eliminated_movies    
     resources :invite_friends do
       post :delete, on: :collection
     end
     resources :favorite_theaters do
       post :delete, on: :collection
     end
-  end
+  end  
 
   resources :upcoming_movies, only: [:show]
   resources :out_movies, only: [:show]

@@ -7,17 +7,16 @@
   
   = form_for([current_user, @movie_decorator.add_or_update_watchlist], remote: true) do |f|
     = f.hidden_field(:movie_id, value: @movie_decorator.id)
-    = f.submit "watchlist", type: :image, src: url_to_image(@movie_decorator.watchlist_image), class: "pull-right", id:"watchlist-button"    
+    = f.submit "watchlist", type: :image, src: url_to_image(@movie_decorator.watchlist_image), class: "pull-right", id:"watchlist-button"
   
   - if @movie_decorator.in_watchlist? && @movie_decorator.playing_now?
     = link_to "#", id: "button-seen", class:"pull-right" do
       = image_tag "btn/saw.png"
 
   = form_for([current_user, @movie_decorator.add_or_update_movienight], remote: true) do |f|
-    = f.hidden_field(:movie_id, value: @movie_decorator.id)    
+    = f.hidden_field(:movie_id, value: @movie_decorator.id)
     = f.submit "movienight", type: :image, src: url_to_image(@movie_decorator.movienight_image), class: "pull-right", id:"movienight-button"
 
   - if @movie_decorator.in_movienight?
     = link_to "#", id: "button-seen", class:"pull-right" do
       = image_tag "btn/saw.png"
-

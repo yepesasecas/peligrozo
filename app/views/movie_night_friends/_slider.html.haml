@@ -1,9 +1,9 @@
 .slider-movienight
 	#makeMeScrollable
-		- @movienight.each do |movie_decorator|
+		- @movienightfriends.each do |movie_decorator|
 
 			- next if movie_decorator.poster_path.nil?
-			=link_to movie_decorator.movie, id:movie_decorator.id, remote: true do
+			=link_to "#", id:movie_decorator.id, remote: true do
 				.row.movie-nights
 					.mn-image
 						.upcoming-movie
