@@ -17,6 +17,16 @@ class User < ActiveRecord::Base
     @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
 
+  def getmovies_by_friends
+      uid_friend = self.friendships.pluck :uid
+      u_friend = User.where(uid: uid_friend)
+      u_friend_id = u_friend.pluck :id
+      mn_id = MovieNight.where(user_id: u_friend_id)
+      movies_id = mn_id.pluck :movie_id
+      Movie.where(id: movies_id).all
+
+  end
+
   has_paper_trail
 
   has_many :countries, through: :country_users
@@ -34,6 +44,13 @@ class User < ActiveRecord::Base
   has_many :movie_nights, dependent: :destroy
   has_many :movienight, foreign_key: "user_id", class_name: "MovieNight"
   has_many :movienights, -> { uniq }, through: :movie_nights, source: :movie
+
+  has_many :movie_night_friends, dependent: :destroy
+
+
+
+
+
 
 
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}

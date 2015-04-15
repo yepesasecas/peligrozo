@@ -17,7 +17,7 @@ class Movie < ActiveRecord::Base
  
   scope :coming_soon, -> { where(state: "coming_soon").order('created_at DESC') }
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
-  scope :in_watchlist, -> { 
+  scope :in_watchlist, -> {
     where(state: [:coming_soon, :playing_now])
       .order(:release_date)
       .order(:created_at)

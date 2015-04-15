@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/nov/fb_graph.git
+  revision: e2dc6370f6b3d5fe3b13e048b142295cbd38dc6a
+  specs:
+    fb_graph (2.7.17)
+      httpclient (>= 2.4)
+      multi_json (>= 1.3)
+      rack-oauth2 (>= 0.14.4)
+      tzinfo
+
+GIT
   remote: git://github.com/stefanpenner/country_select.git
   revision: 68ae9f919e35b3268c1398490d45c6a88f1e3ca1
   specs:
@@ -35,7 +45,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (5.0.1.20140414130214)
+    attr_required (1.0.0)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -65,7 +77,14 @@ GEM
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    fb_graph2 (0.5.1)
+      activesupport (>= 3.2)
+      httpclient (>= 2.4)
+      multi_json
+      rack-oauth2 (>= 1.0)
+      url_safe_base64
     ffi (1.9.6)
+    ffi (1.9.6-x86-mingw32)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -86,12 +105,14 @@ GEM
     hashie (3.2.0)
     hike (1.2.3)
     hitimes (1.2.2)
+    hitimes (1.2.2-x86-mingw32)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     httpauth (0.2.1)
+    httpclient (2.6.0.1)
     i18n (0.6.11)
     jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
@@ -108,6 +129,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
+    koala (2.0.0)
+      addressable
+      faraday
+      multi_json
     listen (2.7.11)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -140,6 +165,8 @@ GEM
     netrc (0.8.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    nokogiri (1.6.3.1-x86-mingw32)
+      mini_portile (= 0.6.0)
     ntlm-http (0.1.1)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -159,11 +186,23 @@ GEM
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
     pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry (0.10.1-x86-mingw32)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     rack (1.5.2)
+    rack-oauth2 (1.1.1)
+      activesupport (>= 2.3)
+      attr_required (>= 0.0.5)
+      httpclient (>= 2.4)
+      multi_json (>= 1.3.6)
+      rack (>= 1.1)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
@@ -248,7 +287,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
-    rake (10.4.0)
+    rake (10.4.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -256,6 +295,10 @@ GEM
       json (~> 1.4)
     remotipart (1.2.1)
     rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    rest-client (1.7.2-x86-mingw32)
+      ffi (~> 1.9)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     rubyzip (1.1.6)
@@ -298,6 +341,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.9)
+    sqlite3 (1.3.9-x86-mingw32)
     state_machine (1.2.0)
     themoviedb (0.0.22)
       httparty
@@ -308,35 +352,44 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2015.1)
+      tzinfo (>= 1.0.0)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.6)
+    unf_ext (0.0.6-x86-mingw32)
     unicode_utils (1.4.0)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    url_safe_base64 (0.2.2)
     webrobots (0.1.1)
     websocket (1.2.1)
+    win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   country_select!
   database_cleaner
+  fb_graph!
+  fb_graph2
   figaro
   guard-minitest
   haml
   jbuilder (~> 2.0)
   jquery-rails
+  koala
   mechanize
   mocha
   nokogiri
@@ -356,5 +409,6 @@ DEPENDENCIES
   sqlite3
   state_machine
   themoviedb (= 0.0.22)
+  tzinfo-data
   uglifier (>= 1.3.0)
   unicorn
