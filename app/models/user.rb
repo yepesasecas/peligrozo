@@ -1,4 +1,32 @@
 class User < ActiveRecord::Base
+  public
+  def friends_facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+    @friends = @facebook.get_connections("me","friends")
+  end
+
+  def feed_facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+    #@friends = @facebook.put_connections("me", "feed", message: "Yo también estoy en PELIGROSO!"+ (rand(1..5)).to_s)    
+    amigos = self.friendships.map { |i| i.uid}
+    @friends = @facebook.put_connections("me", "feed", message: "Yo también estoy en PELIGROSO!"+ (rand(1..5)).to_s, place: '106339232734991', tags: amigos)
+    
+  end
+
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+
+  def getmovies_by_friends
+      uid_friend = self.friendships.pluck :uid
+      u_friend = User.where(uid: uid_friend)
+      u_friend_id = u_friend.pluck :id
+      mn_id = MovieNight.where(user_id: u_friend_id)
+      movies_id = mn_id.pluck :movie_id
+      Movie.where(id: movies_id).all
+
+  end
+
   has_paper_trail
 
   has_many :countries, through: :country_users
@@ -11,6 +39,19 @@ class User < ActiveRecord::Base
   has_many :movies, -> { uniq }, through: :favorite_movies
   has_many :theaters, through: :favorite_theaters
   has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
+  has_many :friendships, dependent: :destroy
+
+  has_many :movie_nights, dependent: :destroy
+  has_many :movienight, foreign_key: "user_id", class_name: "MovieNight"
+  has_many :movienights, -> { uniq }, through: :movie_nights, source: :movie
+
+  has_many :movie_night_friends, dependent: :destroy
+
+
+
+
+
+
 
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
   scope :playing_now, -> { where(state: "playing_now").order("created_at") }

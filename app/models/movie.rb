@@ -17,7 +17,7 @@ class Movie < ActiveRecord::Base
  
   scope :coming_soon, -> { where(state: "coming_soon").order('created_at DESC') }
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
-  scope :in_watchlist, -> { 
+  scope :in_watchlist, -> {
     where(state: [:coming_soon, :playing_now])
       .order(:release_date)
       .order(:created_at)
@@ -32,6 +32,12 @@ class Movie < ActiveRecord::Base
   scope :with_no_trailer, -> { where(trailer: nil) }
   scope :with_no_overview, -> { where(overview: nil) }
   scope :with_no_trailer_or_overview, -> { where("trailer is NULL OR overview is NULL") }
+
+  scope :in_movienight, -> { 
+    where(state: [:coming_soon, :playing_now])
+      .order(:release_date)
+      .order(:created_at)
+  }
 
   state_machine :state, initial: :coming_soon do
     event :playing do

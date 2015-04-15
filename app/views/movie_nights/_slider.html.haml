@@ -1,0 +1,42 @@
+.slider-movienight
+	#makeMeScrollable
+		- @movienight.each do |movie_decorator|
+
+			- next if movie_decorator.poster_path.nil?
+			=link_to movie_decorator.movie, id:movie_decorator.id, remote: true do
+				.row.movie-nights
+					.mn-image
+						.upcoming-movie
+							.upcoming-poster
+								= image_tag movie_decorator.poster_path, class:"",width:"154px",height:"221px"          
+					.mn-desc
+						.mn-desc-d
+							%p.title CINE
+							%span.edit EDITAR
+							%p.cont= movie_decorator.movie.theaters.first.name
+						.mn-desc-d
+							%p.title FECHAS
+							%span.edit EDITAR
+							%p.cont= movie_decorator.release_date
+						.mn-desc-d
+							%p.title HORARIOS
+							%span.edit EDITAR
+							%p.cont= movie_decorator.schedules.first.description
+						%p= image_tag "btn/edit.png"
+						%p.center AMIGOS QUIEREN VER
+						.row.center
+							.mn-friends
+								= image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c18.15.191.191/s50x50/165688_131173143611902_5504398_n.jpg?oh=9820551337d3289c7c138974580d1975&oe=55E1709A&__gda__=1436339365_4fb32e8e646e779b513ab1a570ea1998", class:"prof-friend"
+							.mn-friends
+								= image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=0d6173b2f424d27585b00d7b7190a10c&oe=55AB362F&__gda__=1437591769_4adb584761f22e225809b0a8f10ffbca", class:"prof-friend"
+							.mn-friends
+								= image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c113.33.414.414/s50x50/32629_10200487058920355_1292286623_n.jpg?oh=07e2b1d8b5897042d52c3dca63816231&oe=55A9D612&__gda__=1437296890_38575a7d88d70215843733f7f91561c0", class:"prof-friend"
+
+					.mn-chat.movie-night-left            
+						.content-message
+							%p Hola,
+						= image_tag "logo/small.png", class:"img-small"
+						%p Vamos todos a ver
+						.field-message
+							%p.center= text_area(:post, :body, cols: 20, rows: 2)
+					

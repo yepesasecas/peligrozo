@@ -1,0 +1,2 @@
+module MovieNightFriendshipsHelper
+end

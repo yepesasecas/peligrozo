@@ -1,0 +1,30 @@
+.container-fluid.white-background
+  .row-fluid
+    - if @steps
+      .steps.col-sm-6.col-sm-offset-3
+        = image_tag "step/2.png"
+    .col-sm-6.col-sm-offset-3.header-title
+      %h3 Agrega a tus amigos con los que mas acudes
+      %h2
+        %small a los cines en otras palabras tus PELI-AMIGOS
+      %hr/      
+      %h3 LISTA DE AMIGOS
+      .row
+        .col-sm-6
+          -@friends.each do |friend|
+            -if @friendships.include? friend["id"]
+              .checkbox.checkbox-friends
+                %label
+                  %input{name:friend["name"], type:"checkbox", value:friend["id"], checked: "checked"}>/
+                  =friend["name"]
+            -else
+              .checkbox.checkbox-friends
+                %label
+                  %input{name:friend["name"], type:"checkbox", value:friend["id"]}>/
+                  =friend["name"]
+      
+      .div-footer
+        =link_to movies_path, class:"pull-right submit-btn" do
+          = image_tag "btn/continue.png"
+        =link_to movies_path, class:"pull-right submit-btn", title: "skip" do
+          = image_tag "btn/skip.png"
