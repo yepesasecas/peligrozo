@@ -1,6 +1,8 @@
 module Factories
   class Movies
 
+    MOVIE_EXCEPTIONS = []
+
     def self.update(args={})
       sources = Sources::Manager.fetch_movies(args)
       p sources
@@ -23,13 +25,18 @@ module Factories
       self.update(production: false)
     end
 
-    private
-    def self.update_sources(sources)
+    def self.update_moviee(args)
+      country = self.find_country_by code: 'PE'
+      self.update_movie(args, country)
+    end
 
+    private
+
+    def self.update_sources(sources)
       sources.each do |source|
         country = self.find_country_by code: source[:country_code]
         raise "country doesnt exist!" if country.nil?
-        
+
         self.update_cities(cities: source[:data][:cities], country: country) unless source[:data][:cities].nil?
         self.update_theaters(theaters: source[:data][:theaters],  country: country)
         self.update_movies(movies: source[:data][:movies], country: country)
@@ -42,19 +49,25 @@ module Factories
       movies = args[:movies]
 
       movies.each do |n_movie|
-        next if n_movie[:name] == "ángeles Guerreros"
-        movie = self.find_or_create_movie(n_movie, country: args[:country])
-        movie.update value: n_movie[:value]
-        movie.save
-        movie.country = args[:country]
-        movie.update_genres
-        movie.playing
+        next if MOVIE_EXCEPTIONS.include? n_movie[:name]
+
+        movie = self.update_movie(n_movie, args[:country])
         new_movies.push(movie)
         if n_movie[:schedules]
           self.update_movie_schedules(movie: movie, schedules: n_movie[:schedules])
         end
       end
       self.remove_old_movies(new_movies, country: args[:country])
+    end
+
+    def self.update_movie(n_movie, country)
+      movie = self.find_or_create_movie(n_movie, country: country)
+      movie.update value: n_movie[:value]
+      movie.save
+      movie.country = country
+      movie.update_genres
+      movie.playing
+      movie
     end
 
     def self.update_cities(args)

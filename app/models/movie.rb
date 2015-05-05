@@ -1,8 +1,8 @@
 class Movie < ActiveRecord::Base
   include MovieDetails
-  
-  has_paper_trail
-  
+
+  # has_paper_trail
+
   before_save :get_details, :titleize_name
 
   has_one :country_movie, dependent: :destroy
@@ -14,10 +14,10 @@ class Movie < ActiveRecord::Base
   has_many :schedules, dependent: :destroy
   has_many :theaters, through: :schedules
   has_many :users, through: :favorite_movies
- 
+
   scope :coming_soon, -> { where(state: "coming_soon").order('created_at DESC') }
   scope :in, -> (args) { joins(:country).where(countries: {code: args[:country_code]})}
-  scope :in_watchlist, -> { 
+  scope :in_watchlist, -> {
     where(state: [:coming_soon, :playing_now])
       .order(:release_date)
       .order(:created_at)
@@ -44,12 +44,12 @@ class Movie < ActiveRecord::Base
 
   def self.upcoming_for(user)
     upcomings = Fetch::Moviesdb.upcoming
-    upcomings.map! do |upcoming|  
+    upcomings.map! do |upcoming|
       Movie.new(
-        name: upcoming["original_title"], 
-        release_date: upcoming["release_date"], 
-        poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}", 
-        tmdb_id: upcoming["id"] 
+        name: upcoming["original_title"],
+        release_date: upcoming["release_date"],
+        poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}",
+        tmdb_id: upcoming["id"]
       )
     end
     upcomings.select {|movie| not user.eliminated_tmdb_movies_ids.include?(movie.tmdb_id) }

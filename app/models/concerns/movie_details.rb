@@ -23,7 +23,7 @@ module MovieDetails
 
     def get_tmdb_id_by_name
       response = Fetch::Moviesdb.search name
-      
+
       unless response.empty?
         self.tmdb_id = response.first.id
       end
@@ -31,7 +31,7 @@ module MovieDetails
 
     def get_details_by_id
       response = Fetch::Moviesdb.detail tmdb_id
-      
+
       self.name         = response.title || response.original_title if name.nil?
       self.overview     = response.overview if overview.nil?
       self.poster_path  = "http://image.tmdb.org/t/p/w154#{response.poster_path}" if poster_path.nil?
@@ -43,7 +43,7 @@ module MovieDetails
       youtube  = trailers['youtube']
 
       unless youtube.nil?
-        trailers = youtube.select {|video| video['type'] == 'Trailer'} 
+        trailers = youtube.select {|video| video['type'] == 'Trailer'}
         if trailers.empty?
           self.trailer = youtube[0]
         else
