@@ -62,11 +62,17 @@ module Factories
 
     def self.update_movie(n_movie, country)
       movie = self.find_or_create_movie(n_movie, country: country)
+
+      p "Start <#{movie.name}> #{movie.state}"
+
       movie.update value: n_movie[:value]
       movie.save
       movie.country = country
       movie.update_genres
       movie.playing
+
+      p "Start <#{movie.name}> #{movie.state}"
+
       movie
     end
 
