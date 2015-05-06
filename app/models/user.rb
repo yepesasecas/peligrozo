@@ -39,14 +39,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def eliminated_movies_ids
-    eliminated_movies.map { |e| e.movie_id  }.compact
-  end
-
   def eliminated_tmdb_movies_ids
     eliminated_movies.map { |e| e.tmdb_id }.compact
   end
-  
+
   def favorite_theaters_by(args= {})
     movie_theaters = args[:movie].theaters
     self.theaters.select { |theater| movie_theaters.include? theater }

@@ -45,12 +45,10 @@ class Movie < ActiveRecord::Base
   def self.upcoming_for(user)
     upcomings = Fetch::Moviesdb.upcoming
     upcomings.map! do |upcoming|
-      Movie.new(
-        name: upcoming["original_title"],
-        release_date: upcoming["release_date"],
-        poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}",
-        tmdb_id: upcoming["id"]
-      )
+      Movie.new(name: upcoming["original_title"],
+                release_date: upcoming["release_date"],
+                poster_path: "http://image.tmdb.org/t/p/w154#{upcoming['poster_path']}",
+                tmdb_id: upcoming["id"])
     end
     upcomings.select {|movie| not user.eliminated_tmdb_movies_ids.include?(movie.tmdb_id) }
   end
@@ -58,8 +56,8 @@ class Movie < ActiveRecord::Base
   def self.playing_now_for(user)
     self.playing_now
         .remove(user.movies.ids)
-        .remove(user.eliminated_movies_ids)
-        .remove_tmdb(user.eliminated_tmdb_movies_ids)
+        .remove(user.eliminated_movies.ids)
+        # .remove_tmdb(user.eliminated_tmdb_movies_ids)
   end
 
   def stars_percentage

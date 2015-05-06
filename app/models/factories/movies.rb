@@ -66,10 +66,10 @@ module Factories
       p "Start <#{movie.name}> #{movie.state}"
 
       movie.update value: n_movie[:value]
-      movie.save
       movie.country = country
       movie.update_genres
       movie.playing
+      movie.save
 
       p "Start <#{movie.name}> #{movie.state}"
 

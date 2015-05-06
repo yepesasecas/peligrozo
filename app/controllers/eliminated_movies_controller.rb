@@ -8,7 +8,7 @@ class EliminatedMoviesController < ApplicationController
 
     eliminated_movie = current_user.eliminated_movies.new(eliminated_movies_params)
     if eliminated_movie.save
-      @movies    = MovieDecorator.build_with(Movie.playing_now_for(current_user))
+      @movies    = MovieDecorator.build_with(Movie.in(country_code: current_country.code).playing_now_for(current_user))
       @upcoming  = MovieDecorator.build_with(Movie.upcoming_for(current_user))
       @watchlist = MovieDecorator.build_with(current_user.movies.in_watchlist)
     end
