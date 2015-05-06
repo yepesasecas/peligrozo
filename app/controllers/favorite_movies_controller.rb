@@ -1,8 +1,8 @@
 class FavoriteMoviesController < ApplicationController
-  
+
   def index
-    @watchlist       = MovieDecorator.build_with(current_user.movies.in_watchlist)
-    @upcoming        = MovieDecorator.build_with(Movie.upcoming_for(current_user))
+    @watchlist       = MovieDecorator.build_with(current_user.movies.in_watchlist.playing_now)
+    @upcoming        = MovieDecorator.build_with(current_user.movies.in_watchlist.coming_soon)
     @out_of_theaters = MovieDecorator.build_with(current_user.movies.out_of_cinemas)
 
   end
@@ -19,7 +19,7 @@ class FavoriteMoviesController < ApplicationController
 
   def update
     fav_movie = current_user.favorite_movies.find_by(movie_id: favorite_movies_params["movie_id"])
-    
+
     fav_movie.destroy if params["commit"] == "watchlist"
     fav_movie.update(favorite_movies_params) if params["commit"] == "seen"
 
@@ -27,7 +27,7 @@ class FavoriteMoviesController < ApplicationController
   end
 
   private
-  
+
     def favorite_movies_params
       params.require(:favorite_movie).permit(:movie_id, :seen, :review, :stars)
     end

@@ -1,0 +1,13 @@
+.slider
+  #makeMeScrollable2
+    - @upcoming.each do |movie_decorator|
+      - next if movie_decorator.poster_path.nil?
+      =link_to upcoming_movie_path(movie_decorator.tmdb_id), id:movie_decorator.id, remote: true do
+        .watchlist-movie
+          .upcoming-movie
+            %p.center{class: movie_decorator.label_class}
+              EN
+              %span= movie_decorator.distance_of_time_to_release_date
+              DÍAS
+            .upcoming-poster
+              = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
