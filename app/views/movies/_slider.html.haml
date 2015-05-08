@@ -5,4 +5,4 @@
       =link_to movie_decorator.movie, id: movie_decorator.id, remote: true do
         .upcoming-movie
           .upcoming-poster
-            = image_tag movie_decorator.poster_path, class:"poster"
+            = image_tag movie_decorator.poster_path, class:"poster", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"

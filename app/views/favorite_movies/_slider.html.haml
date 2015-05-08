@@ -9,7 +9,7 @@
               %span= movie_decorator.distance_of_time_to_release_date
               DÍAS EN FUNCIÓN
             .upcoming-poster
-              = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date"
+              = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"
           - if movie_decorator.stars_present?
             .stars-label
               %p.center.pull-left
