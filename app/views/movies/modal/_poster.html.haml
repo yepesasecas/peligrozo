@@ -3,4 +3,4 @@
     %a{:href => "#", id:"play-trailer"}
       =image_tag "trailer_play.png", class: "btn-trailer-play hidden-xs"
   .modal-poster-img
-    =image_tag @movie_decorator.poster_path, class: "poster-modal hidden-xs"
+    =image_tag @movie_decorator.poster_path, class: "poster-modal hidden-xs", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"
