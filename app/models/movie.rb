@@ -33,7 +33,7 @@ class Movie < ActiveRecord::Base
   scope :with_no_overview, -> { where(overview: nil) }
   scope :with_no_trailer_or_overview, -> { where("trailer is NULL OR overview is NULL") }
 
-  scope :in_movienight, -> { 
+  scope :in_movienight, -> {
     where(state: [:coming_soon, :playing_now])
       .order(:release_date)
       .order(:created_at)
