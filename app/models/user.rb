@@ -35,20 +35,8 @@ class User < ActiveRecord::Base
   end
 
   public
-    def friends_facebook
-      @facebook ||= Koala::Facebook::API.new(oauth_token)
-      @friends = @facebook.get_connections("me","friends")
-    end
-
-    def feed_facebook
-      @facebook ||= Koala::Facebook::API.new(oauth_token)
-      #@friends = @facebook.put_connections("me", "feed", message: "Yo también estoy en PELIGROSO!"+ (rand(1..5)).to_s)
-      amigos = self.friendships.map { |i| i.uid}
-      @friends = @facebook.put_connections("me", "feed", message: "Yo también estoy en PELIGROSO!"+ (rand(1..5)).to_s, place: '106339232734991', tags: amigos)
-    end
-
     def facebook
-      @facebook ||= Koala::Facebook::API.new(oauth_token)
+      Facebook.new user: self
     end
 
     def getmovies_by_friends
