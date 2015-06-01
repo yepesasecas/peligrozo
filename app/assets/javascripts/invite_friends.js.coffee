@@ -8,7 +8,7 @@ $(document).ready ->
     e.preventDefault()
     checkboxes = $(".checkbox.checkbox-friends").slice(15)
     checkboxes.toggle()
-  
+
   $("input[type='checkbox']").on "change", ->
     guardar = $(this).is(":checked")
     url =
@@ -18,7 +18,7 @@ $(document).ready ->
         path + "/delete"
     data =
       "friend":
-        uid:this.value
+        friend_id:this.value
     $.ajax
       type: "POST"
       url: url

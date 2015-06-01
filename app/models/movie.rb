@@ -22,6 +22,11 @@ class Movie < ActiveRecord::Base
       .order(:release_date)
       .order(:created_at)
   }
+  scope :in_movie_night, -> {
+    where(state: [:coming_soon, :playing_now])
+      .order(:release_date)
+      .order(:created_at)
+  }
   scope :last_day, -> { where("created_at >= ?", 1.day.ago) }
   scope :last_week, -> { where("created_at >= ?", 1.week.ago) }
   scope :not_in_tmdb, -> { where(tmdb_id: nil).order('created_at DESC') }
@@ -33,11 +38,6 @@ class Movie < ActiveRecord::Base
   scope :with_no_overview, -> { where(overview: nil) }
   scope :with_no_trailer_or_overview, -> { where("trailer is NULL OR overview is NULL") }
 
-  scope :in_movienight, -> {
-    where(state: [:coming_soon, :playing_now])
-      .order(:release_date)
-      .order(:created_at)
-  }
 
   state_machine :state, initial: :coming_soon do
     event :playing do
