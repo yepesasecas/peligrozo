@@ -11,11 +11,14 @@ class User < ActiveRecord::Base
   has_many :movies, -> { uniq }, through: :favorite_movies
   has_many :theaters, through: :favorite_theaters
   has_many :watchlist, foreign_key: "user_id", class_name: "FavoriteMovie"
-  has_many :friendships, dependent: :destroy
 
-  has_many :movie_nights, dependent: :destroy
-  has_many :movienight, foreign_key: "user_id", class_name: "MovieNight"
-  has_many :movienights, -> { uniq }, through: :movie_nights, source: :movie
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+  has_many :user_movie_nights, foreign_key: "user_id", class_name: "MovieNight", dependent: :destroy
+  has_many :movie_nights, -> { uniq }, through: :user_movie_nights, source: :movie
 
   has_many :movie_night_friends, dependent: :destroy
 
@@ -37,6 +40,15 @@ class User < ActiveRecord::Base
   public
     def facebook
       Facebook.new user: self
+    end
+
+    def friends_movie_nights
+      Movie.find friends_movie_nights_ids
+    end
+
+    def friends_movie_nights_ids
+      movies = friends.map {|f| f.movie_nights.ids}
+      movies.flatten.uniq
     end
 
     def getmovies_by_friends

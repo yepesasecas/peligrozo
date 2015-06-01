@@ -1,6 +1,6 @@
 class MovieDecorator
   attr_reader :movie, :user
-  
+
   include ActionView::Helpers::TagHelper
 
   def self.build_with(array)
@@ -57,7 +57,7 @@ class MovieDecorator
       true
     else
       false
-    end  
+    end
   end
 
   def stars_image
@@ -117,10 +117,10 @@ class MovieDecorator
       schedules.find_by(theater_id: favorite_theaters.first.id)
     end
   end
-  
+
   def in_watchlist?
     @in_watchlist ||= user.movies.include?(movie)
-  end 
+  end
 
   def add_or_update_watchlist
     user.favorite_movies.find_by(movie_id: movie.id).presence || user.favorite_movies.new
@@ -147,11 +147,11 @@ class MovieDecorator
   end
 
   def in_movienight?
-    @in_movienight ||= user.movies.include?(movie)
-  end 
+    @in_movienight ||= user.movie_nights.pluck(:movie_id).include?(movie.id)
+  end
 
   def add_or_update_movienight
-    user.movie_nights.find_by(movie_id: movie.id).presence || user.movie_nights.new
+    user.user_movie_nights.find_by(movie_id: movie.id).presence || user.user_movie_nights.new
   end
 
   def movienight_image
@@ -176,8 +176,8 @@ class MovieDecorator
     #@schedules ||= movie.schedules
   end
 
-  def movienightfriendship_image    
-      "boton_remove_from_movie_night.png"    
+  def movienightfriendship_image
+      "boton_remove_from_movie_night.png"
   end
 
   def label_class
@@ -185,7 +185,7 @@ class MovieDecorator
       "cartelera-date"
     elsif movie.coming_soon?
       "upcoming-date"
-    end 
+    end
   end
 
 

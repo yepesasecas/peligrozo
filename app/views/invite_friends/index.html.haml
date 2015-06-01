@@ -7,22 +7,22 @@
       %h3 Agrega a tus amigos con los que mas acudes
       %h2
         %small a los cines en otras palabras tus PELI-AMIGOS
-      %hr/      
+      %hr/
       %h3 LISTA DE AMIGOS
       .row
         .col-sm-6
-          -@friends.each do |friend|
-            -if @friendships.include? friend["id"]
+          -@facebook_friends.each do |facebook_friend|
+            -if @friends.include? facebook_friend
               .checkbox.checkbox-friends
                 %label
-                  %input{name:friend["name"], type:"checkbox", value:friend["id"], checked: "checked"}>/
-                  =friend["name"]
+                  %input{name:facebook_friend.name, type:"checkbox", value:facebook_friend.id, checked: "checked"}>/
+                  =facebook_friend.name
             -else
               .checkbox.checkbox-friends
                 %label
-                  %input{name:friend["name"], type:"checkbox", value:friend["id"]}>/
-                  =friend["name"]
-      
+                  %input{name:facebook_friend.name, type:"checkbox", value:facebook_friend.id}>/
+                  =facebook_friend.name
+
       .div-footer
         =link_to movies_path, class:"pull-right submit-btn" do
           = image_tag "btn/continue.png"

@@ -1,7 +1,7 @@
 class InviteFriendsController < ApplicationController
   def index
-    @friends = current_user.facebook.friends
-    @friendships = current_user.friendships.pluck :uid
+    @facebook_friends = current_user.facebook.friends
+    @friends = current_user.friends
 		@steps = true if params[:steps] == "true"
 		#current_user.feed_facebook
   end
@@ -15,7 +15,7 @@ class InviteFriendsController < ApplicationController
   end
 
   def delete
-    saved = current_user.friendships.find_by_uid(favorite_friends_params[:uid])
+    saved = current_user.friendships.find_by(favorite_friends_params)
     saved.delete if saved
     respond_to do |format|
       format.json  { render :json => saved}
@@ -24,6 +24,6 @@ class InviteFriendsController < ApplicationController
 
   private
   def favorite_friends_params
-    params.require(:friend).permit(:uid)
+    params.require(:friend).permit(:friend_id)
   end
 end

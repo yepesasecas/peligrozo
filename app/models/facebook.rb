@@ -12,6 +12,10 @@ class Facebook
     end
 
     def friends
+      User.where uid: facebook_friends_as_hash.map{|f| f["id"]}
+    end
+
+    def facebook_friends_as_hash
       user_api.get_connections("me", "friends")
     end
 
