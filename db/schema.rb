@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601214900) do
+ActiveRecord::Schema.define(version: 20150602163637) do
+
+  create_table "attendees", force: :cascade do |t|
+    t.integer  "movie_night_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "attendees", ["movie_night_id"], name: "index_attendees_on_movie_night_id"
+  add_index "attendees", ["user_id"], name: "index_attendees_on_user_id"
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -126,13 +136,6 @@ ActiveRecord::Schema.define(version: 20150601214900) do
   add_index "movie_genres", ["genre_id"], name: "index_movie_genres_on_genre_id"
   add_index "movie_genres", ["movie_id"], name: "index_movie_genres_on_movie_id"
 
-  create_table "movie_night_friendships", force: :cascade do |t|
-    t.integer  "movie_night_id"
-    t.integer  "friendship_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "movie_nights", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
@@ -198,6 +201,7 @@ ActiveRecord::Schema.define(version: 20150601214900) do
     t.datetime "updated_at"
     t.string   "state",            limit: 255
     t.string   "email",            limit: 255
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"

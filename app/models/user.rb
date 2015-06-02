@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_paper_trail
 
+  has_many :attendees, dependent: :destroy
+  has_many :movie_nights_attending, through: :attendees, source: :movie_night
   has_many :countries, through: :country_users
   has_many :country_users
   has_many :eliminated_movies, dependent: :destroy
@@ -43,11 +45,7 @@ class User < ActiveRecord::Base
     end
 
     def friends_movie_nights
-      Movie.find friends_movie_nights_ids
-    end
-
-    def friends_movie_nights_ids
-      movies = friends.map {|f| f.movie_nights.ids}
+      movies = friends.map {|f| f.user_movie_nights}
       movies.flatten.uniq
     end
 
@@ -60,12 +58,42 @@ class User < ActiveRecord::Base
       Movie.where(id: movies_id).all
     end
 
+
+    # #<OmniAuth::AuthHash
+    #   credentials=#<OmniAuth::AuthHash
+    #       expires=true
+    #       expires_at=1438362659
+    #       token="CAANZAZBM0qzakBAAEm1K8MWxeU08oZCksbgZCP9TnYrOZCp3Gpl...">
+    #     extra=#<OmniAuth::AuthHash
+    #       raw_info=#<OmniAuth::AuthHash
+    #       email="roanctf_sadanescu_1433174328@tfbnw.net"
+    #       first_name="Bill"
+    #       gender="male"
+    #       id="104407753230963"
+    #       last_name="Sadanescu"
+    #       link="https://www.facebook.com/app_scoped_user_id/104407753230963/"
+    #       locale="en_US" middle_name="Amihebaecefe" name="Bill Amihebaecefe Sadanescu"
+    #       timezone=-5
+    #       updated_time="2015-06-01T15:58:53+0000"
+    #       verified=false>>
+    #   info=#<OmniAuth::AuthHash::InfoHash
+    #     email="roanctf_sadanescu_1433174328@tfbnw.net"
+    #     first_name="Bill"
+    #     image="http://graph.facebook.com/104407753230963/picture?type=square"
+    #     last_name="Sadanescu"
+    #     name="Bill Amihebaecefe Sadanescu"
+    #     urls=#<OmniAuth::AuthHash
+    #       Facebook="https://www.facebook.com/app_scoped_user_id/104407753230963/">
+    #     verified=false>
+    #   provider="facebook"
+    #   uid="104407753230963">
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
         user.provider         = auth.provider
         user.uid              = auth.uid
         user.name             = auth.info.name
         user.email            = auth.info.email
+        user.image            = auth.info.image
         user.oauth_token      = auth.credentials.token
         user.oauth_expires_at = Time.at(auth.credentials.expires_at)
         user.save!
