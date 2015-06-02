@@ -1,3 +1,98 @@
-// Place all the styles related to the movie_nights controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.movie-nights{
+  background-color: #000;
+  margin-right: 10px;
+  margin-left:10px;
+  padding: 0px;
+}
+.movie-night
+{
+  color: white;
+  padding: 0 0 10px 13px;
+}
+
+.movie-night-left
+{
+  background: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+
+}
+
+
+/******/
+.mn-image{
+  float: left;
+  margin: 2.5px;
+}
+.mn-desc{
+  float: left;
+  width: 154px;
+  height: 221px;
+  margin: 2.5px;
+  padding: 2.5px;
+  background-color: #444;
+}
+
+.cont{
+  font-size: 11px;
+  color: #fff;
+  margin: 0px;
+  padding: 0px;
+}
+.title{
+  display:inline-block;
+  font-size: 10px;
+  color: black;
+  margin: 0px;
+  padding: 0px;
+}
+.mn-desc-d{
+  border-bottom: 1px solid #000;
+  padding: 5px;
+}
+.mn-desc>p{
+  color: #000;
+  margin: 0px;
+  padding-left: 5px;
+  font-size: 11px;
+}
+.edit{
+  font-size: 8px;
+  padding: 2px;
+  margin-left: 5px;
+  border-radius: 10%;
+  background-color: black;
+  color:white;
+}
+.mn-chat{
+  float: left;
+  height: 221px;
+  width: 154px;
+  margin: 2.5px;
+}
+.movie-night-left>p{
+  font-size: 0.7em;
+  padding-top: 20px;
+
+}
+.content-message{
+  height: 123px;
+  padding: 5px;
+  background-color: #f8f8f8;
+}
+.img-small{
+  width: 35px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  float: left;
+}
+.prof-friend{
+  height: 30px;
+  border-radius: 50%;
+}
+.mn-friends{
+  display: inline-block;
+}

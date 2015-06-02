@@ -1,0 +1,34 @@
+.movie-night.col-md-6
+  =link_to movie_night.movie, id: movie_night.movie.id, remote: true do
+    .mn-image
+      .upcoming-movie
+        .upcoming-poster
+          = image_tag movie_night.movie.poster_path, class:"", width:"154px", height:"221px"
+  .mn-desc
+    .mn-desc-d
+      %p.title CINE
+      %span.edit EDITAR
+      %p.cont= movie_night.movie.theaters.first.name
+    .mn-desc-d
+      %p.title FECHAS
+      %span.edit EDITAR
+      %p.cont= movie_night.movie.release_date
+    .mn-desc-d
+      %p.title HORARIOS
+      %span.edit EDITAR
+      %p.cont= movie_night.movie.schedules.first.description
+    %p= image_tag "btn/edit.png"
+    %p.center AMIGOS QUIEREN VER
+    .row.center
+      .mn-friends
+        = image_tag movie_night.owner.image, class: 'prof-friend'
+      - movie_night.users.each do |user|
+        .mn-friends
+          = image_tag user.image, class: 'prof-friend'
+  .mn-chat.movie-night-left
+    .content-message
+      %p Hola,
+    = image_tag "logo/small.png", class:"img-small"
+    %p Vamos todos a ver
+    .field-message
+      %p.center= text_area(:post, :body, cols: 20, rows: 2)
