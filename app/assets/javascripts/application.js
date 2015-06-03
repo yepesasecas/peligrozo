@@ -18,5 +18,6 @@
 //= require jquery.mousewheel.min
 //= require jquery.kinetic.min.js
 //= require jquery.smoothdivscroll-1.3-min
+//= require masonry.min
 //= require spin
 //= require_tree .
