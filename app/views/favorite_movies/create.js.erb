@@ -1,10 +1,5 @@
 $("#playing-now-slider").html("<%= j render 'movies/slider' %>")
-
-$("#makeMeScrollable").smoothDivScroll({
-  manualContinuousScrolling: true, 
-  touchScrolling: true, 
-  hotSpotMouseDownSpeedBooster: 1,
-  hotSpotScrollingStep: 6
-});
-
 $('.movie-details').modal('hide');
+
+reload_masonry();
+

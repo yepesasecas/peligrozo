@@ -1,10 +1,6 @@
 $("#watchlist-slider").html("<%= j render 'favorite_movies/slider' %>")
-
-$("#makeMeScrollable").smoothDivScroll({
-  manualContinuousScrolling: true, 
-  touchScrolling: true, 
-  hotSpotMouseDownSpeedBooster: 1,
-  hotSpotScrollingStep: 6
-});
-
+$("#watchlist-coming-soon-slider").html("<%= j render 'favorite_upcoming_movies/slider' %>")
+$("#watchlist-out-movies-slider").html("<%= j render 'out_movies/slider' %>")
 $('.movie-details').modal('hide');
+
+reload_masonry();

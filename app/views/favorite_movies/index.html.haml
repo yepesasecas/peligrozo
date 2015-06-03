@@ -2,12 +2,14 @@
   .row-fluid
     .category
       %h4 WATCHLIST
-      #watchlist-slider
+      #watchlist-slider.masonry
         = render "favorite_movies/slider"
     .category
       %h4 PROXIMAMENTE
-      = render "favorite_upcoming_movies/slider"
+      #watchlist-coming-soon-slider.masonry
+        = render "favorite_upcoming_movies/slider"
     .category
       %h4 FUERA DE CARTELERA
-      = render "out_movies/slider"
+      #watchlist-out-movies-slider.masonry
+        = render "out_movies/slider"
 .modal-container
