@@ -1,17 +1,15 @@
-.slider
-  #makeMeScrollable
-    - @watchlist.each do |movie_decorator|
-      - next if movie_decorator.poster_path.nil?
-      =link_to movie_decorator.movie, id:movie_decorator.id, remote: true do
-        .watchlist-movie
-          .upcoming-movie
-            %p.center{class: movie_decorator.label_class}
-              %span= movie_decorator.distance_of_time_to_release_date
-              DÍAS EN FUNCIÓN
-            .upcoming-poster
-              = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"
-          - if movie_decorator.stars_present?
-            .stars-label
-              %p.center.pull-left
-                = movie_decorator.stars_percentage
-                =image_tag(movie_decorator.stars_image, width:"50px")
+- @watchlist.each do |movie_decorator|
+  - next if movie_decorator.poster_path.nil?
+  =link_to movie_decorator.movie, id:movie_decorator.id, class:'movie', remote: true do
+    .watchlist-movie
+      .upcoming-movie
+        %p.center{class: movie_decorator.label_class}
+          %span= movie_decorator.distance_of_time_to_release_date
+          DÍAS EN FUNCIÓN
+        .upcoming-poster
+          = image_tag movie_decorator.poster_path, class:"poster fix-upcoming-date", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"
+      - if movie_decorator.stars_present?
+        .stars-label
+          %p.center.pull-left
+            = movie_decorator.stars_percentage
+            =image_tag(movie_decorator.stars_image, width:"50px")

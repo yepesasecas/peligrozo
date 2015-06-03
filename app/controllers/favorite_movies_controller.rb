@@ -23,7 +23,9 @@ class FavoriteMoviesController < ApplicationController
     fav_movie.destroy if params["commit"] == "watchlist"
     fav_movie.update(favorite_movies_params) if params["commit"] == "seen"
 
-    @watchlist = MovieDecorator.build_with(current_user.movies.in_watchlist)
+    @watchlist       = MovieDecorator.build_with(current_user.movies.in_watchlist.playing_now)
+    @upcoming        = MovieDecorator.build_with(current_user.movies.in_watchlist.coming_soon)
+    @out_of_theaters = MovieDecorator.build_with(current_user.movies.out_of_cinemas)
   end
 
   private
