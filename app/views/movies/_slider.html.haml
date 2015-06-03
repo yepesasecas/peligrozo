@@ -1,8 +1,6 @@
-.slider
-  #makeMeScrollable
-    - @movies.each do |movie_decorator|
-      - next if movie_decorator.poster_path.nil?
-      =link_to movie_decorator.movie, id: movie_decorator.id, remote: true do
-        .upcoming-movie
-          .upcoming-poster
-            = image_tag movie_decorator.poster_path, class:"poster", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"
+- @movies.each do |movie_decorator|
+  - next if movie_decorator.poster_path.nil?
+  =link_to movie_decorator.movie, id: movie_decorator.id, class: 'movie', remote: true do
+    .upcoming-movie
+      .upcoming-poster
+        = image_tag movie_decorator.poster_path, class:"poster", onerror:"this.onerror=null;this.src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRfU8wGgqEU_NUn2xdvoPPpqpzITX25IpuiIx7uuIycY4TJiITA2w';"

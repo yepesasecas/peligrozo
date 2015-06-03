@@ -2,10 +2,11 @@
   .row-fluid
     .category
       %h4 AHORA EN CINEMAS
-      #playing-now-slider
+      #playing-now-slider.masonry
         = render "movies/slider"
+  .row-fluid
     .category
       %h4 PROXIMAMENTE
-      #coming-soon-slider
+      #coming-soon-slider.masonry
         = render "upcoming_movies/slider"
 .modal-container
