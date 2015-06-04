@@ -3,7 +3,7 @@
     .mn-image
       .upcoming-movie
         .upcoming-poster
-          = image_tag movie_night.movie.poster_path, class:"", width:"154px", height:"221px"
+          = image_tag movie_night.movie.poster_path, class:"", width:"154px", height:"250px"
   .mn-desc
     .mn-desc-d
       %p.title CINE
@@ -17,15 +17,15 @@
       %p.title HORARIOS
       %span.edit EDITAR
       %p.cont= movie_night.movie.schedules.first.description
-    - if movie_night.owner == current_user
-      = link_to 'Cancelar', movie_night, method: :delete
-    - else
-      - if movie_night.users.include? current_user
-        = link_to 'Cancelo', movie_night_attendee_path(movie_night, current_user), method: :delete
-      -else
-        = form_for [movie_night, Attendee.new] do |f|
-          = f.submit 'Unirse'
-
+    .mn-desc-d
+      - if movie_night.owner == current_user
+        = link_to 'Cancelar', movie_night, method: :delete, class: 'mn-action'
+      - else
+        - if movie_night.users.include? current_user
+          = link_to 'Cancelo', movie_night_attendee_path(movie_night, current_user), method: :delete, class: 'mn-action'
+        -else
+          = form_for [movie_night, Attendee.new] do |f|
+            = f.submit 'Unirse', class: 'mn-action' do
     %p.center AMIGOS QUIEREN VER
     .row.center
       .mn-friends
