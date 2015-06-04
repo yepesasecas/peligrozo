@@ -25,7 +25,7 @@
           = link_to 'Cancelo', movie_night_attendee_path(movie_night, current_user), method: :delete, class: 'mn-action'
         -else
           = form_for [movie_night, Attendee.new] do |f|
-            = f.submit 'Unirse', class: 'mn-action' do
+            = f.submit 'Unirse', class: 'mn-action'
     %p.center AMIGOS QUIEREN VER
     .row.center
       .mn-friends
