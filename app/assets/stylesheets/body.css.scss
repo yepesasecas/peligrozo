@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+@media (min-width: 800px) {
   body{
     margin-top: 80px;
   }
@@ -68,10 +68,8 @@ h1, h2, h3, h4, h5, h6{
 
   .navbar{
     ul{
-
       li{
         border-left: 1px solid #ccc;
-
         .coming-soon{
           text-align: center;
           color: #ccc;
