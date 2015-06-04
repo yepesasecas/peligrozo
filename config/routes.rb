@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :movie_nights do
+    resources :attendees, only: [:create, :destroy]
+  end
+
   resources :upcoming_movies, only: [:show]
   resources :out_movies, only: [:show]
 

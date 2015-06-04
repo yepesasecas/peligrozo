@@ -17,7 +17,15 @@
       %p.title HORARIOS
       %span.edit EDITAR
       %p.cont= movie_night.movie.schedules.first.description
-    %p= image_tag "btn/edit.png"
+    - if movie_night.owner == current_user
+      = link_to 'Cancelar', movie_night, method: :delete
+    - else
+      - if movie_night.users.include? current_user
+        = link_to 'Cancelo', movie_night_attendee_path(movie_night, current_user), method: :delete
+      -else
+        = form_for [movie_night, Attendee.new] do |f|
+          = f.submit 'Unirse'
+
     %p.center AMIGOS QUIEREN VER
     .row.center
       .mn-friends
