@@ -21,8 +21,16 @@ class MovieNightsController < ApplicationController
     @movienight = MovieDecorator.build_with(current_user.movies.in_movienight)
   end
 
-  def show
+  def destroy
+    movie_night = MovieNight.find params[:id]
 
+    if current_user == movie_night.owner
+      movie_night.destroy
+      flash.notice = 'Movie Night successfully destroyed.'
+    else
+      flash.notice = 'Only the owner can destroy Movie Night'
+    end
+    redirect_to movie_nights_path
   end
 
   private
