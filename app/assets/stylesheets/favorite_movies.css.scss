@@ -1,14 +1,8 @@
-.watchlist-movie{
-  .poster{
-    width: 180px !important;
-  }
-}
-
 .upcoming-date, .cartelera-date {
   position: absolute;
   top: 110px;
   padding: 1px;
-  width: 174px;
+  width: 96.5%;
   z-index: 1;
 
   span {
