@@ -1,0 +1,15 @@
+.chat
+  .chat-view.content-message
+    - movie_night.chat!.messages.each do |conversation|
+      .conversaton
+        .chat-user
+          = conversation[:owner]
+        .chat-message
+          = conversation[:conversation]
+  .new-message
+    = image_tag "logo/small.png", class:"img-small"
+    %p Vamos todos a ver
+    .field-message
+      = form_for [movie_night, movie_night.chat!] do |f|
+        = f.text_field :conversation, value: ''
+        = f.submit "Comentar"

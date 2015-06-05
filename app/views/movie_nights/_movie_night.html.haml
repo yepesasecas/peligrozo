@@ -34,9 +34,4 @@
         .mn-friends
           = image_tag user.image, class: 'prof-friend'
   .mn-chat.movie-night-left
-    .content-message
-      %p Hola,
-    = image_tag "logo/small.png", class:"img-small"
-    %p Vamos todos a ver
-    .field-message
-      %p.center= text_area(:post, :body, cols: 20, rows: 2)
+    = render 'chat', movie_night: movie_night

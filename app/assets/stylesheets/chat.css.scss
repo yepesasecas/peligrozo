@@ -1,0 +1,23 @@
+.chat{
+  .chat-view{
+    overflow-y: scroll;
+    height: 150px;
+  }
+
+  .conversation{
+    margin-bottom: 5px;
+  }
+
+  .chat-user{
+    color: #777;
+  }
+
+  .new-message>p{
+    font-size: 0.7em;
+    padding-top: 20px;
+  }
+
+  .field-message{
+    margin-left: 5px;
+  }
+}

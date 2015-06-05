@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie_night_id: 1
+  conversation: MyText
+
+two:
+  movie_night_id: 1
+  conversation: MyText
