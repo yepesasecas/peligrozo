@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602163637) do
+ActiveRecord::Schema.define(version: 20150605044440) do
 
   create_table "attendees", force: :cascade do |t|
     t.integer  "movie_night_id"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20150602163637) do
 
   add_index "attendees", ["movie_night_id"], name: "index_attendees_on_movie_night_id"
   add_index "attendees", ["user_id"], name: "index_attendees_on_user_id"
+
+  create_table "chats", force: :cascade do |t|
+    t.integer  "movie_night_id"
+    t.text     "conversation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "chats", ["movie_night_id"], name: "index_chats_on_movie_night_id"
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
