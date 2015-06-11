@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   get 'matches/index'
   get 'landing/index'
 
+  constraints subdomain: 'api' do
+    namespace :api, path: '/' do
+      resources :movies, only: [:index, :show]
+    end
+  end
+
   resources :movies do
     resources :theaters
     get :get, on: :collection
@@ -37,5 +43,4 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
-
 end
