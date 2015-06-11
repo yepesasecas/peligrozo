@@ -65,7 +65,7 @@ module Factories
 
       p "Start <#{movie.name}> #{movie.state}"
 
-      movie.update value: n_movie[:value], poster_path: n_movie[:poster_path]
+      movie.update value: n_movie[:value]
       movie.country = country
       movie.update_genres
       movie.playing
