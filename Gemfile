@@ -28,7 +28,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 
 
 group :development do
-  gem 'spring'
+  gem 'spring', '~> 1.3.6'
   gem 'guard-minitest'
 end
 
