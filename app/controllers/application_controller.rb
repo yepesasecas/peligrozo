@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  
+
   before_action :set_user_country
 
   private
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     def set_user_country
       cookies[:country_code] = params[:default_country].upcase if params[:default_country].present?
     end
-    
+
     def user_logged_in?
       unless current_user
         flash[:error] = "You must be logged in to access this section"
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
     def user_first_time?
       if current_user.at_friends?
-        current_user.friends_done   
+        current_user.friends_done
         redirect_to invite_friends_index_path current_user, steps: true
       elsif current_user.at_theaters?
         current_user.theaters_done
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
         redirect_to user_favorite_genres_path current_user, steps: true
       end
     end
-    
+
     helper_method :current_user, :user_logged_in?, :user_first_time?,
-      :current_user_is_an_admin?, :admin_logged_in?, :current_country            
+      :current_user_is_an_admin?, :admin_logged_in?, :current_country
 end
