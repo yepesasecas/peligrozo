@@ -64,12 +64,12 @@ module Factories
       movie = self.find_or_create_movie(n_movie, country: country)
 
       p "Start <#{movie.name}> #{movie.state}"
+      movie.playing
 
       movie.update value: n_movie[:value]
       movie.country = country
-      movie.update_genres
       movie.save
-      movie.playing
+      movie.update_genres
 
       p "Start <#{movie.name}> #{movie.state}"
 

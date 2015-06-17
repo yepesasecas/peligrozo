@@ -2,7 +2,7 @@ module Fetch
   module Moviesdb
     def self.search(name)
       ini
-      Tmdb::Movie.search(name) || nil
+      Tmdb::Movie.search(name) || []
     end
 
     def self.detail(id)
