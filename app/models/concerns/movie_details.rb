@@ -3,10 +3,8 @@ module MovieDetails
 
   def update_genres
     return unless tmdb_id.present?
-
-    genres = Fetch::Moviesdb.detail(tmdb_id).genres
-    genres.each do |genre|
-      self.movie_genres.create(genre: Genre.find_by(tmdb_id: genre["id"]))
+    if genres = Fetch::Moviesdb.detail(tmdb_id).genres
+      genres.each{|genre| self.movie_genres.create(genre: Genre.find_by(tmdb_id: genre["id"]))}
     end
   end
 
