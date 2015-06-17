@@ -3,7 +3,7 @@ class CreateMovies < ActiveRecord::Migration
     create_table :movies do |t|
       t.string :name
       t.integer :value
-      t.text :overview, limit: false
+      t.text :overview
       t.string :poster_path
       t.date :release_date
       t.integer :tmdb_id
