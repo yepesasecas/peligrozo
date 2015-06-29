@@ -15,3 +15,7 @@
           = render 'nav_bar/links'
         %ul.nav.navbar-nav.navbar-right
           = render 'nav_bar/dropdown'
+  .container-fluid.navbar-section
+    .row-fluid
+      %ul.nav.navbar-nav
+        = yield :nav_bottom

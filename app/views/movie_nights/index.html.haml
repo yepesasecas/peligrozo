@@ -1,11 +1,18 @@
+= content_for :nav_bottom do
+  %li.nav-bottom
+    = link_to "MOVIE NIGHTS", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_movie_nights"}
+  %li.nav-bottom
+    = link_to "PELIPALS", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_pelipals"}
+
 .container-fluid
   .row-fluid
-    .category
+    .category#scroll_movie_nights
       %h4 MOVIE NIGHTS
       #watchlist-slider
         = render "movie_nights/slider"
-
+  .row-fluid
+    .category#scroll_pelipals
       %h4 PELIPALS
       #watchlist-slider
-        = render "movie_night_friends/slider"    
+        = render "movie_night_friends/slider"
 .modal-container

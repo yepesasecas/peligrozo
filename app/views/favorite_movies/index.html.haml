@@ -1,14 +1,22 @@
+= content_for :nav_bottom do
+  %li.nav-bottom
+    = link_to "AHORA EN CINEMAS", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_ahora_en_cinemas"}
+  %li.nav-bottom
+    = link_to "PROXIMAMENTE", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_proximamente"}
+  %li.nav-bottom
+    = link_to "FUERA DE CARTELERA", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_fuera_de_cartelera"}
+
 .container-fluid
   .row-fluid
-    .category
-      %h4 WATCHLIST
+    .category#scroll_ahora_en_cinemas
+      %h4 AHORA EN CINEMAS
       #watchlist-slider.masonry
         = render "favorite_movies/slider"
-    .category
+    .category#scroll_proximamente
       %h4 PROXIMAMENTE
       #watchlist-coming-soon-slider.masonry
         = render "favorite_upcoming_movies/slider"
-    .category
+    .category#scroll_fuera_de_cartelera
       %h4 FUERA DE CARTELERA
       #watchlist-out-movies-slider.masonry
         = render "out_movies/slider"

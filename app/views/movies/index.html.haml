@@ -1,11 +1,17 @@
+= content_for :nav_bottom do
+  %li.nav-bottom
+    = link_to "AHORA EN CINEMAS", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_ahora_en_cartelera"}
+  %li.nav-bottom
+    = link_to "PROXIMAMENTE", "#", {class: 'scrollit text-blue', 'data-target' => "#scroll_proximamente"}
+
 .container-fluid
   .row-fluid
-    .category
+    .category#scroll_ahora_en_cartelera
       %h4 AHORA EN CINEMAS
       #playing-now-slider.masonry
         = render "movies/slider"
   .row-fluid
-    .category
+    .category#scroll_proximamente
       %h4 PROXIMAMENTE
       #coming-soon-slider.masonry
         = render "upcoming_movies/slider"

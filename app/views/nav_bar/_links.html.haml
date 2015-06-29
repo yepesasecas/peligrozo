@@ -1,8 +1,8 @@
 = render 'nav_bar/countries'
 
-%li{class: "#{'active' if current_page?(movies_path) or current_page?(root_path)}"}
+%li.nav-top{class: "#{'active' if current_page?(movies_path) or current_page?(root_path)}"}
   = link_to "CARTELERA", movies_path
-%li{class: "#{'active' if current_page?(user_favorite_movies_path(current_user))}"}
+%li.nav-top{class: "#{'active' if current_page?(user_favorite_movies_path(current_user))}"}
   = link_to "WATCHLIST", user_favorite_movies_path(current_user)
-%li{class: "#{'active' if current_page?(user_movie_nights_path(current_user))}"}
+%li.nav-top{class: "#{'active' if current_page?(user_movie_nights_path(current_user))}"}
   = link_to "MOVIE NIGHT", user_movie_nights_path(current_user)

@@ -55,33 +55,31 @@ h1, h2, h3, h4, h5, h6{
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 800px) {
   body{
-    margin-top: 80px;
+    margin-top: 116px;
   }
 
   .logo{
     #logo{
       display:      inline-block;
-      margin-top:   23px;
+      margin-top:   17px;
       width:        230px;
     }
   }
 
   .navbar{
     ul{
-      li{
+      li.nav-top{
         border-left: 1px solid #ccc;
         .coming-soon{
           text-align: center;
           color: #ccc;
         }
       }
-      li:first-child{
+      li.nav-top:first-child{
         border-left: none;
       }
-      li:last-child{
+      li.nav-top:last-child{
         border-right: 1px solid #ccc;
-      }
-      li:hover{
       }
     }
     .countries-dropdown{
@@ -90,10 +88,18 @@ h1, h2, h3, h4, h5, h6{
     }
   }
 
-  .navbar-nav > li > a{
-    padding-top:    30px;
+  .navbar-nav > li.nav-top > a{
+    padding-top:    25px;
     padding-bottom: 15px;
-    height:         80px;
+    height:         70px;
+  }
+
+  .navbar-nav > li.nav-bottom > a{
+    height: 46px;
+  }
+
+  .navbar-section{
+    background-color: #e7e7e7 !important;
   }
 }
 
