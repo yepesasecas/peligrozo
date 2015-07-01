@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user_is_an_admin?
-      [1, 2, 3, 5, 11, 16, 17].include?(current_user.id)
+      [1, 2, 3, 4, 5, 11, 16, 17, 24].include?(current_user.id)
     end
 
     def current_country
