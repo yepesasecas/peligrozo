@@ -33,17 +33,17 @@ ActiveRecord::Schema.define(version: 20150605044440) do
   add_index "chats", ["movie_night_id"], name: "index_chats_on_movie_night_id"
 
   create_table "cities", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "value",      limit: 255
+    t.string   "value"
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "code",       limit: 255
-    t.string   "flag",       limit: 255
+    t.string   "name"
+    t.string   "code"
+    t.string   "flag"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150605044440) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.integer  "tmdb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -154,16 +154,16 @@ ActiveRecord::Schema.define(version: 20150605044440) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.string   "value",        limit: 255
+    t.string   "name"
+    t.string   "value"
     t.text     "overview"
-    t.string   "poster_path",  limit: 255
+    t.string   "poster_path"
     t.date     "release_date"
     t.integer  "tmdb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",        limit: 255
-    t.string   "trailer",      limit: 255
+    t.string   "state"
+    t.string   "trailer"
   end
 
   add_index "movies", ["id"], name: "index_movies_on_id"
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20150605044440) do
     t.integer  "movie_id"
     t.integer  "theater_id"
     t.text     "description"
-    t.string   "price",       limit: 255
+    t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -186,13 +186,13 @@ ActiveRecord::Schema.define(version: 20150605044440) do
   add_index "schedules", ["theater_id"], name: "index_schedules_on_theater_id"
 
   create_table "theaters", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "value",      limit: 255
+    t.string   "name"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",      limit: 255
-    t.string   "facebook",   limit: 255
-    t.string   "twitter",    limit: 255
+    t.string   "email"
+    t.string   "facebook"
+    t.string   "twitter"
     t.integer  "city_id"
   end
 
@@ -200,16 +200,16 @@ ActiveRecord::Schema.define(version: 20150605044440) do
   add_index "theaters", ["name"], name: "index_theaters_on_name"
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",         limit: 255
-    t.string   "uid",              limit: 255
-    t.string   "name",             limit: 255
-    t.string   "oauth_token",      limit: 255
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.boolean  "first_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",            limit: 255
-    t.string   "email",            limit: 255
+    t.string   "state"
+    t.string   "email"
     t.string   "image"
   end
 
@@ -218,10 +218,10 @@ ActiveRecord::Schema.define(version: 20150605044440) do
   add_index "users", ["uid"], name: "index_users_on_uid"
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  limit: 255, null: false
-    t.integer  "item_id",                null: false
-    t.string   "event",      limit: 255, null: false
-    t.string   "whodunnit",  limit: 255
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
   end
