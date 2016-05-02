@@ -1,4 +1,4 @@
-Peligroso
+Peligroso.co
 =========
 ![Landing Page Screenshot](/public/landing.png)
 
