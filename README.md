@@ -6,7 +6,7 @@ Url
 =========
 http://peligroso.co
 
-Credit
+Credits
 =========
 - Jota Marquez
 - Dairo Rodriguez
