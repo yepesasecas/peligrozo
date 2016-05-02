@@ -1,8 +1,8 @@
 .landing-back{
   background-size: cover;
   bottom: 0px;
-  position: absolute; 
-  top: 0px; 
+  position: absolute;
+  top: 0px;
   min-width: 100%;
 }
 
@@ -21,8 +21,12 @@
   padding: 2% 0;
   text-align: center;
   a{
-    display: inline-block;
+    display: inline-block !important;
   }
+  .facebook-button{
+    display: inline-block !important;
+  }
+
 }
 
 .hero-description{
