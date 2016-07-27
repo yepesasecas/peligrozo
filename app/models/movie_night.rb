@@ -1,5 +1,5 @@
 class MovieNight < ActiveRecord::Base
-  has_paper_trail
+  #has_paper_trail
 
   has_many :attendees
   has_many :users, through: :attendees, source: :user

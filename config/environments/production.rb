@@ -93,5 +93,5 @@ Rails.application.configure do
   config.assets.compile = true
 
   # Disable paper_trail
-  config.paper_trail.enabled = false
+  # config.paper_trail.enabled = false
 end

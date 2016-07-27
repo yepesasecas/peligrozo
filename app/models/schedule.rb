@@ -1,8 +1,8 @@
 class Schedule < ActiveRecord::Base
-  has_paper_trail
+  #has_paper_trail
 
   before_save :description_organize
-  
+
   belongs_to :movie
   belongs_to :theater
 

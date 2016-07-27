@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_paper_trail
+  #has_paper_trail
 
   has_many :attendees, dependent: :destroy
   has_many :movie_nights_attending, through: :attendees, source: :movie_night
