@@ -91,4 +91,7 @@ Rails.application.configure do
 
   config.assets.initialize_on_precompile = false
   config.assets.compile = true
+
+  # Disable paper_trail
+  config.paper_trail.enabled = false
 end
